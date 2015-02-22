@@ -5,7 +5,10 @@ Angry Castle is the working title of the third game of the Oulu University of Ap
 ## Links
 
 Trello
-https://trello.com/b/qqLpdqdJ/angrycastle
+* https://trello.com/b/qqLpdqdJ/angrycastle
 
 Wiki
-https://github.com/pabn1/AngryCastle/wiki
+* https://github.com/pabn1/AngryCastle/wiki
+
+OAMK Pelinkehittäjät
+* https://www.facebook.com/groups/562725053861179/
