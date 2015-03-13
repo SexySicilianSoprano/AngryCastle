@@ -31,11 +31,10 @@ public:
 	}
 
 protected:
-	GameState()	{
-	}
-
-	~GameState() {
-	}
+	GameState(Window *window) :
+		level(window)
+	{}
+	~GameState() {}
 
 private:
 	static GameState game_state;

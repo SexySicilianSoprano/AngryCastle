@@ -28,18 +28,6 @@ int main(int argc, char* args[]) {
 
 		manager.update();
 		manager.render();
-		/*
-		player.update();
-
-		if (Input::keyState(SDL_SCANCODE_ESCAPE)) {
-			love = false;
-		}
-
-		window.clear();
-
-
-		window.refresh();
-		*/
 	}
 
 	SDL::exit();

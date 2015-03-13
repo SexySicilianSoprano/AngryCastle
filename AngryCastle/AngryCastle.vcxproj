@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\AI.cpp" />
+    <ClCompile Include="sources\Animation.cpp" />
+    <ClCompile Include="sources\Camera.cpp" />
+    <ClCompile Include="sources\Color.cpp" />
+    <ClCompile Include="sources\DamageableEntity.cpp" />
+    <ClCompile Include="sources\Enemy.cpp" />
+    <ClCompile Include="sources\EnemyFactory.cpp" />
+    <ClCompile Include="sources\Entity.cpp" />
+    <ClCompile Include="sources\Font.cpp" />
+    <ClCompile Include="sources\GameState.cpp" />
+    <ClCompile Include="sources\HUD.cpp" />
+    <ClCompile Include="sources\Input.cpp" />
+    <ClCompile Include="sources\Level.cpp" />
+    <ClCompile Include="sources\main.cpp" />
+    <ClCompile Include="sources\MovingEntity.cpp" />
+    <ClCompile Include="sources\Music.cpp" />
+    <ClCompile Include="sources\Player.cpp" />
+    <ClCompile Include="sources\Projectile.cpp" />
+    <ClCompile Include="sources\PugiXML.cpp" />
+    <ClCompile Include="sources\SDL.cpp" />
+    <ClCompile Include="sources\SFX.cpp" />
+    <ClCompile Include="sources\Sprite.cpp" />
+    <ClCompile Include="sources\State.cpp" />
+    <ClCompile Include="sources\StateManager.cpp" />
+    <ClCompile Include="sources\Text.cpp" />
+    <ClCompile Include="sources\Texture.cpp" />
+    <ClCompile Include="sources\Timer.cpp" />
+    <ClCompile Include="sources\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sources\AI.h" />
+    <ClInclude Include="sources\Animation.h" />
+    <ClInclude Include="sources\Camera.h" />
+    <ClInclude Include="sources\Color.h" />
+    <ClInclude Include="sources\DamageableEntity.h" />
+    <ClInclude Include="sources\Enemy.h" />
+    <ClInclude Include="sources\EnemyFactory.h" />
+    <ClInclude Include="sources\Entity.h" />
+    <ClInclude Include="sources\EntityCollection.h" />
+    <ClInclude Include="sources\Font.h" />
+    <ClInclude Include="sources\GameState.h" />
+    <ClInclude Include="sources\HUD.h" />
+    <ClInclude Include="sources\Input.h" />
+    <ClInclude Include="sources\Level.h" />
+    <ClInclude Include="sources\MovingEntity.h" />
+    <ClInclude Include="sources\Music.h" />
+    <ClInclude Include="sources\Player.h" />
+    <ClInclude Include="sources\Projectile.h" />
+    <ClInclude Include="sources\PugiConfig.h" />
+    <ClInclude Include="sources\PugiXML.h" />
+    <ClInclude Include="sources\SDL.h" />
+    <ClInclude Include="sources\SFX.h" />
+    <ClInclude Include="sources\Sprite.h" />
+    <ClInclude Include="sources\State.h" />
+    <ClInclude Include="sources\StateManager.h" />
+    <ClInclude Include="sources\Text.h" />
+    <ClInclude Include="sources\Texture.h" />
+    <ClInclude Include="sources\Timer.h" />
+    <ClInclude Include="sources\Window.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{84F4CEDF-E945-445F-9122-EB39FD12BFF9}</ProjectGuid>
+    <RootNamespace>AngryCastle</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)SDL\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy /Y "$(ProjectDir)SDL\lib\x86\*.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Copies *.dll to Debug dir</Message>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
