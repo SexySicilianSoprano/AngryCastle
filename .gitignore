@@ -47,3 +47,11 @@ Temporary Items
 # =========================
 Debug/*
 AngryCastle/Debug/*
+
+# =========================
+# Ignore .sdf files
+# =========================
+*.sdf
+*.opensdf
+*.suo
+AngryCastle.sdf
