@@ -1,5 +1,5 @@
-#ifndef __GAMESTATE_H_DEFINED__
-#define __GAMESTATE_H_DEFINED__
+#ifndef __MENUSTATE_H_DEFINED__
+#define __MENUSTATE_H_DEFINED__
 
 #include "BaseState.h"
 #include "Window.h"
@@ -8,11 +8,11 @@
 #include "Text.h"
 #include "Color.h"
 
-class GameState : public BaseState {
+class MenuState : public BaseState {
 
 	public:
-		GameState(Window *window);
-		~GameState();
+		MenuState(Window *window);
+		~MenuState();
 
 		stateStatus update();
 		void render();
@@ -23,4 +23,4 @@ class GameState : public BaseState {
 		Text menuText;
 };
 
-#endif // __GAMESTATE_H_DEFINED__
+#endif // __MENUSTATE_H_DEFINED__

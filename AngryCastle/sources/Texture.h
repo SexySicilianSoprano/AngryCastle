@@ -1,36 +1,40 @@
-/**
- * Texture.h
- *
- * Description:
- * For creating textures.
- *
- * Example:
- * 
- */
+#ifndef __TEXTURE_H_INCLUDED__
+#define __TEXTURE_H_INCLUDED__
 
-#ifndef __TEXTURE_H_DEFINED__
-#define __TEXTURE_H_DEFINED__
-
+#include <string>
+#include "SDL.h"
 #include "Window.h"
 
-class Texture {
-public:
-	Texture(Window *window, std::string filename);
-	~Texture();
+class Texture
+{
+	public:
+		Texture(Window *window, std::string filename);
+		~Texture();
+		
+		// Getterit
+		int getWidth();
+		int getHeight();
+		
+		// Croppaa kuvasta rectin kokoisen alueen.
+		void crop(SDL_Rect rect);
+		
+		// Renderöi tekstuurin kohtaan x, y.
+		void render(int x, int y);
 
-	int getWidth();
-	int getHeight();
-	void crop(SDL_Rect rect);
-	void render(int x, int y);
-	void free();
+		// Vapauttaa SDL-tyypit muistista.
+		void free();
 
-private:
-	SDL_Texture *loadImage(std::string filename);
-	int width;
-	int height;
-	SDL_Rect clip_rect;
-	SDL_Renderer *renderer;
-	SDL_Texture *texture;
+
+	private:
+		// Lataa kuvatiedoston SDL_Texture -pointteriin.
+		SDL_Texture *loadImage(std::string filename);
+		
+		int height;
+		int width;
+
+		SDL_Rect clipRect;
+		SDL_Renderer *renderer;
+		SDL_Texture *texture;
 };
 
-#endif
+#endif // __LTEXTURE_H_INCLUDED__

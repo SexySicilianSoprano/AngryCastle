@@ -1,20 +1,20 @@
-/**
- * Font.cpp
- *
- */
-
 #include "Font.h"
 
 Font::Font():
-	font(nullptr) {
+	font(nullptr)
+{ }
+
+Font::~Font() {
+	TTF_CloseFont(font);
+	font = NULL;
 }
 
-Font::Font(std::string font_name, int font_size) {
-	loadFromFile(font_name, font_size);
+Font::Font(std::string fontName, int fontSize) {
+	loadFromFile(fontName, fontSize);
 }
 
-bool Font::loadFromFile(std::string font_name, int font_size) {
-	font = TTF_OpenFont(font_name.c_str(), font_size);
+bool Font::loadFromFile(std::string fontName, int fontSize) {
+	font = TTF_OpenFont(fontName.c_str(), fontSize);
 
 	if (!font) {
 		printf("Couldn't load font! %s\n", TTF_GetError());

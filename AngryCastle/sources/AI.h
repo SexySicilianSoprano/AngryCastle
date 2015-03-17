@@ -1,11 +1,12 @@
-/**
- * AI.h
- *
- * Description:
- * For assigning artificial intelligence to enemies.
- *
- * Example:
- * --
+/*
+ * DamageableEntity.h
+ * 
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ * eli, joilla on health pointit.
+ * 
+ * Esimerkki:
+ *		DamageableEntity damageableEntity = new DamageableEntity();
+ *		damageableEntity->damage(100);
  */
 
 #ifndef __AI_H_DEFINED__
@@ -14,26 +15,27 @@
 #include <vector>
 #include "Enemy.h"
 
-class AI {
-public:
-	AI(Enemy *enemy);
-	void linearPattern();
-	void sinePattern();
-	void update();
+class AI
+{
+	public:
+		AI(Enemy *enemy);
 
-private:
-	Enemy *enemy;
+		void linearPattern();
+		void sinePattern();
+		void update();
 
-	enum DIRECTION {
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
+	private:
+		Enemy *enemy;
 
-	int index;
-	int chilltime;
-	std::vector<int> pattern;
+		enum DIRECTION {
+			UP,
+			DOWN,
+			LEFT,
+			RIGHT
+		};
+
+		int index, chilltime;
+		std::vector<int> pattern;
 };
 
-#endif
+#endif // __AI_H_DEFINED__

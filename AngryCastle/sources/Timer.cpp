@@ -1,65 +1,80 @@
-/**
- * Timer.cpp
- *
- */
+#include "timer.h"
 
-#include "Timer.h"
+Timer::Timer()
+{
+	mStartTicks = 0;
+	mPausedTicks = 0;
 
-Timer::Timer() {
-	start_ticks = 0;
-	paused_ticks = 0;
-	started = false;
-	paused = false;
+	mPaused = false;
+	mStarted = false;
 }
 
-void Timer::start() {
-	started = true;
-	paused = false;
-	start_ticks = SDL_GetTicks();
-	paused_ticks = 0;
+void Timer::start()
+{
+	mStarted = true;
+	mPaused = false;
+
+	mStartTicks = SDL_GetTicks();
+	mPausedTicks = 0;
 }
 
-void Timer::stop() {
-	started = false;
-	paused = false;
-	start_ticks = 0;
-	paused_ticks = 0;
+void Timer::stop()
+{
+	mStarted = false;
+	mPaused = false;
+
+	mStartTicks = 0;
+	mPausedTicks = 0;
 }
 
-void Timer::pause() {
-	if (started && !paused) {
-		paused = true;
-		paused_ticks = SDL_GetTicks() - start_ticks;
-		start_ticks = 0;
+void Timer::pause()
+{
+	if (mStarted && !mPaused)
+	{
+		mPaused = true;
+
+		mPausedTicks = SDL_GetTicks() - mStartTicks;
+		mStartTicks = 0;
 	}
 }
 
-void Timer::unpause() {
-	if (started && paused) {
-		paused = false;
-		start_ticks = SDL_GetTicks() - paused_ticks;
-		paused_ticks = 0;
+void Timer::unpause()
+{
+	if (mStarted && mPaused)
+	{
+		mPaused = false;
+
+		mStartTicks = SDL_GetTicks() - mPausedTicks;
+
+		mPausedTicks = 0;
 	}
 }
 
-Uint32 Timer::getTicks() {
+Uint32 Timer::getTicks()
+{
 	Uint32 time = 0;
 
-	if (started) {
-		if (paused) {
-			time = paused_ticks;
-		} else {
-			time = SDL_GetTicks() - start_ticks;
+	if (mStarted)
+	{
+		if (mPaused)
+		{
+			time = mPausedTicks;
+		}
+		else
+		{
+			time = SDL_GetTicks() - mStartTicks;
 		}
 	}
 
 	return time;
 }
 
-bool Timer::isStarted() {
-	return started;
+bool Timer::isStarted()
+{
+	return mStarted;
 }
 
-bool Timer::isPaused() {
-	return paused && started;
+bool Timer::isPaused()
+{
+	return mPaused && mStarted;
 }

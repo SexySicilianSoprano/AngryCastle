@@ -1,45 +1,66 @@
-/**
+/*
  * HUD.h
+ * 
+ * HUDissa n‰ytet‰‰n aseet, upgradet, nyk. score, highscore, suojien m‰‰r‰ jne  
  *
- * Description:
- * HUD manager.
+ * Esim.
  *
- * Example:
- * --
+ * HUD Hud(&window)
+ * Hud.render();
+ * 
+ * Jos halutaan piilottaa:
+ * Hud.hide();
+ *
+ * Jos peli antaa pisteit‰:
+ * Hud.setScore(10);
+ *
  */
 
-#ifndef __HUD_H_DEFINED__
-#define __HUD_H_DEFINED__
+#ifndef HUD_H_DEFINED
+#define HUD_H_DEFINED
 
-#include "Window.h"
-#include "Sprite.h"
+#include "Font.h"
 #include "Text.h"
+#include "Texture.h"
+#include "Sprite.h"
+#include "Window.h"
 
-class HUD {
+class HUD
+{
 public:
 	HUD(Window *window);
-	~HUD();	
-	Sprite *weapon;	
-	void setWeapon(int weapon_id);
+	~HUD();
+	
+	Sprite *weapon;
+	
+	void setWeapon(int weaponId);
 	void setScore(int score);
+
 	void render();
 	void show();
 	void hide();
 
-private:	
-	Text score_text;
-	Text highscore_text;
-	Text score_value;
-	Text highscore_value;
+protected:
+	
+	Text score;
+	Text highscore;
+
+	Text numberScore;
+	Text numberHighscore;
+
 	Font font;
 	Color text_color;
-	bool is_hidden;
-	int current_score;
-	int highscore;
+
+	bool isHidden;
+
+	int currentScore;
+	int highScore;
+
 	Window *window;
+
 	Texture weapons;
 	Sprite selected_weapon;
 	int weapon_index;
 };
 
-#endif
+#endif //__HUD_H_DEFINED__

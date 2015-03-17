@@ -1,38 +1,40 @@
-/**
+/*
  * Projectile.h
- *
- * Description:
- * For creating projectiles.
- *
- * Example:
- * --
+ * 
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ * eli, joilla on health pointit.
+ * 
+ * Esimerkki:
+ *		Projectile projectile = new Projectile();
+ *		projectile->metodi();
  */
 
 #ifndef __PROJECTILE_H_DEFINED__
 #define __PROJECTILE_H_DEFINED__
 
+#include <vector>
+#include "SDL.h"
+#include "Window.h"
+#include "Texture.h"
+#include "Sprite.h"
 #include "MovingEntity.h"
 
-class Projectile
+class Projectile : public MovingEntity
 {
-public:
-	Projectile(Window *window);
-	~Projectile();
-	void spawn(int type, int x, int y, int radian);
-	void update();
-	void render();
+	public:
+		Projectile(Texture *texture, int speed, int x, int y, int radian);
+		~Projectile();
 
-private:
-	Window *window;
-	Sprite bullet_texture;
+		// Iterates through container
+		void update();
 
-	struct bullet {
-		MovingEntity entity;
-		int radian;
-		int type;
-	};
+		// Renders all objects in container
+		void render();
 
-	std::vector<bullet> container;
+	private:
+		int radian, x, y, vx, vy;
+		Texture *texture;
+		static SDL_Rect hitbox;
 };
 
-#endif
+#endif //__PROJECTILE_H_DEFINED__

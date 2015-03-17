@@ -1,150 +1,224 @@
-/**
- * Level.cpp
- *
- */
-
 #include "Level.h"
 
-Level::Level(Window *window):
+Level::Level(Window *window, EntityCollection<Enemy> *collection, EnemyFactory *factory):
 	window(window),
-	bg_scrolling_offset(0),
+	collection(collection),
+	factory(factory),
+	bgScrollingOffset(0),
 	camera(256, 240),
-	background(window, "images//kaupunki_tausta.png") {
-		camera.setSpeed(2);
+	background(window, "graphics//kaupunki_tausta.png")
+{
+	camera.setSpeed(2);
+	background_width = background.getWidth();
 }
 
-Level::~Level() {
-	// delete level_tile_sheet;
-}
+Level::~Level()
+{ }
 
-void Level::load(std::string level_name) {
-	result = level_document.load_file(level_name.c_str());
+void Level::load(std::string level_name)
+{
+	// Loads the level document
+	result = levelDocument.load_file(level_name.c_str());
 
 	if (!result) {
-		char msg [256];
-		sprintf_s(msg, "loadLevel: Failed to load level "
-					   "%s\n", level_name);
-		throw msg;
+		printf("Failed to load level %s.\n", level_name);
 		return;
 	}
 
-	// TODO(juha): Tilesize is normally taken from tilewidth, not tilesize.
-	tile_size = atoi(level_document.child("map").attribute("tilesize").value());
-	level_width = atoi(level_document.child("map").attribute("width").value());
-	level_height = atoi(level_document.child("map").attribute("height").value());
-	tile_node = level_document.child("map").child("layer").child("data");
+	// Level size stuff
+	tileSize = atoi(levelDocument.child("map").attribute("tilewidth").value());
+	levelWidth = atoi(levelDocument.child("map").attribute("width").value());
+	levelHeight = atoi(levelDocument.child("map").attribute("height").value());
 
-	level_tile_sheet = new Sprite(window, "images//512x512_kaupunki_tileset.png",
-		                          tile_size, tile_size);
+	// Get node which contains tileids
+	tileNode = levelDocument.child("map").child("layer").child("data");
 
-	int iterator_count = 0;
-	std::vector<int> level_row;
-	std::vector<int> enemy_spawn_row;
+	// Load level background
+	std::string tileSet = levelDocument.child("map").child("tileset").child("image").attribute("source").value();
+	levelTileSheet = new Sprite(window, tileSet, tileSize, tileSize);
 
-	for (pugi::xml_node_iterator iterator = tile_node.begin();
-		 iterator != tile_node.end();
-		 ++iterator) {
-		iterator_count++;
+	int iteratorCount = 0;
+	std::vector<int> levelRow;
+	std::vector<int> enemySpawnRow;
+
+	// Go through tile-nodes
+	for(pugi::xml_node_iterator iterator = tileNode.begin();
+		iterator != tileNode.end();
+		++iterator)
+	{
+		iteratorCount++;
+
+		// Add tile id to 
 		int gid = atoi(iterator->attribute("gid").value());
-		level_row.push_back(gid);
-
-		if (iterator_count % level_width == 0) {
-			level_data.push_back(level_row);
-			level_row.clear();
+		levelRow.push_back(gid);
+		
+		// NOTE(juha): Kun päästään kentän loppuun, vaihdetaan riviä.
+		if (iteratorCount % levelWidth == 0)
+		{
+			levelData.push_back(levelRow);
+			levelRow.clear();
 		}
 	}
 
-	enemy_spawn = level_document.child("map").child("objectgroup");
-	iterator_count = 0;
+	// Get enemy spawn regions
+	enemySpawn = levelDocument.child("map").child("objectgroup");
+	iteratorCount = 0;
 
-	for (pugi::xml_node_iterator iterator = enemy_spawn.begin();
-		 iterator != enemy_spawn.end();
-		 ++iterator) {
-		level_trigger trigger;
-		iterator_count++;
+	// Go through enemyspawn triggers
+	for(pugi::xml_node_iterator iterator = enemySpawn.begin();
+		iterator != enemySpawn.end();
+		++iterator)	
+	{
+		levelTrigger trigger;
+		iteratorCount++;
 
-		trigger.spawn_tile = atoi(iterator->attribute("x").value());
-		
-		pugi::xml_node properties = iterator->child("properties");
+		std::string objectName = iterator->attribute("name").value();
 
-		for(pugi::xml_node_iterator it = properties.begin();
-			it != properties.end();
-			++it) {
-			if (strcmp(it->attribute("name").value(), "enemyCount") == 0) {
-				trigger.enemy_count = atoi(it->attribute("value").value());
-			}
-
-			if (strcmp(it->attribute("name").value(), "enemyType") == 0) {
-				trigger.enemy_type = it->attribute("value").value();
-			}
-
-			if (strcmp(it->attribute("name").value(), "spawnHeight") == 0) {
-				trigger.spawn_height = atoi(it->attribute("value").value());
-			}
+		if (objectName.compare("playerSpawnPoint") == 0) {
+			player_spawn_x = atoi(iterator->attribute("x").value());
+			player_spawn_y = atoi(iterator->attribute("y").value());
 		}
 
-		triggers.push_back(trigger);
+		if (objectName.compare("enemySpawnRegion") == 0) {
+			// Get X-position
+			trigger.spawnTile = atoi(iterator->attribute("x").value());
+
+			// Get trigger properties
+			pugi::xml_node properties = iterator->child("properties");
+
+			for(pugi::xml_node_iterator it = properties.begin();
+				it != properties.end();
+				++it)
+			{
+				if (strcmp(it->attribute("name").value(), "enemyCount") == 0) {
+					trigger.enemyCount = atoi(it->attribute("value").value());
+				}
+
+				if (strcmp(it->attribute("name").value(), "enemyType") == 0) {
+					trigger.enemyType = it->attribute("value").value();
+				}
+
+				if (strcmp(it->attribute("name").value(), "spawnHeight") == 0) {
+					trigger.spawnHeight = atoi(it->attribute("value").value());
+				}
+			}
+
+			triggers.push_back(trigger);
+		}
 	}
 }
 
-void Level::render() {
-	if (camera.getX() < level_width*tile_size) {
-		for (std::vector<level_trigger>::iterator it = triggers.begin();
-			 it != triggers.end();
-			 ++it) {
-				 if (camera.getX() >= it->spawn_tile) {
-					 launchTrigger((*it));
-					 triggers.erase(it);
-					 break;
-				 }
+void Level::update() {
+	// NOTE(jouni&&karlos): Liikuttaa kameraa jos kenttä ei oo vielä loppunu
+	if (camera.getX() < levelWidth*tileSize)
+	{
+		for (std::vector<levelTrigger>::iterator it = triggers.begin();
+		it != triggers.end();
+		++it) {
+			if (camera.getX() >= it->spawnTile) {
+				launchTrigger((*it));
+				triggers.erase(it);
+				break;
+			}
 		}
-
 		camera.update();
 	}
 
-	int background_width;
-	background_width = background.getWidth();
-
-	// Scroll the background backwards
-	--bg_scrolling_offset;
-
-	// If the background has moved its whole length
-	// return it to its original position.
-	if (bg_scrolling_offset < -background_width) {
-		bg_scrolling_offset = 0;
+	//Scroll background
+	--bgScrollingOffset;
+	if(bgScrollingOffset < -background_width)
+	{
+		bgScrollingOffset = 0;
 	}
+}
 
-	background.render(bg_scrolling_offset, 0);
-	background.render(bg_scrolling_offset + background_width, 0);
-
+// TODO(jouni): Muuttujaksi kameran X
+void Level::render()
+{
+	background.render(bgScrollingOffset, 0);
+	background.render(bgScrollingOffset + background_width, 0);
+	
 	std::vector<std::vector<int>>::iterator row;
 	std::vector<int>::iterator col;
 
-	for (row = level_data.begin(); row != level_data.end(); ++row) {
+	for (row = levelData.begin(); row != levelData.end(); ++row) {
 		for (col = row->begin(); col != row->end(); ++col) {
-			int x = col - row->begin();
-			int y = row - level_data.begin();
-			level_tile_sheet->setIndex(*col-1);
-			level_tile_sheet->render(x*tile_size - camera.getX(), y*tile_size);
+			int X = col - row->begin();
+			int Y = row - levelData.begin();
+			levelTileSheet->setIndex(*col-1);
+			levelTileSheet->render(X*tileSize - camera.getX(), Y*tileSize);
 		}
 	}
 }
 
-int Level::getTile(int x, int y) {
+// In pixels
+int Level::getLevelWidth()
+{
+	return levelWidth*tileSize;
+}
+
+int Level::getTile(int x, int y)
+{
 	if (y >= 0 &&
 		x >= 0 &&
-		(unsigned int)y < level_data.size()*tile_size &&
-		(unsigned int)x < level_data[0].size()*tile_size) {
-			return (level_data[y/tile_size][(camera.getX()+x)/tile_size]);
+		y < levelData.size()*tileSize &&
+		x < levelData[0].size()*tileSize)
+	{
+		return (levelData[y/tileSize][(camera.getX()+x)/tileSize]);
 	}
 
 	return 0;
 }
 
-int Level::getWidth() {
-	return level_width*tile_size;
+void Level::launchTrigger(levelTrigger trigger) {
+	for (int i = 0; i < trigger.enemyCount; i++)
+	{
+		Enemy enemy = factory->spawn(trigger.enemyType, trigger.spawnHeight);
+		enemy.sinePattern(i % 2);
+		enemy.setX(levelWidth + (i *25));
+		enemy.setY(tileSize * trigger.spawnHeight);
+		enemy.speed(2);
+		collection->push(enemy);
+	}
 }
 
-Level::level_trigger Level::launchTrigger(level_trigger enemy_count) {
-	return enemy_count;
+bool Level::collides(Entity *entity)
+{
+	int hbX;
+	int hbY;
+
+	// Palauttaa hitboxin vasemman yläkulman tilen
+	hbX = entity->hitbox.x;
+	hbY = entity->hitbox.y;
+
+	if(getTile(hbX, hbY) > 0)
+	{
+		return true;
+	}
+
+	// Palauttaa hitboxin oikean yläkulman tilen
+	hbX = entity->hitbox.x + entity->hitbox.w;
+	hbY = entity->hitbox.y;
+
+	if(getTile(hbX, hbY) > 0){
+		return true;
+	}
+
+	// Palauttaa hitboxin vasemman alakulman tilen
+	hbX = entity->hitbox.x + entity->hitbox.w;
+	hbY = entity->hitbox.y + entity->hitbox.h;
+
+	if(getTile(hbX, hbY) > 0){
+		return true;
+	}
+
+	// Palauttaa hitboxin oikean alakulman tilen
+	hbX = entity->hitbox.x;
+	hbY = entity->hitbox.y + entity->hitbox.h;
+
+	if(getTile(hbX, hbY) > 0){
+		return true;
+	}
+	
+	return false;
 }

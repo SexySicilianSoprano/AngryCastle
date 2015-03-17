@@ -1,4 +1,4 @@
-/**
+/*
  * Entity.cpp
  *
  */
@@ -12,7 +12,8 @@ Entity::Entity(Texture *texture, SDL_Rect hitbox, int x, int y):
 	x(x),
 	y(y),
 	hitbox(hitbox),
-	frame(0) {
+	frame(0)
+{
 
 }
 
@@ -23,7 +24,8 @@ Entity::Entity(Sprite *sprite, SDL_Rect hitbox, int x, int y):
 	x(x),
 	y(y),
 	hitbox(hitbox),
-	frame(0) {
+	frame(0)
+{
 
 }
 
@@ -33,17 +35,19 @@ Entity::Entity(Animation *animation, SDL_Rect hitbox, int x, int y):
 	animation(animation),
 	x(x),
 	y(y),
-	hitbox(hitbox),
-	frame(0) {
-	//	sprite = animation->animated;
-	//	frame = animation->getFrame();
+	hitbox(hitbox)
+{
+//	sprite = animation->animated;
+//	frame = animation->getFrame();
 }
 
-Entity::~Entity() {
+Entity::~Entity()
+{
 
 }
 
-void Entity::render() {
+void Entity::render()
+{
 	if (texture) {
 		texture->render(x, y);
 	}
@@ -57,11 +61,14 @@ void Entity::render() {
 	}
 }
 
-int Entity::getX() {
+
+int Entity::getX()
+{
 	return x; 
 }
 
-int Entity::getY() {
+int Entity::getY()
+{
 	return y;
 }
 

@@ -1,60 +1,70 @@
 /**
+ *
  * Window.h
  *
- * Description:
- * Functionality for creating and manipulating a window.
- *
- * Example:
- * // Changes the title of the window to "My Application".
- * Window::setTitle("My Application");
+ * @todo
+ *		- Constant framerate
+ *		- Corrected framerate calculation
  */
 
-#ifndef __WINDOW_H_DEFINED__
-#define __WINDOW_H_DEFINED__
+#ifndef WINDOW_H_DEFINED
+#define WINDOW_H_DEFINED
 
-#include "Timer.h"
-#include "SDL.h"
 #include <string>
-#include "Color.h"
+#include "SDL.h"
+#include "color.h"
+#include "Timer.h"
 
 #define FRAMERATE 30
-#define FPS_INTERVAL 1000
+#define FPS_INTERVAL 1000	// Milliseconds
 
-class Window {
-public:
-	Window(unsigned int new_width, unsigned int new_height,
-		   unsigned int new_logical_width, unsigned int new_logical_height,
-		   std::string new_title, bool is_fullscreen);
-	~Window();
-	void destroy();
-	void resize(int new_width, int new_height, 
-				std::string new_title, bool is_fullscreen);
-	void refresh();
-	void clear();
-	void setTitle(std::string title);
-	void fill(Color color);
-	SDL_Renderer *getRenderer();
-	Uint32 getDelta();
-	int getFramerate();
-	void minimize();
-	void maximize();
-	void restore();
+class Window
+{
+	public:
+		// Constructor
+		Window(int width, int height, std::string title, bool fullscreen);
+	
+		// Destructor & destroy()
+		virtual ~Window();
+		void destroy();
 
-private:
-	unsigned int width;
-	unsigned int height;
-	unsigned int logical_width;
-	unsigned int logical_height;
-	SDL_Window *window;
-	SDL_Renderer *renderer;
+		void resize(std::string title, int width, int height, bool fullscreen = false);
+		void refresh();
+		void clear();
 
-	Timer frametime_timer;
-	Timer fpsTimer;
-	Uint32 framerate;
-	Uint32 frame_delay;
-	Uint32 current_delta;
-	int fps_current;
-	int fps;
+		void setTitle(std::string title);
+
+		void minimize();
+		void maximize();
+		void restore();
+
+		Uint32 getDelta();
+		int getFramerate();
+
+		SDL_Renderer* getRenderer();
+
+		// source = Alkuperäisestä kuvasta leikatun alueen sijanti ja koko
+
+		void drawRect(int X, int Y, int W, int H, Color color);
+		void fill(Color color);
+
+		unsigned int width; 
+		unsigned int height; 
+		unsigned int originalWidth;
+		unsigned int originalHeight;
+	
+		//The actual hardware texture
+		// SDL_Texture* texture;
+
+	private:
+		SDL_Window *window;
+		SDL_Surface *surface;
+		SDL_Renderer *renderer;
+	
+		Timer frametimeTimer, fpsTimer;
+		Uint32 framerate, frame_delay, current_delta;
+		int fps_current, fps;
+	
 };
 
-#endif
+#endif //__WINDOW_H_DEFINED__

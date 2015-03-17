@@ -1,41 +1,35 @@
-/**
- * Sprite.cpp
- *
- */
-
 #include "Sprite.h"
 
+// NOTE(jouni): spriteWidth & spriteHeight = yhen spriten koko
 Sprite::Sprite(Window *window,
 			   std::string filename,
-			   int sprite_width,
-			   int sprite_height):
+			   int spriteWidth,
+			   int spriteHeight):
 	Texture(window, filename),
-	index(0) {
+	index(0)
+{
 	try {
 		int spriteItems = 0;
-		int columns = getWidth() / sprite_width;
-		int rows = getHeight() / sprite_height;
-
-		for (int i = 0; i < rows; ++i) {
-			for (int j = 0; j < columns; ++j) {
-				SDL_Rect rect = {j*sprite_width, i*sprite_height,
-					             sprite_width, sprite_height};
-				sprite_sheet.push_back(rect);
+		int columns = getWidth() / spriteWidth;
+		int rows = getHeight() / spriteHeight;
+	
+		for (int i = 0; i < rows; ++i)
+		{
+			for (int j = 0; j < columns; ++j)
+			{
+				SDL_Rect rect = {j*spriteWidth, i*spriteHeight, spriteWidth, spriteHeight};
+				spriteSheet.push_back(rect);
 			}
 		}
 	} catch(...) {
-		printf("Sprite: Error creating sprite.\n");
+		printf("Error creating sprite");
 		return;
 	}
+
 }
 
-Sprite::~Sprite() {
-}
-
-void Sprite::render(int x, int y) {
-	// Index defines the section of the sprite sheet that will be rendered.
-	crop(sprite_sheet[index]);
-	Texture::render(x, y);
+Sprite::~Sprite()
+{
 }
 
 void Sprite::setIndex(int i) {
@@ -44,4 +38,11 @@ void Sprite::setIndex(int i) {
 	} else {
 		index = i;
 	}
+}
+
+// NOTE(jouni): index = mikä spriten "alkio" piirretään
+void Sprite::render(int x, int y)
+{
+	crop(spriteSheet[index]);
+	Texture::render(x, y);
 }

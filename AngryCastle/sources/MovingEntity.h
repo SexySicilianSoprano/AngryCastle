@@ -1,41 +1,47 @@
-/**
+/*
  * MovingEntity.h
- *
- * Description:
- * For creating entities that can move.
- *
- * Example:
- * --
+ * 
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ * eli, joilla on health pointit.
+ * 
+ * Esimerkki:
+ *		MovingEntity movingEntity = new MovingEntity();
+ *		movingEntity->metodi();
  */
 
 #ifndef __MOVINGENTITY_H_DEFINED__
 #define __MOVINGENTITY_H_DEFINED__
 
 #include "Entity.h"
-#include "Level.h"
+#include "Texture.h"
+#include "Sprite.h"
+#include "Animation.h"
 
-class MovingEntity : public Entity {
-public:
-	MovingEntity(Texture *sprite, SDL_Rect hitbox);
-	MovingEntity(Sprite *sprite, SDL_Rect hitbox);
-	MovingEntity(Animation *sprite, SDL_Rect hitbox);
-	~MovingEntity();
+class MovingEntity : public Entity
+{
+	public:
+		MovingEntity(Texture *sprite, SDL_Rect hitbox);
+		MovingEntity(Sprite *sprite, SDL_Rect hitbox);
+		MovingEntity(Animation *sprite, SDL_Rect hitbox);
+		~MovingEntity();
 
-	enum DIRECTION {
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	};
+		enum DIRECTION {
+			UP,
+			DOWN,
+			LEFT,
+			RIGHT
+		};
 
-	void move(int direction);
-	void setSpeed(int new_speed);
-	int getSpeed();
-	SDL_bool collides(Entity *other);
-	SDL_bool collides(Level *level);
+		void move(int direction);
+		void speed(int speed);
 
-private:
-	int speed;
+		int getSpeed();
+
+		bool collides(Entity *other);
+
+	private:
+		int _speed;
+		int desiredX, desiredY;
 };
 
-#endif
+#endif // __MOVINGENTITY_H_DEFINED__

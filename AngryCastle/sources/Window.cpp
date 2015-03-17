@@ -1,103 +1,94 @@
-/**
- * Window.cpp
- *
- */
-
 #include "Window.h"
 
-Window::Window(unsigned int new_width, unsigned int new_height,
-			   unsigned int new_logical_width, unsigned int new_logical_height,
-			   std::string new_title, bool is_fullscreen):
+Window::Window(int width, int height, std::string title, bool fullscreen):
 	window(nullptr),
+	surface(nullptr),
 	renderer(nullptr),
-	width(new_width),
-	height(new_height),
-	logical_width(new_logical_width),
-	logical_height(new_logical_height) {
-	resize(width, height, new_title, is_fullscreen);
-	frametime_timer.start();
+	width(width),
+	height(height),
+	originalWidth(width),
+	originalHeight(height),
+	current_delta(0)
+{
+	resize(title, width, height, fullscreen);
+
+	frametimeTimer.start();
 	fpsTimer.start();
-	current_delta = frametime_timer.getTicks();
+
+	current_delta = frametimeTimer.getTicks();
+
 	clear();
 	refresh();
 }
 
-Window::~Window() {
+Window::~Window()
+{
 	destroy();
 }
 
-void Window::destroy() {
-	if (renderer) {
-		SDL_DestroyRenderer(renderer);
-		renderer = nullptr;
+void Window::destroy()
+{
+	if (this->renderer)
+	{
+		SDL_DestroyRenderer(this->renderer);
+		this->renderer = nullptr;
 	}
 
-	if (window) {
-		SDL_DestroyWindow(window);
-		window = nullptr;
+	if (this->window)
+	{
+		SDL_DestroyWindow(this->window);
+		this->window = nullptr;
 	}
 }
 
-void Window::resize(int new_width, int new_height, 
-					std::string new_title,
-					bool is_fullscreen) {
+void Window::resize(std::string title, int width, int height, bool fullscreen)
+{
 	destroy();
-	Uint32 window_flag;
 
-	if (is_fullscreen) {
+	Uint32 window_flag; 
+
+	if (fullscreen)
+	{
 		window_flag = SDL_WINDOW_FULLSCREEN;
 	} else {
 		window_flag = SDL_WINDOW_SHOWN;
 	}
 
-	SDL_CreateWindowAndRenderer(new_width, new_height, 
-								window_flag, 
-								&window, &renderer);
+	SDL_CreateWindowAndRenderer(width, height, window_flag, &window, &renderer);
 	
-	// Basic error handling that informs the user in the
-	// case a window or a renderer could not be created.
-	if (!window || !renderer) {
-		throw "resize: Couldn't create SDL_Window or SDL_Renderer.";
+	// NOTE(jouni): Perus virhetarkistusta; jos window tai renderer ei ssaa arvoa,
+	// ei anneta ohjelman vaan raa'asti kaatua vaan ilmotetaan siitä käyttäjälle.
+	if (!window || !renderer)
+	{
+		printf("SDL_Window tai SDL_Renderer ei pelaa!\n");
+		return;
+	}
+	
+	// Nearest-neighbour resize
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+	SDL_RenderSetLogicalSize(renderer, 256, 240);
+
+	// Asetetaan title
+	setTitle(title);
+
+	surface = SDL_GetWindowSurface(window);
+	if (!surface)
+	{
+		printf("SDL_GetWindowSurface failas!\n");
 		return;
 	}
 
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-	SDL_RenderSetLogicalSize(renderer, logical_width, logical_height);
-	setTitle(new_title);
-
-	width = new_width;
-	height = new_height;
-	
-	if (width == 0 || height == 0) {
-		throw "Window size is 0.";
-	}
-
-	setTitle(new_title);
+	this->width = width;
+	this->height = height;
 }
 
-void Window::refresh() {
-	SDL_RenderPresent(renderer);
-	fps_current++;
-	int ticks = frametime_timer.getTicks();
-
-	if (ticks < (1000 / FRAMERATE)) {
-		SDL_Delay((1000 / FRAMERATE) - ticks);
-	}
-
-	current_delta = frametime_timer.getTicks();
-	frametime_timer.start();
-}
-
-void Window::clear() {
+void Window::clear()
+{
 	fill(Color("black"));
 }
 
-void Window::fill(Color color) {
-	if (!renderer) {
-		throw "fill: Renderer could not be found.";
-		return;
-	}
-
+void Window::fill(Color color)
+{
 	SDL_SetRenderDrawColor(renderer,
 						   color.r(),
 						   color.g(),
@@ -107,61 +98,75 @@ void Window::fill(Color color) {
 	SDL_RenderClear(renderer);
 }
 
-void Window::setTitle(std::string title) {
-	if (!window) {
-		throw "setTitle: Window could not be found.";
-		return;
-	}
+void Window::refresh()
+{
+	SDL_RenderPresent(renderer);
+
+	fps_current++;
 	
-	SDL_SetWindowTitle(window, title.c_str());
+	int ticks = frametimeTimer.getTicks();
+
+	if (ticks < (1000 / FRAMERATE)) {
+		SDL_Delay((1000 / FRAMERATE) - ticks);
+	}
+
+	current_delta = frametimeTimer.getTicks();
+	frametimeTimer.start();
 }
 
-SDL_Renderer *Window::getRenderer() {
-	if (!renderer) {
-		throw "getRenderer: Renderer could not be found.";
-		return nullptr;
-	}
+void Window::drawRect(int X, int Y, int W, int H, Color color)
+{
+	SDL_Rect fillRect = { X, Y, W, H };
+	SDL_SetRenderDrawColor(renderer, color.r(), color.g(), color.b(), color.a());
+	SDL_RenderFillRect(renderer, &fillRect );
+}
 
+void Window::setTitle(std::string title)
+{
+	if (window)
+	{
+		SDL_SetWindowTitle(window, title.c_str());
+	}
+}
+
+void Window::minimize() 
+{
+	if (window)
+	{
+		SDL_MinimizeWindow(window);
+	}
+}
+
+void Window::maximize()
+{
+	if (window)
+	{
+		SDL_MaximizeWindow(window);
+	}
+}
+
+void Window::restore()
+{
+	SDL_RestoreWindow(this->window);
+}
+
+SDL_Renderer* Window::getRenderer() 
+{
 	return renderer;
 }
 
-Uint32 Window::getDelta() {
+Uint32 Window::getDelta()
+{
 	return current_delta;
 }
 
-int Window::getFramerate() {
-	if ( fpsTimer.getTicks() >= FPS_INTERVAL) {
+int Window::getFramerate()
+{
+	if (fpsTimer.getTicks() >= FPS_INTERVAL) {
 		fps = fps_current;
 		fps_current = 0;
 		fpsTimer.start();
 	}
 
 	return fps;
-}
-
-void Window::minimize() {
-	if (!window) {
-		throw "minimize: Window could not be found";
-		return;
-	}
-
-	SDL_MinimizeWindow(window);
-}
-
-void Window::maximize() {
-	if (!window) {
-		throw "maximize: Window could not be found";
-		return;
-	}
-
-	SDL_MaximizeWindow(window);
-}
-
-void Window::restore() {
-	if (!window) {
-		throw "restore: Window could not be found";
-		return;
-	}
-
-	SDL_RestoreWindow(window);
 }

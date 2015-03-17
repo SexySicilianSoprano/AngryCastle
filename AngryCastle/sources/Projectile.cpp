@@ -1,50 +1,45 @@
-/**
+/*
  * Projectile.cpp
  *
  */
 
 #include "Projectile.h"
 
-Projectile::Projectile(Window *window):
-	window(window),
-	bullet_texture(window, "images//ammus_sprite.png", 5, 5) {
+SDL_Rect Projectile::hitbox = {1, 1, 2, 2};
+
+Projectile::Projectile(Texture *texture, int speed, int x, int y, int radian) :
+	MovingEntity(texture, hitbox),
+	vx(0),
+	vy(0),
+	radian(radian)
+{
+	MovingEntity::speed(speed);
+	setX(x);
+	setY(y);
+	MovingEntity::hitbox.x = x;
+	MovingEntity::hitbox.y = y;
+}
+
+Projectile::~Projectile()
+{}
+
+void Projectile::update()
+{
+	int vx = getSpeed() * cos(radian);
+	int vy = getSpeed() * sin(radian);
+
+	//printf("velocity:\tx%d y%d\n", vx, vy);
+
+	setX(getX() + vx);
+	setY(getY() + vy);
+	MovingEntity::hitbox.x = getX();
+	MovingEntity::hitbox.y = getY();
+
+	//printf("new point:\tx%d y%d\n", getX(), getY());
 
 }
 
-Projectile::~Projectile() {
-
-}
-
-void Projectile::spawn(int type, int x, int y, int radian) {
-	SDL_Rect hitbox = {1, 1, 2, 2};
-	MovingEntity entity(&bullet_texture, hitbox);
-	entity.setX(x);
-	entity.setY(y);
-	entity.setSpeed(20);
-	bullet tmp = {entity, type, radian};
-	container.push_back(tmp);
-}
-
-void Projectile::update() {
-	for (std::vector<bullet>::iterator it = container.begin();
-		 it != container.end();
-		 ++it) {
-			 int radian = it->radian;
-			 int x = it->entity.getX();
-			 int y = it->entity.getY();
-			 int velocity_x = (int)(it->entity.getSpeed() * cos(radian));
-			 int velocity_y = (int)(it->entity.getSpeed() * sin(radian));
-
-			 it->entity.setX(x + velocity_x);
-			 it->entity.setY(y + velocity_y);
-	}
-}
-
-void Projectile::render() {
-	for (std::vector<bullet>::iterator it = container.begin();
-		 it != container.end();
-		 ++it) {
-
-			 it->entity.render();
-	}
+void Projectile::render()
+{
+	MovingEntity::render();
 }

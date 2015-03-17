@@ -1,39 +1,27 @@
-/**
- * StateManager.h
- *
- * Description:
- * For managing states.
- *
- * Example:
- * --
- */
-
 #ifndef __STATEMANAGER_H_DEFINED__
 #define __STATEMANAGER_H_DEFINED__
 
 #include <vector>
 #include "Window.h"
-
-class State;
+#include "Input.h"
+#include "BaseState.h"
+#include "MenuState.h"
+#include "GameState.h"
 
 class StateManager {
-public:
-	StateManager(Window *window);
-	~StateManager();
-	
-	void changeState(State *state);
-	void pushState(State *state);
-	void popState();
 
-	void update();
-	void render();
-	bool isRunning();
-	bool quit();
+	public:
+		StateManager(Window *window);
+		~StateManager();
 
-private:
-	bool love;
-	Window *window;
-	std::vector<State*> states;
+		void pushState(BaseState *state);
+		void popState();
+
+		void run();
+
+	protected:
+		Window *window;
+		std::vector<BaseState*> states;
 };
 
-#endif
+#endif // __STATEMANAGER_H_DEFINED__

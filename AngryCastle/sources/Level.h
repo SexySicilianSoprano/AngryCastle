@@ -1,57 +1,68 @@
-/**
- * Level.h
- *
- * Description:
- * For creating levels.
- *
- * Example:
- * --
- */
-
 #ifndef __LEVEL_H_DEFINED__
 #define __LEVEL_H_DEFINED__
 
+#include <vector>
 #include "Window.h"
-#include "Sprite.h"
-#include "PugiXML.h"
 #include "Camera.h"
+#include "PugiXML.h"
+#include "Texture.h"
+#include "Sprite.h"
+#include "EntityCollection.h"
+#include "EnemyFactory.h"
+#include "Enemy.h"
 
-class Level {
-public:
-	Level(Window *window);
-	~Level();
-	void load(std::string level_name);
-	void render();
-	int getTile(int x, int y);
-	int getWidth();
+class Level
+{
+	public:
+		Level(Window *window, EntityCollection<Enemy> *collection, EnemyFactory *factory);
+		~Level();
 
-	struct level_trigger {
-		int spawn_tile;
-		int enemy_count;
-		std::string enemy_type;
-		int spawn_height;
-	};
+		void load(std::string level_name);
+		void update();
+		void render();
+	
+		int getTile(int x, int y);
+		int getLevelWidth();
 
-private:
-	pugi::xml_document level_document;
-	pugi::xml_parse_result result;
-	pugi::xml_node tile_node;
-	pugi::xml_node enemy_spawn;
+		bool collides(Entity *entity);
 
-	int level_width;
-	int level_height;
-	int tile_size;
+		struct levelTrigger {
+			// X Position where the trigger is triggered
+			int spawnTile;
+			// How many enemies to spawn
+			int enemyCount;
+			// Enemy type, currently string, may need to change to something
+			std::string enemyType;
+			// Y position where the trigger spawns enemies
+			int spawnHeight;
+		};
 
-	Camera camera;
+	private:
+		pugi::xml_document levelDocument;
+		pugi::xml_parse_result result;
+		pugi::xml_node tileNode;
+		pugi::xml_node enemySpawn;
 
-	Texture background;
-	int bg_scrolling_offset;
-	Window *window;
-	Sprite *level_tile_sheet;
-	std::vector<std::vector<int>> level_data;
-	std::vector<level_trigger> triggers;
+		int levelWidth, levelHeight;
+		int tileSize;
 
-	level_trigger launchTrigger(level_trigger enemy_count);
+		int player_spawn_x, player_spawn_y;
+
+		Camera camera;
+
+		Texture background;
+		int bgScrollingOffset;
+		int background_width;
+
+		Window *window;
+		EntityCollection<Enemy> *collection;
+		EnemyFactory *factory;
+
+		Sprite *levelTileSheet;
+		std::vector<std::vector<int>> levelData;
+		std::vector<levelTrigger> triggers;
+
+		void launchTrigger(levelTrigger enemyCount);
 };
 
-#endif
+#endif //__LEVEL_H_DEFINED__

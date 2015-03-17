@@ -1,26 +1,36 @@
-/**
+/*
  * DamageableEntity.h
- *
- * Description:
- * --
- *
- * Example:
- * --
+ * 
+ * T‰m‰ luokka on yl‰luokka kaikille entityille, joita voi vahingoittaa, 
+ * eli, joilla on health pointit.
+ * 
+ * Esimerkki:
+ *		DamageableEntity damageableEntity = new DamageableEntity();
+ *		damageableEntity->damage(100);
  */
 
-#ifndef __DAMAGEABLEENTITY_H_DEFINED__
-#define __DAMAGEABLEENTITY_H_DEFINED__
+#ifndef DAMAGEABLEENTITY_H_DEFINED
+#define DAMAGEABLEENTITY_H_DEFINED
 
+#include "SDL.h"
+#include "Window.h"
+#include "Sprite.h"
 #include "Entity.h"
 
-class DamageableEntity : public Entity {
+class DamageableEntity
+{
 public:
-	DamageableEntity(Sprite *sprite, SDL_Rect hitbox, int initial_hitpoints);
-	DamageableEntity(Animation *animation, SDL_Rect hitbox, int initial_hitpoints);
+	DamageableEntity(int initialHitPoints);
 	~DamageableEntity();
+
+	// Parantaa entity‰ jonkin m‰‰r‰n
 	void heal(int amount);
+
+	// Aiheuttaa vahinkoa entityyn tietyn m‰‰r‰n
 	void damage(int amount);
+
 	bool isDead();
+
 	int getHitpoints();
 
 private:
@@ -28,4 +38,4 @@ private:
 	int hitpoints;
 };
 
-#endif
+#endif //__DAMAGEABLEENTITY_H_DEFINED__

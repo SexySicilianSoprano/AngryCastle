@@ -1,35 +1,20 @@
-/**
- * Color.cpp
- *
- */
-
 #include "Color.h"
 
-Color::Color():
-	red(0),
-	green(0),
-	blue(0),
-	alpha(255) { 
+Color::Color()
+	: red(0), green(0), blue(0), alpha(255)
+{ }
+Color::Color(int color_mask)
+{
+	this->red   = (color_mask >> 16) & 0xFF;
+	this->green = (color_mask >>  8) & 0xFF;
+	this->blue  =  color_mask        & 0xFF;
+	this->alpha = 255;
 }
-
-Color::Color(int color_mask) {
-	red = (color_mask >> 16) & 0xFF;
-	green = (color_mask >> 8) & 0xFF;
-	blue = (color_mask) & 0xFF;
-	alpha = 255;
-}
-
-Color::Color(uint8_t r, 
-			 uint8_t g, 
-			 uint8_t b, 
-			 uint8_t a):
-			 red(r),
-			 green(g),
-			 blue(b),
-			 alpha(a) {
-}
-
-Color::Color(std::string colorName) {
+Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
+	: red(r), green(g), blue(b), alpha(a)
+{ }
+Color::Color(std::string colorName)
+{
 	uint8_t r, g, b;
 
 	     if (colorName == "white")   { r = 255; g = 255; b = 255; }
@@ -46,125 +31,91 @@ Color::Color(std::string colorName) {
 	this->green = g;
 	this->alpha = 255;
 }
-
-Color Color::operator+(const Color &color) const {
+Color Color::operator+(const Color& color) const
+{
 	int tmp  = 0;
 
 	uint8_t tmpR = 0;
 	tmp = this->red + color.red;
-	if (tmp > 255) {
-		tmpR = 255;	
-	}
-	if (tmp < 0) {
-		tmpR = 0;
-	}
+	if (tmp > 255) tmpR = 255;
+	if (tmp < 0)   tmpR = 0;
 
 	uint8_t tmpG = 0;
 	tmp = this->green + color.green;
-	if (tmp > 255) {
-		tmpG = 255;	
-	}
-	if (tmp < 0) {
-		tmpG = 0;
-	}
+	if (tmp > 255) tmpG = 255;
+	if (tmp < 0)   tmpG = 0;
 
 	uint8_t tmpB = 0;
 	tmp = this->blue + color.blue;
-	if (tmp > 255) {
-		tmpB = 255;	
-	}
-	if (tmp < 0) {
-		tmpB = 0;
-	}
+	if (tmp > 255) tmpB = 255;
+	if (tmp < 0)   tmpB = 0;
 
 	uint8_t tmpA = 255;
-	if (this->alpha == color.alpha) {
+	if (this->alpha == color.alpha)
 		tmpA = this->alpha;
-	}
 
 	Color result(tmpR, tmpG, tmpB, tmpA);
 	return result;
 }
-
-Color Color::operator-(const Color &color) const {
+Color Color::operator-(const Color& color) const
+{
 	int tmp  = 0;
 
 	uint8_t tmpR = 0;
 	tmp = this->red - color.red;
-	if (tmp > 255) {
-		tmpR = 255;	
-	}
-	if (tmp < 0) {
-		tmpR = 0;
-	}
+	if (tmp > 255) tmpR = 255;
+	if (tmp < 0)   tmpR = 0;
 
 	uint8_t tmpG = 0;
 	tmp = this->green - color.green;
-	if (tmp > 255) {
-		tmpG = 255;	
-	}
-	if (tmp < 0) {
-		tmpG = 0;
-	}
+	if (tmp > 255) tmpG = 255;
+	if (tmp < 0)   tmpG = 0;
 
 	uint8_t tmpB = 0;
 	tmp = this->blue - color.blue;
-	if (tmp > 255) {
-		tmpB = 255;	
-	}
-	if (tmp < 0) {
-		tmpB = 0;
-	}
+	if (tmp > 255) tmpB = 255;
+	if (tmp < 0)   tmpB = 0;
 
 	uint8_t tmpA = 255;
-	if (this->alpha == color.alpha) {
+	if (this->alpha == color.alpha)
 		tmpA = this->alpha;
-	}
 
 	Color result(tmpR, tmpG, tmpB, tmpA);
 	return result;
 }
-
-bool Color::operator==(const Color &color) const {
+bool Color::operator==(const Color& color) const
+{
 	return ((this->red   == color.red)   &&
 	        (this->green == color.green) &&
 	        (this->blue  == color.blue)  &&
 	        (this->alpha == color.alpha));
 }
-
-bool Color::operator!=(const Color &color) const {
+bool Color::operator!=(const Color& color) const
+{
 	return ((this->red   != color.red)   &&
 	        (this->green != color.green) &&
 	        (this->blue  != color.blue)  &&
 	        (this->alpha != color.alpha));
 }
-
-uint8_t Color::r() {
-	return red;
+uint8_t Color::r()
+{
+	return (this->red);
 }
-
-uint8_t Color::g() {
-	return green;
+uint8_t Color::g()
+{
+	return (this->green);
 }
-
-uint8_t Color::b() {
-	return blue;
+uint8_t Color::b()
+{
+	return (this->blue);
 }
-
-uint8_t Color::a() {
-	return alpha;
+uint8_t Color::a()
+{
+	return (this->alpha);
 }
-
-void Color::invert(bool R, bool G, bool B) {
-	if (R) {
-		red = (255 - red);
-	}
-
-	if (G) {
-		green = (255 - green);
-	}
-
-	if (B) {
-		blue = (255 - blue);
-	}
+void Color::invert(bool R, bool G, bool B)
+{
+	if (R) this->red   = (255 - this->red);
+	if (G) this->green = (255 - this->green);
+	if (B) this->blue  = (255 - this->blue);
 }

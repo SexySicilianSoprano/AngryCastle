@@ -1,4 +1,4 @@
-/**
+/*
  * MovingEntity.cpp
  *
  */
@@ -7,88 +7,80 @@
 
 MovingEntity::MovingEntity(Texture *sprite, SDL_Rect hitbox) :
 	Entity(sprite, hitbox),
-	speed(1) {
+	_speed(1)
+{
 }
 
 MovingEntity::MovingEntity(Sprite *sprite, SDL_Rect hitbox) :
 	Entity(sprite, hitbox),
-	speed(1) {
+	_speed(1)
+{
 }
 
 MovingEntity::MovingEntity(Animation *sprite, SDL_Rect hitbox) :
 	Entity(sprite, hitbox),
-	speed(1) {
+	_speed(1)
+{
 }
 
 MovingEntity::~MovingEntity()
-{ }
+{
+}
 
-void MovingEntity::move(int direction) {
+void MovingEntity::move(int direction)
+{
 	if (direction == UP) {
-		y -= speed;
-		hitbox.y = hitbox.y + y;
+		//desiredY -= _speed;
+		this->y -= _speed;
+		this->hitbox.y = y;
+		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == DOWN) {
-		y += speed;
-		hitbox.y = hitbox.y + y;
+		//desiredY += _speed;
+		this->y += _speed;
+		this->hitbox.y = y;
+		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == LEFT) {
-		x -= speed;
-		hitbox.x = hitbox.x + x;
+		//desiredX -= _speed;
+		this->x -= _speed;
+		this->hitbox.x = x;
+		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == RIGHT) {
-		x += speed;
-		hitbox.x = hitbox.x + x;
+		//desiredX += _speed;
+		this->x += _speed;
+		this->hitbox.x = x;
+		//printf("Sprite x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 }
 
-void MovingEntity::setSpeed(int new_speed) {
-	speed = new_speed;
+void MovingEntity::speed(int speed) {
+	_speed = speed;
 }
 
-SDL_bool MovingEntity::collides(Entity *other) {
+bool MovingEntity::collides(Entity *other)
+{
 	SDL_Rect result;
-	return SDL_IntersectRect(&hitbox, &other->hitbox, &result);
+
+	if (SDL_IntersectRect(&hitbox, &other->hitbox, &result)) {
+		//printf("w%d h%d x%d y%d", result.w, result.h, result.x, result.y);
+		//this->x -= result.w;
+		//this->y -= result.h;
+
+		//hitbox.x -= result.w;
+		//hitbox.y -= result.h;
+
+		return true;
+	}
+
+	return false;
 }
 
-SDL_bool MovingEntity::collides(Level *level) {
-	int hitbox_x;
-	int hitbox_y;
-
-	hitbox_x = hitbox.x;
-	hitbox_y = hitbox.y;
-
-	if (level->getTile(hitbox_x, hitbox_y) != 1) {
-		return SDL_TRUE;
-	}
-	
-	hitbox_x = hitbox.x + hitbox.w;
-	hitbox_y = hitbox.y;
-
-	if(level->getTile(hitbox_x, hitbox_y) != 1) {
-		return SDL_TRUE;
-	}
-
-	hitbox_x = hitbox.x + hitbox.w;
-	hitbox_y = hitbox.y + hitbox.h;
-
-	if(level->getTile(hitbox_x, hitbox_y) != 1) {
-		return SDL_TRUE;
-	}
-
-	hitbox_x = hitbox.x;
-	hitbox_y = hitbox.y + hitbox.h;
-
-	if(level->getTile(hitbox_x, hitbox_y) != 1) {
-		return SDL_TRUE;
-	}
-	
-	return SDL_FALSE;
-}
-
-int MovingEntity::getSpeed() {
-	return speed;
+int MovingEntity::getSpeed()
+{
+	return _speed;
 }

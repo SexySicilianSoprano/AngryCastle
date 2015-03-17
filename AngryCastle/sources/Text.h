@@ -1,34 +1,36 @@
 /**
  * Text.h
- *
- * Description:
- * Text manager.
- *
- * Example:
- * --
+ * 
+ * TODO(jouni):
+ *   - Private variablet
+ *   - Kaikki metodit :D
+ *   - Tämä loppuun
  */
 
 #ifndef __TEXT_H_DEFINED__
 #define __TEXT_H_DEFINED__
 
 #include <string>
-#include "Window.h"
+#include "SDL.h"
+#include "window.h"
 #include "Font.h"
+#include "Color.h"
 
 class Text {
-public:
-	Text();
-	~Text();
-	void setFont(Font *new_font);
-	void setColor(Color new_color);
-	void print(Window *window, std::string text, int x, int y);
+	public:
+		Text();
+		~Text();
 
-private:
-	int x;
-	int y;
-	SDL_Texture *texture;
-	Font *font;
-	Color color;
+		void setFont(Font *font);
+		void setColor(Color font_color);
+		void print(Window *window, std::string text, int x, int y);
+
+	private:
+
+		int x, y;
+		SDL_Texture *texture;
+		Font *font;
+		Color color;
 };
 
-#endif
+#endif // __TEXT_H_DEFINED__

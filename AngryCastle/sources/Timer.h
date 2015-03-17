@@ -1,34 +1,37 @@
-/**
- * Timer.h
- *
- * Description:
- * Timing functionality.
- *
- * Example:
- * Timer::start(); // Starts counting ticks.
- */
-
-#ifndef __TIMER_H_DEFINED__
-#define __TIMER_H_DEFINED__
+#ifndef __LTIMER_H_INCLUDED__
+#define __LTIMER_H_INCLUDED__
 
 #include "SDL.h"
 
-class Timer {
+class Timer
+{
 public:
+	// Initializes variables
 	Timer();
+
+	// The various clock actions
 	void start();
 	void stop();
 	void pause();
 	void unpause();
+
+	// Gets the timer's time
 	Uint32 getTicks();
+
+	// Checks the status of the timer
 	bool isStarted();
 	bool isPaused();
 
 private:
-	Uint32 start_ticks;
-	Uint32 paused_ticks;
-	bool started;
-	bool paused;
+	// The clock time when the timer started
+	Uint32 mStartTicks;
+
+	// The ticks stored when the timer was paused
+	Uint32 mPausedTicks;
+
+	// The timer status
+	bool mPaused;
+	bool mStarted;
 };
 
-#endif
+#endif // __LTIMER_H_INCLUDED__

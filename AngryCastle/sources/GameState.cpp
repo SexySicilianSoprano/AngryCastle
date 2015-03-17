@@ -1,25 +1,31 @@
-/**
- * GameState.cpp
- *
- */
-
 #include "GameState.h"
 
-GameState GameState::game_state(nullptr);
-
-void GameState::init(Window *window) {
-	//Player player(window);
-	
-	//level.load("levels//level_city_vol_01.tmx");
-	
+GameState::GameState(Window *window) :
+	window(window),
+	font(nullptr) {
+		
+		font = new Font("PressStart2P.ttf", 14);
+		menuText.setFont(font);
+		menuText.setColor(Color("white"));
 }
 
-void GameState::update(StateManager *manager) {
-
+GameState::~GameState() {
+	delete font;
 }
 
+stateStatus GameState::update() {
+	stateStatus status;
+	status.status = STATE_CONTINUE;
+	status.prepend = false;
 
-void GameState::render(StateManager *manager) {
-	//level.render();
-	//player.render();
+	if (Input::keyState(SDL_SCANCODE_A)) {
+		printf("Changing to Menu state..\n");
+		status.status = STATE_MENU;
+	}
+
+	return status;
+}
+
+void GameState::render() {
+	menuText.print(window, "Press A to menu:))\n", 10, 10);
 }
