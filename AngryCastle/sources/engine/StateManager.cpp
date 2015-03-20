@@ -20,13 +20,17 @@ void StateManager::popState() {
 void StateManager::run() {
 	while (states.size() > 0) {
 		BaseState *currentState = states.back();
-		stateStatus newStatus;
+		stateStatus new_status;
 		
 		Input::update();
 		
-		newStatus = currentState->update();
+		new_status = currentState->update();
 
-		switch (newStatus.status)
+		if (new_status.status != STATE_CONTINUE && !new_status.prepend) {
+			popState();
+		}
+
+		switch (new_status.status)
 		{
 			case STATE_CONTINUE:
 				break;
@@ -36,26 +40,26 @@ void StateManager::run() {
 				break;
 
 			case STATE_MENU:
-				if (!newStatus.prepend) {
-					popState();
-				}
-
 				pushState(new MenuState(window));
 				break;
 		
 			case STATE_GAME:
-				if (!newStatus.prepend) {
-					popState();
-				}
-
 				pushState(new GameState(window));
+				break;
+
+			case STATE_VICTORY:
+				pushState(new VictoryState(window));
+				break;
+
+			case STATE_GAMEOVER:
+				pushState(new GameOverState(window));
 				break;
 
 			default:
 				break;
 		}
 
-		if (Input::keyState(SDL_SCANCODE_ESCAPE)) {
+		if (Input::keyPressed(SDL_SCANCODE_ESCAPE)) {
 			popState();
 		}
 		

@@ -1,16 +1,11 @@
 #include "GameState.h"
 
 GameState::GameState(Window *window) :
-	window(window),
-	font(nullptr) {
+	window(window) {
 		
-		font = new Font("PressStart2P.ttf", 14);
-		menuText.setFont(font);
-		menuText.setColor(Color("white"));
 }
 
 GameState::~GameState() {
-	delete font;
 }
 
 stateStatus GameState::update() {
@@ -18,7 +13,7 @@ stateStatus GameState::update() {
 	status.status = STATE_CONTINUE;
 	status.prepend = false;
 
-	if (Input::keyState(SDL_SCANCODE_A)) {
+	if (Input::keyPressed(SDL_SCANCODE_S)) {
 		printf("Changing to Menu state..\n");
 		status.status = STATE_MENU;
 	}
@@ -27,5 +22,4 @@ stateStatus GameState::update() {
 }
 
 void GameState::render() {
-	menuText.print(window, "Press A to menu:))\n", 10, 10);
 }

@@ -6,10 +6,12 @@
 // Includetaan vain luokan header-tiedosto
 #include "text.h"
 
-Text::Text():
-	texture(nullptr)
+Text::Text(Font *font, Color font_color):
+	texture(nullptr),
+	font(font),
+	color(font_color)
 {
-	this->color = Color("white");
+	
 }
 
 Text::~Text()

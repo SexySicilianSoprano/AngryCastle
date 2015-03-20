@@ -17,7 +17,6 @@
 #include "Sprite.h"
 #include "DamageableEntity.h"
 #include "MovingEntity.h"
-#include "HUD.h"
 #include "EntityCollection.h"
 #include "Projectile.h"
 #include "SFX.h"
@@ -25,7 +24,7 @@
 class Player : public DamageableEntity, public MovingEntity
 {
 public:
-	Player(Window *window, HUD *hud, EntityCollection<Projectile> *projectiles);
+	Player(Window *window, EntityCollection<Projectile> *projectiles);
 	~Player();
 
 	void update();
@@ -44,7 +43,6 @@ private:
 	std::vector<Animation*> animations;
 
 	static SDL_Rect hitbox;
-	HUD *hud;
 	EntityCollection<Projectile> *projectiles;
 	Texture *ammus;
 	SFX piu, boom;

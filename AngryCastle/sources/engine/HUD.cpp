@@ -14,20 +14,7 @@ HUD::HUD(Window *window):
 	highScore(0),
 	font("fonts//PressStart2P.ttf", 7),
 	text_color("black"),
-	score(),
-	highscore()
 {
-	score.setFont(&font);
-	score.setColor(text_color);
-
-	highscore.setFont(&font);
-	highscore.setColor(text_color);
-
-	numberScore.setFont(&font);
-	numberScore.setColor(text_color);
-
-	numberHighscore.setFont(&font);
-	numberHighscore.setColor(text_color);
 
 	selected_weapon.setIndex(weapon_index);
 }

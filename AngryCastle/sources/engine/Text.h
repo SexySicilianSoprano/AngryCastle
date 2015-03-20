@@ -18,7 +18,7 @@
 
 class Text {
 	public:
-		Text();
+		Text(Font *font, Color font_color);
 		~Text();
 
 		void setFont(Font *font);

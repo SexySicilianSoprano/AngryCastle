@@ -22,7 +22,7 @@ class Window
 {
 	public:
 		// Constructor
-		Window(int width, int height, std::string title, bool fullscreen);
+		Window(int width, int height, int logical_width, int logical_height, std::string title, bool fullscreen);
 	
 		// Destructor & destroy()
 		virtual ~Window();
@@ -48,8 +48,8 @@ class Window
 		void drawRect(int X, int Y, int W, int H, Color color);
 		void fill(Color color);
 
-		unsigned int width; 
-		unsigned int height; 
+		unsigned int width, logical_width; 
+		unsigned int height, logical_height; 
 		unsigned int originalWidth;
 		unsigned int originalHeight;
 	

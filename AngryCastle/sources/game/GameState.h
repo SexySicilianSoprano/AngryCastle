@@ -1,12 +1,10 @@
 #ifndef __GAMESTATE_H_DEFINED__
 #define __GAMESTATE_H_DEFINED__
 
-#include "BaseState.h"
-#include "Window.h"
-#include "Input.h"
-#include "Font.h"
-#include "Text.h"
-#include "Color.h"
+#include "..//engine//BaseState.h"
+#include "..//engine//Window.h"
+#include "..//engine//Input.h"
+#include "..//engine//Color.h"
 
 class GameState : public BaseState {
 
@@ -19,8 +17,6 @@ class GameState : public BaseState {
 
 	private:
 		Window *window;
-		Font *font;
-		Text menuText;
 };
 
 #endif // __GAMESTATE_H_DEFINED__

@@ -29,6 +29,7 @@ class Input {
 
 		// Jos näppäin on alhaalla palauttaa true, muuten false
 		static bool keyState(int key);
+		static bool keyPressed(int key);
 
 		// Avustavametodi tarkastamaan onko SHIFT alhalla
 		static bool shift();

@@ -5,8 +5,10 @@
 #include "Window.h"
 #include "Input.h"
 #include "BaseState.h"
-#include "MenuState.h"
-#include "GameState.h"
+#include "..//game//MenuState.h"
+#include "..//game//GameState.h"
+#include "..//game//VictoryState.h"
+#include "..//game//GameOverState.h"
 
 class StateManager {
 

@@ -15,177 +15,186 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\AI.cpp">
+    <ClCompile Include="sources\game\GameOverState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Animation.cpp">
+    <ClCompile Include="sources\game\GameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Camera.cpp">
+    <ClCompile Include="sources\game\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Color.cpp">
+    <ClCompile Include="sources\game\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\DamageableEntity.cpp">
+    <ClCompile Include="sources\game\VictoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Enemy.cpp">
+    <ClCompile Include="sources\engine\AI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\EnemyFactory.cpp">
+    <ClCompile Include="sources\engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Entity.cpp">
+    <ClCompile Include="sources\engine\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Font.cpp">
+    <ClCompile Include="sources\engine\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\GameState.cpp">
+    <ClCompile Include="sources\engine\DamageableEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\HUD.cpp">
+    <ClCompile Include="sources\engine\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Input.cpp">
+    <ClCompile Include="sources\engine\EnemyFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Level.cpp">
+    <ClCompile Include="sources\engine\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\main.cpp">
+    <ClCompile Include="sources\engine\Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\MovingEntity.cpp">
+    <ClCompile Include="sources\engine\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Music.cpp">
+    <ClCompile Include="sources\engine\Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Player.cpp">
+    <ClCompile Include="sources\engine\MovingEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Projectile.cpp">
+    <ClCompile Include="sources\engine\Music.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\PugiXML.cpp">
+    <ClCompile Include="sources\engine\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\SDL.cpp">
+    <ClCompile Include="sources\engine\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\SFX.cpp">
+    <ClCompile Include="sources\engine\PugiXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Sprite.cpp">
+    <ClCompile Include="sources\engine\SDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\State.cpp">
+    <ClCompile Include="sources\engine\SFX.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\StateManager.cpp">
+    <ClCompile Include="sources\engine\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Text.cpp">
+    <ClCompile Include="sources\engine\StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Texture.cpp">
+    <ClCompile Include="sources\engine\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Timer.cpp">
+    <ClCompile Include="sources\engine\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Window.cpp">
+    <ClCompile Include="sources\engine\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\engine\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\AI.h">
+    <ClInclude Include="sources\game\VictoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Animation.h">
+    <ClInclude Include="sources\game\MenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Camera.h">
+    <ClInclude Include="sources\game\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Color.h">
+    <ClInclude Include="sources\game\GameOverState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\DamageableEntity.h">
+    <ClInclude Include="sources\engine\AI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Enemy.h">
+    <ClInclude Include="sources\engine\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\EnemyFactory.h">
+    <ClInclude Include="sources\engine\BaseState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Entity.h">
+    <ClInclude Include="sources\engine\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\EntityCollection.h">
+    <ClInclude Include="sources\engine\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Font.h">
+    <ClInclude Include="sources\engine\DamageableEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\GameState.h">
+    <ClInclude Include="sources\engine\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\HUD.h">
+    <ClInclude Include="sources\engine\EnemyFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Input.h">
+    <ClInclude Include="sources\engine\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Level.h">
+    <ClInclude Include="sources\engine\EntityCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\MovingEntity.h">
+    <ClInclude Include="sources\engine\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Music.h">
+    <ClInclude Include="sources\engine\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Player.h">
+    <ClInclude Include="sources\engine\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Projectile.h">
+    <ClInclude Include="sources\engine\MovingEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\PugiConfig.h">
+    <ClInclude Include="sources\engine\Music.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\PugiXML.h">
+    <ClInclude Include="sources\engine\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\SDL.h">
+    <ClInclude Include="sources\engine\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\SFX.h">
+    <ClInclude Include="sources\engine\PugiConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Sprite.h">
+    <ClInclude Include="sources\engine\PugiXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\State.h">
+    <ClInclude Include="sources\engine\SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\StateManager.h">
+    <ClInclude Include="sources\engine\SFX.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Text.h">
+    <ClInclude Include="sources\engine\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Texture.h">
+    <ClInclude Include="sources\engine\StateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Timer.h">
+    <ClInclude Include="sources\engine\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Window.h">
+    <ClInclude Include="sources\engine\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\engine\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\engine\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

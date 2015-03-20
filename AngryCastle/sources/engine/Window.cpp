@@ -1,11 +1,13 @@
 #include "Window.h"
 
-Window::Window(int width, int height, std::string title, bool fullscreen):
+Window::Window(int width, int height, int logical_width, int logical_height, std::string title, bool fullscreen):
 	window(nullptr),
 	surface(nullptr),
 	renderer(nullptr),
 	width(width),
 	height(height),
+	logical_width(logical_width),
+	logical_height(logical_height),
 	originalWidth(width),
 	originalHeight(height),
 	current_delta(0)
@@ -66,7 +68,7 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 	
 	// Nearest-neighbour resize
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
-	SDL_RenderSetLogicalSize(renderer, 256, 240);
+	SDL_RenderSetLogicalSize(renderer, logical_width, logical_height);
 
 	// Asetetaan title
 	setTitle(title);

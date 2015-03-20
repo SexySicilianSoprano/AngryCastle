@@ -49,6 +49,13 @@ bool Input::keyState(int k) {
 	return key[k];
 }
 
+bool Input::keyPressed(int k) {
+	bool state = keyState(k);
+	key[k] = false;
+
+	return state;
+}
+
 bool Input::alt() {
 	return keyState(SDL_SCANCODE_LALT) || keyState(SDL_SCANCODE_RALT);
 }
