@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="58" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="Hamond_background" tilewidth="16" tileheight="16">
+  <image source="../graphics/levels/Hamond_background.png" trans="ff00ff" width="224" height="144"/>
+ </tileset>
+ <layer name="background" width="58" height="15">
+  <data encoding="base64" compression="zlib">
+   eJyTYWBgkBnFo3gUj+IBxHwjBCeNEKw1QrDFCMFuIwSHjBA80OUDvXDBCMF1IwQPdDjTCwMA7J/XsQ==
+  </data>
+ </layer>
+ <layer name="silhouette" width="58" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztVk1Lw0AQHUIx/ooi6jEE8RqrVyN+kFOk963eA/bvu0Nn6HO6y+7G9iD44BEzM86+N3FiBiIaTsQFhVEV1qcQ6zeHrWfn2cB9IzGs0/za8zGiq4G6IaM+hVA/yw/P3nNptKL+XvrptYMzevDdQr6lNPDMYyHmlzHSz+fE6CXu5EpwVb8aQ982n6MpZyalYE3qS/U4yCnUYwd5BzmCmPU1Uj5yZ1IK7mv12r9Lor3+HuIj5Ahi1pejfJTMpASoy/odA3Whenzujg59lfgsqS0B6uogZs90hozQfnY0fz9Rw7GBuuz7E5/nZMhAvyvoEdrPO6m5T+g55X7afbPvoxs6fC9vaee3htiC4vv5JDXPCT0l+xmb3Yvnq+eb6RvbT/ZxSeXfENrnC/rorHgu53A+97/yvDYacmBnt5Iza6DmcN8mqeX77Qx/ykm0x+ak/x8fwP+t3PPPlWjU774zmE0F8XfafzupZ8s1eJt+6auUtcwhVXchz2cJv6c5nsmGdt9vn5F5KnPO+uff5jdUS5V5
+  </data>
+ </layer>
+</map>
