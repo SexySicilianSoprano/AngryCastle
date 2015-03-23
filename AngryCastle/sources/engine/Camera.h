@@ -24,16 +24,12 @@ class Camera {
 		Camera(int width, int height);
 		virtual ~Camera();
 
-		void update();
+		SDL_Rect frame;
 
-		void setSpeed(int speed);
-		int getSpeed();
-
-		int getX();
+		// TODO(jouni):
+		// lock(Entity *entity);
 
 	private:
-		SDL_Rect frame;
-		int speed;
 };
 
 #endif // __CAMERA_H_DEFINED__

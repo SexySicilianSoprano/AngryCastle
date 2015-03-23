@@ -46,7 +46,7 @@ class Window
 
 		// source = Alkuperäisestä kuvasta leikatun alueen sijanti ja koko
 
-		void drawRect(int X, int Y, int W, int H, Color color);
+		void drawRect(int x, int y, int w, int h, Color color);
 		void fill(Color color);
 
 		unsigned int width, logical_width; 

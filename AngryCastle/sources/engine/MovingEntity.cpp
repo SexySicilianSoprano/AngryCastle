@@ -5,82 +5,51 @@
 
 #include "MovingEntity.h"
 
-MovingEntity::MovingEntity(Texture *sprite, SDL_Rect hitbox) :
-	Entity(sprite, hitbox),
-	_speed(1)
-{
+MovingEntity::MovingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox) :
+	Entity(x, y, w, h, hitbox),
+	speed(speed) {
 }
 
-MovingEntity::MovingEntity(Sprite *sprite, SDL_Rect hitbox) :
-	Entity(sprite, hitbox),
-	_speed(1)
-{
+MovingEntity::~MovingEntity() {
 }
 
-MovingEntity::MovingEntity(Animation *sprite, SDL_Rect hitbox) :
-	Entity(sprite, hitbox),
-	_speed(1)
-{
+void MovingEntity::update() {
+	
 }
 
-MovingEntity::~MovingEntity()
-{
+void MovingEntity::commitMovement() {
+	setPosition(desiredX, desiredY);
 }
 
-void MovingEntity::move(int direction)
-{
+void MovingEntity::move(int direction) {
 	if (direction == UP) {
-		//desiredY -= _speed;
-		this->y -= _speed;
-		this->hitbox.y = y;
-		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
+		desiredY = y - speed;
+		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == DOWN) {
-		//desiredY += _speed;
-		this->y += _speed;
-		this->hitbox.y = y;
-		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
+		desiredY = y + speed;
+		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == LEFT) {
-		//desiredX -= _speed;
-		this->x -= _speed;
-		this->hitbox.x = x;
-		//printf("Sprite x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
+		desiredX = x - speed;
+		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == RIGHT) {
-		//desiredX += _speed;
-		this->x += _speed;
-		this->hitbox.x = x;
-		//printf("Sprite x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
-	}
-}
-
-void MovingEntity::speed(int speed) {
-	_speed = speed;
-}
-
-bool MovingEntity::collides(Entity *other)
-{
-	SDL_Rect result;
-
-	if (SDL_IntersectRect(&hitbox, &other->hitbox, &result)) {
-		//printf("w%d h%d x%d y%d", result.w, result.h, result.x, result.y);
-		//this->x -= result.w;
-		//this->y -= result.h;
-
-		//hitbox.x -= result.w;
-		//hitbox.y -= result.h;
-
-		return true;
+		desiredX = x + speed;
+		//printf("Entity x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
-	return false;
+	printf("X:\t\t%d\nY:\t\t%d\nDesired X:\t%d\nDesired Y:\t%d\nHitbox X:\t%d\nHitbox Y:\t%d\n\n",
+		x, y, desiredX, desiredY, desiredX + hitbox_offset.x, desiredY + hitbox_offset.y);
 }
 
-int MovingEntity::getSpeed()
-{
-	return _speed;
+void MovingEntity::setSpeed(int new_speed) {
+	speed = new_speed;
+}
+
+int MovingEntity::getSpeed() {
+	return speed;
 }

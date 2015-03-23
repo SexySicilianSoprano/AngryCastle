@@ -13,16 +13,11 @@
 #define __MOVINGENTITY_H_DEFINED__
 
 #include "Entity.h"
-#include "Texture.h"
-#include "Sprite.h"
-#include "Animation.h"
 
 class MovingEntity : public Entity
 {
 	public:
-		MovingEntity(Texture *sprite, SDL_Rect hitbox);
-		MovingEntity(Sprite *sprite, SDL_Rect hitbox);
-		MovingEntity(Animation *sprite, SDL_Rect hitbox);
+		MovingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox);
 		~MovingEntity();
 
 		enum DIRECTION {
@@ -33,15 +28,14 @@ class MovingEntity : public Entity
 		};
 
 		void move(int direction);
-		void speed(int speed);
+		void commitMovement();
+		void update();
 
+		void setSpeed(int speed);
 		int getSpeed();
 
-		bool collides(Entity *other);
-
 	private:
-		int _speed;
-		int desiredX, desiredY;
+		int speed;
 };
 
 #endif // __MOVINGENTITY_H_DEFINED__

@@ -5,6 +5,10 @@
 #include "..//engine//Window.h"
 #include "..//engine//Input.h"
 #include "..//engine//Color.h"
+#include "..//engine//Entity.h"
+#include "..//engine//MovingEntity.h"
+#include "..//engine//FallingEntity.h"
+#include "..//engine//Level.h"
 
 class GameState : public BaseState {
 
@@ -17,6 +21,9 @@ class GameState : public BaseState {
 
 	private:
 		Window *window;
+		FallingEntity *entity;
+		MovingEntity *jouni;
+		Level *level;
 };
 
 #endif // __GAMESTATE_H_DEFINED__

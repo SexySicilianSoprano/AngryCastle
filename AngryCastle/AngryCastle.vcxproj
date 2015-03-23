@@ -19,6 +19,7 @@
     <ClCompile Include="sources\engine\Enemy.cpp" />
     <ClCompile Include="sources\engine\EnemyFactory.cpp" />
     <ClCompile Include="sources\engine\Entity.cpp" />
+    <ClCompile Include="sources\engine\FallingEntity.cpp" />
     <ClCompile Include="sources\engine\Font.cpp" />
     <ClCompile Include="sources\engine\Input.cpp" />
     <ClCompile Include="sources\engine\Level.cpp" />
@@ -53,6 +54,7 @@
     <ClInclude Include="sources\engine\EnemyFactory.h" />
     <ClInclude Include="sources\engine\Entity.h" />
     <ClInclude Include="sources\engine\EntityCollection.h" />
+    <ClInclude Include="sources\engine\FallingEntity.h" />
     <ClInclude Include="sources\engine\Font.h" />
     <ClInclude Include="sources\engine\Input.h" />
     <ClInclude Include="sources\engine\Level.h" />

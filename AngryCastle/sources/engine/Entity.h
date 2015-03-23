@@ -12,31 +12,29 @@
 #ifndef __ENTITY_H_DEFINED__
 #define __ENTITY_H_DEFINED__
 
-#include "Texture.h"
-#include "Sprite.h"
-#include "Animation.h"
+#include "SDL.h"
 
 class Entity
 {
-public:
-	Entity(Texture *texture, SDL_Rect hitbox, int x = 0, int y = 0);
-	Entity(Sprite *sprite, SDL_Rect hitbox, int x = 0, int y = 0);
-	Entity(Animation *animation, SDL_Rect hitbox, int x = 0, int y = 0);
-	~Entity();
+	public:
+		Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset);
+		~Entity();
 
-	void render();
-	Animation *animation;
+		virtual void update() = 0;
 
-	int getX();
-	int getY();
-	void setX(int x);
-	void setY(int y);
-	SDL_Rect hitbox;
+		bool collides(Entity *other);
+		void setPosition(int x, int y);
 
-protected:
-	int x, y, frame, index;
-	Texture *texture;
-	Sprite *sprite;
+		int getX();
+		int getY();
+		int getW();
+		int getH();
+
+	protected:
+		int x, y, w, h;
+		int desiredX, desiredY;
+		SDL_Rect hitbox_offset;
+
 };
 
 #endif //__ENTITY_H_DEFINED__

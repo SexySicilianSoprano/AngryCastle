@@ -1,15 +1,9 @@
 #include "Level.h"
 
-Level::Level(Window *window, EntityCollection<Enemy> *collection, EnemyFactory *factory):
+Level::Level(Window *window, Camera *camera):
 	window(window),
-	collection(collection),
-	factory(factory),
-	bgScrollingOffset(0),
-	camera(256, 240),
-	background(window, "graphics//kaupunki_tausta.png")
+	camera(camera)
 {
-	camera.setSpeed(2);
-	background_width = background.getWidth();
 }
 
 Level::~Level()
@@ -33,13 +27,12 @@ void Level::load(std::string level_name)
 	// Get node which contains tileids
 	tileNode = levelDocument.child("map").child("layer").child("data");
 
-	// Load level background
+	// Load level tileset
 	std::string tileSet = levelDocument.child("map").child("tileset").child("image").attribute("source").value();
 	levelTileSheet = new Sprite(window, tileSet, tileSize, tileSize);
 
 	int iteratorCount = 0;
 	std::vector<int> levelRow;
-	std::vector<int> enemySpawnRow;
 
 	// Go through tile-nodes
 	for(pugi::xml_node_iterator iterator = tileNode.begin();
@@ -59,56 +52,10 @@ void Level::load(std::string level_name)
 			levelRow.clear();
 		}
 	}
-
-	// Get enemy spawn regions
-	enemySpawn = levelDocument.child("map").child("objectgroup");
-	iteratorCount = 0;
-
-	// Go through enemyspawn triggers
-	for(pugi::xml_node_iterator iterator = enemySpawn.begin();
-		iterator != enemySpawn.end();
-		++iterator)	
-	{
-		levelTrigger trigger;
-		iteratorCount++;
-
-		std::string objectName = iterator->attribute("name").value();
-
-		if (objectName.compare("playerSpawnPoint") == 0) {
-			player_spawn_x = atoi(iterator->attribute("x").value());
-			player_spawn_y = atoi(iterator->attribute("y").value());
-		}
-
-		if (objectName.compare("enemySpawnRegion") == 0) {
-			// Get X-position
-			trigger.spawnTile = atoi(iterator->attribute("x").value());
-
-			// Get trigger properties
-			pugi::xml_node properties = iterator->child("properties");
-
-			for(pugi::xml_node_iterator it = properties.begin();
-				it != properties.end();
-				++it)
-			{
-				if (strcmp(it->attribute("name").value(), "enemyCount") == 0) {
-					trigger.enemyCount = atoi(it->attribute("value").value());
-				}
-
-				if (strcmp(it->attribute("name").value(), "enemyType") == 0) {
-					trigger.enemyType = it->attribute("value").value();
-				}
-
-				if (strcmp(it->attribute("name").value(), "spawnHeight") == 0) {
-					trigger.spawnHeight = atoi(it->attribute("value").value());
-				}
-			}
-
-			triggers.push_back(trigger);
-		}
-	}
 }
 
 void Level::update() {
+	/*
 	// NOTE(jouni&&karlos): Liikuttaa kameraa jos kenttä ei oo vielä loppunu
 	if (camera.getX() < levelWidth*tileSize)
 	{
@@ -123,21 +70,12 @@ void Level::update() {
 		}
 		camera.update();
 	}
-
-	//Scroll background
-	--bgScrollingOffset;
-	if(bgScrollingOffset < -background_width)
-	{
-		bgScrollingOffset = 0;
-	}
+	*/
 }
 
 // TODO(jouni): Muuttujaksi kameran X
 void Level::render()
 {
-	background.render(bgScrollingOffset, 0);
-	background.render(bgScrollingOffset + background_width, 0);
-	
 	std::vector<std::vector<int>>::iterator row;
 	std::vector<int>::iterator col;
 
@@ -146,7 +84,7 @@ void Level::render()
 			int X = col - row->begin();
 			int Y = row - levelData.begin();
 			levelTileSheet->setIndex(*col-1);
-			levelTileSheet->render(X*tileSize - camera.getX(), Y*tileSize);
+			levelTileSheet->render(X*tileSize - camera->frame.x, Y*tileSize);
 		}
 	}
 }
@@ -164,24 +102,13 @@ int Level::getTile(int x, int y)
 		y < levelData.size()*tileSize &&
 		x < levelData[0].size()*tileSize)
 	{
-		return (levelData[y/tileSize][(camera.getX()+x)/tileSize]);
+		return (levelData[y/tileSize][(camera->frame.x + x)/tileSize]);
 	}
 
 	return 0;
 }
 
-void Level::launchTrigger(levelTrigger trigger) {
-	for (int i = 0; i < trigger.enemyCount; i++)
-	{
-		Enemy enemy = factory->spawn(trigger.enemyType, trigger.spawnHeight);
-		enemy.sinePattern(i % 2);
-		enemy.setX(levelWidth + (i *25));
-		enemy.setY(tileSize * trigger.spawnHeight);
-		enemy.speed(2);
-		collection->push(enemy);
-	}
-}
-
+/*
 bool Level::collides(Entity *entity)
 {
 	int hbX;
@@ -222,3 +149,4 @@ bool Level::collides(Entity *entity)
 	
 	return false;
 }
+*/

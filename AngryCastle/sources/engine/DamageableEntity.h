@@ -9,8 +9,8 @@
  *		damageableEntity->damage(100);
  */
 
-#ifndef DAMAGEABLEENTITY_H_DEFINED
-#define DAMAGEABLEENTITY_H_DEFINED
+#ifndef __DAMAGEABLEENTITY_H_DEFINED__
+#define __DAMAGEABLEENTITY_H_DEFINED__
 
 #include "SDL.h"
 #include "Window.h"
