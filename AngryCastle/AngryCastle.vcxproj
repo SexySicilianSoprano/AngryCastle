@@ -39,6 +39,7 @@
     <ClCompile Include="sources\game\GameState.cpp" />
     <ClCompile Include="sources\game\main.cpp" />
     <ClCompile Include="sources\game\MenuState.cpp" />
+    <ClCompile Include="sources\game\OptionsState.cpp" />
     <ClCompile Include="sources\game\VictoryState.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +73,7 @@
     <ClInclude Include="sources\game\GameOverState.h" />
     <ClInclude Include="sources\game\GameState.h" />
     <ClInclude Include="sources\game\MenuState.h" />
+    <ClInclude Include="sources\game\OptionsState.h" />
     <ClInclude Include="sources\game\VictoryState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
