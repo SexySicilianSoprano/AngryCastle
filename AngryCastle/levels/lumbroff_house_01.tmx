@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="20" height="15" tilewidth="16" tileheight="16" nextobjectid="2">
+ <properties>
+  <property name="exitLeft" value="lumbroff_01.tmx"/>
+  <property name="spawnPoint" value="door_03"/>
+ </properties>
  <tileset firstgid="1" name="Lumbroff_tileset" tilewidth="16" tileheight="16">
   <image source="../graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
  </tileset>
@@ -611,4 +615,9 @@
    <tile gid="0"/>
   </data>
  </layer>
+ <objectgroup name="Flags">
+  <object id="1" name="playerSpawnLeft" x="13.6667" y="160">
+   <ellipse/>
+  </object>
+ </objectgroup>
 </map>
