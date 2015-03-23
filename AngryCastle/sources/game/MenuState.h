@@ -20,6 +20,7 @@ class MenuState : public BaseState {
 
 	private:
 		Texture selector;
+		int menu_index;
 
 		std::vector<Text *> menu_items;
 		Window *window;

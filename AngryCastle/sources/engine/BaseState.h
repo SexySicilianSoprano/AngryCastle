@@ -7,10 +7,11 @@
 #define STATE_QUIT		1
 
 #define STATE_MENU		2
-#define STATE_GAME		3
+#define STATE_OPTIONS	3
+#define STATE_GAME		4
 
-#define STATE_VICTORY	4
-#define STATE_GAMEOVER  5
+#define STATE_VICTORY	5
+#define STATE_GAMEOVER  6
 
 #define STATE_CREDITS	666
 

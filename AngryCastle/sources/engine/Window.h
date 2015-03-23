@@ -37,6 +37,7 @@ class Window
 		void minimize();
 		void maximize();
 		void restore();
+		bool isFullscreen();
 
 		Uint32 getDelta();
 		int getFramerate();
@@ -64,7 +65,7 @@ class Window
 		Timer frametimeTimer, fpsTimer;
 		Uint32 framerate, frame_delay, current_delta;
 		int fps_current, fps;
-	
+		bool fullscreen;
 };
 
 #endif //__WINDOW_H_DEFINED__

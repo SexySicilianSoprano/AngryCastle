@@ -10,6 +10,7 @@ Window::Window(int width, int height, int logical_width, int logical_height, std
 	logical_height(logical_height),
 	originalWidth(width),
 	originalHeight(height),
+	fullscreen(fullscreen),
 	current_delta(0)
 {
 	resize(title, width, height, fullscreen);
@@ -47,7 +48,9 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 {
 	destroy();
 
-	Uint32 window_flag; 
+	Uint32 window_flag;
+
+	this->fullscreen = fullscreen;
 
 	if (fullscreen)
 	{
@@ -150,6 +153,11 @@ void Window::maximize()
 void Window::restore()
 {
 	SDL_RestoreWindow(this->window);
+}
+
+bool Window::isFullscreen()
+{
+	return fullscreen;
 }
 
 SDL_Renderer* Window::getRenderer() 

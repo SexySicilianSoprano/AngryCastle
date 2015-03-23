@@ -3,7 +3,7 @@
 #include "..//game//GameState.h"
 #include "..//engine//Window.h"
 
-#define SCREEN_TITLE "Escape From Earth"
+#define SCREEN_TITLE "Angry Castle - pre-release"
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 #define SCREEN_LOGICAL_WIDTH 400
@@ -18,7 +18,6 @@ int main(int argc, char* args[]) {
 				SCREEN_LOGICAL_HEIGHT,
 				SCREEN_TITLE, 
 				false);
-
 
 	StateManager manager(&window);
 
