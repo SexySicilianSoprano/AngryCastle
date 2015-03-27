@@ -5,7 +5,7 @@
   <property name="spawnPoint" value="playerSpawnLeft"/>
  </properties>
  <tileset firstgid="1" name="Lumbroff_tileset" tilewidth="16" tileheight="16">
-  <image source="../graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
+  <image source="graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
  </tileset>
  <layer name="BackgroundLayer" width="150" height="15">
   <data>

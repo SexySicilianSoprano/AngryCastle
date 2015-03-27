@@ -16,9 +16,12 @@ class Level
 		void load(std::string level_name);
 		void update();
 		void render();
-	
+
 		int getTile(int x, int y);
+		int pointToTile(int x);
 		int getLevelWidth();
+
+		std::string getRightmostLevel();
 
 		//bool collides(Entity *entity);
 

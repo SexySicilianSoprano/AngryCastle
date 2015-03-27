@@ -3,12 +3,14 @@
 GameState::GameState(Window *window) :
 	window(window),
 	entity(nullptr),
-	level(nullptr) {
+	level(nullptr),
+	camera(nullptr) {
 		SDL_Rect hitbox = {0, 0, 10, 10};
-		entity = new FallingEntity(110, 80, 10, 10, 1, hitbox);
-		jouni = new MovingEntity(110, 110, 8, 8, 1, hitbox);
-		level = new Level(window, new Camera(400, 240));
-		level->load("");
+		entity = new MovingEntity(200, 120, 10, 10, 5, hitbox);
+		camera = new Camera(400, 240);
+
+		level = new Level(window, camera);
+		level->load("levels/lumbroff_01.tmx");
 }
 
 GameState::~GameState() {
@@ -19,50 +21,63 @@ stateStatus GameState::update() {
 	status.status = STATE_CONTINUE;
 	status.prepend = false;
 
+	int speed = 3;
+
 	if (Input::keyPressed(SDL_SCANCODE_ESCAPE)) {
-		printf("Changing to Menu state..\n");
 		status.status = STATE_MENU;
 	}
 
-	/*
+	if(Input::shift()) {
+		speed = 15;
+	}
+
 	if (Input::keyState(SDL_SCANCODE_W)) {
-		entity->move(MovingEntity::UP);
+		//entity->move(MovingEntity::UP);
+		camera->frame.y -= speed;
 	}
 	
 	if (Input::keyState(SDL_SCANCODE_A)) {
-		entity->move(MovingEntity::LEFT);
+		//entity->move(MovingEntity::LEFT);
+		camera->frame.x -= speed;
 	}
 
 	if (Input::keyState(SDL_SCANCODE_S)) {
-		entity->move(MovingEntity::DOWN);
+		//entity->move(MovingEntity::DOWN);
+		camera->frame.y += speed;
 	}
 
 	if (Input::keyState(SDL_SCANCODE_D)) {
-		entity->move(MovingEntity::RIGHT);
+		//entity->move(MovingEntity::RIGHT);
+		camera->frame.x += speed;
 	}
-	*/
 
-	printf("Delta: %d\n", window->getDelta());
+	entity->update();
+	entity->commitMovement();
 
-	entity->update(window->getDelta());
+	//camera->update(entity->getX(), entity->getY());
 
-	if (!entity->collides(jouni)) {
-		entity->commitMovement();
+	// 16 = tilesize
+	if (level->pointToTile(entity->getX()) > level->getLevelWidth()) {
+		level = new Level(window, camera);
+		level->load(level->getRightmostLevel());
+		camera->frame.x = 15;
+		camera->frame.y = 0;
+	}
+
+	if (level->pointToTile(entity->getX()) < 0) {
+		printf("Level at left\n");
 	}
 
 	return status;
 }
 
 void GameState::render() {
+	
+	level->render();
+
 	window->drawRect(entity->getX(),
 					 entity->getY(),
 					 entity->getW(),
 					 entity->getH(),
 					 Color("red"));
-	
-	window->drawRect(jouni->getX(),
-					 jouni->getY(),
-					 jouni->getW(),
-					 jouni->getH(),
-					 Color("green"));
 }

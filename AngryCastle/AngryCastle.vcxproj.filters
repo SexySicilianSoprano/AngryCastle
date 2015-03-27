@@ -45,12 +45,6 @@
     <ClCompile Include="sources\engine\DamageableEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\Enemy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\engine\EnemyFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sources\engine\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -67,12 +61,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\engine\Music.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\engine\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\engine\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\engine\PugiXML.cpp">
@@ -140,12 +128,6 @@
     <ClInclude Include="sources\engine\DamageableEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\engine\EnemyFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sources\engine\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -165,12 +147,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\engine\Music.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\engine\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\engine\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\engine\PugiConfig.h">

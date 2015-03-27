@@ -15,7 +15,7 @@ void Level::load(std::string level_name)
 	result = levelDocument.load_file(level_name.c_str());
 
 	if (!result) {
-		printf("Failed to load level %s.\n", level_name);
+		printf("Failed to load level %s.\n", level_name.c_str());
 		return;
 	}
 
@@ -84,7 +84,7 @@ void Level::render()
 			int X = col - row->begin();
 			int Y = row - levelData.begin();
 			levelTileSheet->setIndex(*col-1);
-			levelTileSheet->render(X*tileSize - camera->frame.x, Y*tileSize);
+			levelTileSheet->render(X*tileSize - camera->frame.x, Y*tileSize - camera->frame.y);
 		}
 	}
 }
@@ -106,6 +106,14 @@ int Level::getTile(int x, int y)
 	}
 
 	return 0;
+}
+
+int Level::pointToTile(int x) {
+	return camera->frame.x + x / tileSize;
+}
+
+std::string Level::getRightmostLevel() {
+	return "levels/lumbroff_01.tmx";
 }
 
 /*

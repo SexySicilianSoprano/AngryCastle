@@ -42,8 +42,8 @@ void MovingEntity::move(int direction) {
 		//printf("Entity x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
-	printf("X:\t\t%d\nY:\t\t%d\nDesired X:\t%d\nDesired Y:\t%d\nHitbox X:\t%d\nHitbox Y:\t%d\n\n",
-		x, y, desiredX, desiredY, desiredX + hitbox_offset.x, desiredY + hitbox_offset.y);
+	//printf("X:\t\t%d\nY:\t\t%d\nDesired X:\t%d\nDesired Y:\t%d\nHitbox X:\t%d\nHitbox Y:\t%d\n\n",
+	//	x, y, desiredX, desiredY, desiredX + hitbox_offset.x, desiredY + hitbox_offset.y);
 }
 
 void MovingEntity::setSpeed(int new_speed) {

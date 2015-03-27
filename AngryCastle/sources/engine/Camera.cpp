@@ -5,7 +5,7 @@
 #include "Camera.h"
 
 Camera::Camera(int width, int height):
-	speed(0)
+	entity(nullptr)
 {
 	SDL_Rect realcamera = {0, 0, width, height};
 	frame = realcamera;

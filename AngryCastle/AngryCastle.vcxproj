@@ -16,8 +16,6 @@
     <ClCompile Include="sources\engine\Camera.cpp" />
     <ClCompile Include="sources\engine\Color.cpp" />
     <ClCompile Include="sources\engine\DamageableEntity.cpp" />
-    <ClCompile Include="sources\engine\Enemy.cpp" />
-    <ClCompile Include="sources\engine\EnemyFactory.cpp" />
     <ClCompile Include="sources\engine\Entity.cpp" />
     <ClCompile Include="sources\engine\FallingEntity.cpp" />
     <ClCompile Include="sources\engine\Font.cpp" />
@@ -25,8 +23,6 @@
     <ClCompile Include="sources\engine\Level.cpp" />
     <ClCompile Include="sources\engine\MovingEntity.cpp" />
     <ClCompile Include="sources\engine\Music.cpp" />
-    <ClCompile Include="sources\engine\Player.cpp" />
-    <ClCompile Include="sources\engine\Projectile.cpp" />
     <ClCompile Include="sources\engine\PugiXML.cpp" />
     <ClCompile Include="sources\engine\SDL.cpp" />
     <ClCompile Include="sources\engine\SFX.cpp" />
@@ -50,8 +46,6 @@
     <ClInclude Include="sources\engine\Camera.h" />
     <ClInclude Include="sources\engine\Color.h" />
     <ClInclude Include="sources\engine\DamageableEntity.h" />
-    <ClInclude Include="sources\engine\Enemy.h" />
-    <ClInclude Include="sources\engine\EnemyFactory.h" />
     <ClInclude Include="sources\engine\Entity.h" />
     <ClInclude Include="sources\engine\EntityCollection.h" />
     <ClInclude Include="sources\engine\FallingEntity.h" />
@@ -60,8 +54,6 @@
     <ClInclude Include="sources\engine\Level.h" />
     <ClInclude Include="sources\engine\MovingEntity.h" />
     <ClInclude Include="sources\engine\Music.h" />
-    <ClInclude Include="sources\engine\Player.h" />
-    <ClInclude Include="sources\engine\Projectile.h" />
     <ClInclude Include="sources\engine\PugiConfig.h" />
     <ClInclude Include="sources\engine\PugiXML.h" />
     <ClInclude Include="sources\engine\SDL.h" />

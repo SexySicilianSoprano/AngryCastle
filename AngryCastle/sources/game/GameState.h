@@ -21,9 +21,10 @@ class GameState : public BaseState {
 
 	private:
 		Window *window;
-		FallingEntity *entity;
-		MovingEntity *jouni;
 		Level *level;
+		Camera *camera;
+
+		MovingEntity *entity;
 };
 
 #endif // __GAMESTATE_H_DEFINED__

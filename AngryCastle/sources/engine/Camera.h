@@ -18,6 +18,7 @@
 
 // Includet
 #include "SDL.h"
+#include "Entity.h"
 
 class Camera {
 	public:
@@ -30,6 +31,7 @@ class Camera {
 		// lock(Entity *entity);
 
 	private:
+		Entity *entity;
 };
 
 #endif // __CAMERA_H_DEFINED__
