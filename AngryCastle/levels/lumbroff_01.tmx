@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="15" tilewidth="16" tileheight="16" nextobjectid="8">
 =======
+=======
+>>>>>>> parent of abf054d... levels
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="15" tilewidth="16" tileheight="16" nextobjectid="5">
  <properties>
   <property name="exitRight" value="hamond_01.tmx"/>
   <property name="spawnPoint" value="playerSpawnLeft"/>
  </properties>
+<<<<<<< HEAD
+>>>>>>> parent of abf054d... levels
+=======
 >>>>>>> parent of abf054d... levels
  <tileset firstgid="1" name="Lumbroff_tileset" tilewidth="16" tileheight="16">
 <<<<<<< HEAD
   <image source="graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
 =======
   <image source="../graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
   <terraintypes>
    <terrain name="silhtree" tile="-1"/>
@@ -73,6 +80,8 @@
   <tile id="154" terrain=",0,,"/>
   <tile id="156" terrain="0,,,"/>
 >>>>>>> abf054d67bfdd122746f7f3e37951489e06e82d0
+=======
+>>>>>>> parent of abf054d... levels
 =======
 >>>>>>> parent of abf054d... levels
  </tileset>
@@ -6839,6 +6848,7 @@
   </data>
  </layer>
 <<<<<<< HEAD
+<<<<<<< HEAD
  <objectgroup name="Triggers">
   <object id="2" gid="0" x="382.5" y="14"/>
   <object id="3" gid="0" x="330" y="36.5"/>
@@ -6846,6 +6856,8 @@
   <object id="5" gid="0" x="345" y="1"/>
   <object id="6" gid="0" x="376" y="-10"/>
 =======
+=======
+>>>>>>> parent of abf054d... levels
  <objectgroup name="playerSpawnStart">
   <object id="1" x="1092.5" y="175" width="10.5" height="17">
    <ellipse/>
@@ -6862,6 +6874,9 @@
     <property name="spawnPoint" value="playerSpawnLeft"/>
    </properties>
   </object>
+<<<<<<< HEAD
+>>>>>>> parent of abf054d... levels
+=======
 >>>>>>> parent of abf054d... levels
  </objectgroup>
 </map>
