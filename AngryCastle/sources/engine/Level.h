@@ -7,12 +7,20 @@
 #include "PugiXML.h"
 #include "Sprite.h"
 
-#define SIL_LAYER	0	// SilhouetteLayer
-#define BG_LAYER	1	// BackgroundLayer
-#define GAME_LAYER	2	// GameLayer
-#define FG_LAYER	3	// ForegroundLayer
+#define SIL_LAYER	0	// Silhouette layer
+#define BG_LAYER	1	// Background layer
+#define GAME_LAYER	2	// Game layer
+#define FG_LAYER	3	// Foreground layer
 
 #define LAYER_COUNT 4
+
+#define SPAWN_LEFT	0
+#define SPAWN_RIGHT 1
+
+struct Exit {
+	std::string level;
+	int spawnpoint;
+};
 
 class Level
 {
@@ -21,17 +29,22 @@ class Level
 		~Level();
 
 		void load(std::string level_name);
-		void update();
+		void update(Entity *entity);
 		void render(int layer);
 
 		int getTile(int x, int y);
 		int pointToTile(int x);
 		int getLevelWidth();
+		Exit *getCurrentDoor();
+
+		SDL_Point getRightSpawn();
+		SDL_Point getLeftSpawn();
+		SDL_Point getStartSpawn();
 
 		std::string getRightmostLevel();
 		std::string getLeftmostLevel();
 
-
+		std::string signText, tooltip;
 		//bool collides(Entity *entity);
 
 	private:
@@ -41,12 +54,16 @@ class Level
 		pugi::xml_document levelDocument;
 		pugi::xml_parse_result result;
 		pugi::xml_node SilhouetteLayer, BackgroundLayer, GameLayer, ForegroundLayer;
+		pugi::xml_node triggerNode, actorNode;
 
 		int levelWidth, levelHeight;
 		int tileSize;
+		Exit *currentDoor, *leftExit, *rightExit;
 
 		Sprite *levelTileSheet;
 		std::vector<std::vector<int>> SilhouetteData, BackgroundData, GameData, ForegroundData;
+
+		SDL_Point leftSpawn, rightSpawn, startSpawn;
 };
 
 #endif //__LEVEL_H_DEFINED__

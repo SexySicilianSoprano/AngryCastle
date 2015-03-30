@@ -9,6 +9,8 @@
 #include "..//engine//MovingEntity.h"
 #include "..//engine//FallingEntity.h"
 #include "..//engine//Level.h"
+#include "..//engine//Font.h"
+#include "..//engine//Text.h"
 
 class GameState : public BaseState {
 
@@ -25,6 +27,10 @@ class GameState : public BaseState {
 		Camera *camera;
 
 		MovingEntity *entity;
+
+		Font font;
+		Text *tooltip, *signText;
+		std::string tooltip_s, signText_s;
 };
 
 #endif // __GAMESTATE_H_DEFINED__

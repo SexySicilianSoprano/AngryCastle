@@ -2,7 +2,10 @@
 
 Level::Level(Window *window, Camera *camera):
 	window(window),
-	camera(camera)
+	camera(camera),
+	currentDoor(nullptr),
+	leftExit(nullptr),
+	rightExit(nullptr)
 {
 }
 
@@ -24,11 +27,42 @@ void Level::load(std::string level_name)
 	levelWidth = atoi(levelDocument.child("map").attribute("width").value());
 	levelHeight = atoi(levelDocument.child("map").attribute("height").value());
 
-	// Get node which contains tileids
+	leftExit = new Exit();
+	rightExit = new Exit();
+
+	// Parse map data
+	pugi::xml_node map_properties = levelDocument.child("map").child("properties");
+	for(pugi::xml_node_iterator iterator = map_properties.begin();
+		iterator != map_properties.end();
+		++iterator)
+	{
+		std::string propertyName  = iterator->attribute("name").value();
+		std::string propertyValue = iterator->attribute("value").value();
+
+		if (propertyName.compare("exitLeft") == 0) {
+			leftExit->level = propertyValue;
+		}
+
+		if (propertyName.compare("exitRight") == 0) {
+			rightExit->level = propertyValue;
+		}
+
+		if (propertyName.compare("spawnLeft") == 0) {
+			leftExit->spawnpoint = atoi(propertyValue.c_str());
+		}
+		
+		if (propertyName.compare("spawnRight") == 0) {
+			rightExit->spawnpoint = atoi(propertyValue.c_str());
+		}
+	}
+
+	// Get layer and object nodes
 	SilhouetteLayer = levelDocument.child("map").find_child_by_attribute("name", "SilhouetteLayer").child("data");
 	BackgroundLayer = levelDocument.child("map").find_child_by_attribute("name", "BackgroundLayer").child("data");
 	GameLayer		= levelDocument.child("map").find_child_by_attribute("name", "GameLayer").child("data");
 	ForegroundLayer = levelDocument.child("map").find_child_by_attribute("name", "ForegroundLayer").child("data");
+	triggerNode		= levelDocument.child("map").find_child_by_attribute("name", "Triggers");
+	actorNode		= levelDocument.child("map").find_child_by_attribute("name", "Actors");
 
 	// Load level tileset
 	std::string tileSet = levelDocument.child("map").child("tileset").child("image").attribute("source").value();
@@ -43,7 +77,7 @@ void Level::load(std::string level_name)
 	int iteratorCount = 0;
 	std::vector<int> levelRow;
 
-	// TODO(jouni): Make only 1 for-loop
+	// Parse layers
 	for(int i = 0; i < LAYER_COUNT; i++) {
 		pugi::xml_node *tempLayer;
 		std::vector<std::vector<int>> *tempData;
@@ -93,25 +127,90 @@ void Level::load(std::string level_name)
 		}
 	}
 
-}
-
-void Level::update() {
-	/*
-	// NOTE(jouni&&karlos): Liikuttaa kameraa jos kenttä ei oo vielä loppunu
-	if (camera.getX() < levelWidth*tileSize)
+	// Parse actors
+	for(pugi::xml_node_iterator iterator = actorNode.begin();
+		iterator != actorNode.end();
+		++iterator)
 	{
-		for (std::vector<levelTrigger>::iterator it = triggers.begin();
-		it != triggers.end();
-		++it) {
-			if (camera.getX() >= it->spawnTile) {
-				launchTrigger((*it));
-				triggers.erase(it);
-				break;
+		std::string type = iterator->attribute("type").value();
+
+		if (type.compare("spawn") == 0) {
+			std::string spawn_type = iterator->attribute("name").value();
+			int spawn_x = atoi(iterator->attribute("x").value());
+			int spawn_y = atoi(iterator->attribute("y").value());
+
+			if (spawn_type.compare("playerSpawnLeft") == 0) {
+				leftSpawn.x = spawn_x;
+				leftSpawn.y = spawn_y;
+			}
+
+			if (spawn_type.compare("playerSpawnRight") == 0) {
+				rightSpawn.x = spawn_x;
+				rightSpawn.y = spawn_y;
+			}
+
+			if (spawn_type.compare("playerSpawnStart") == 0) {
+				startSpawn.x = spawn_x;
+				startSpawn.y = spawn_y;
 			}
 		}
-		camera.update();
+
+		if (type.compare("npcSpawn") == 0) {
+			// TODO
+		}
+
+		if (type.compare("enemySpawn") == 0) {
+			// TODO
+		}
+
+		if (type.compare("item") == 0) {
+			// TODO
+		}
 	}
-	*/
+}
+
+void Level::update(Entity *entity) {
+		tooltip = "";
+		signText = "";
+		currentDoor = nullptr;
+
+		for(pugi::xml_node_iterator iterator = triggerNode.begin();
+			iterator != triggerNode.end();
+			++iterator)
+		{
+			int x = atoi(iterator->attribute("x").value());
+			int y = atoi(iterator->attribute("y").value());
+			int w = atoi(iterator->attribute("width").value());
+			int h = atoi(iterator->attribute("height").value());
+			
+			SDL_Rect trigger_area = {x, y, w, h};
+			SDL_Rect entity_area  = {camera->frame.x + entity->getX(),
+									 camera->frame.y + entity->getY(),
+									 entity->getW(),
+									 entity->getH()};
+			SDL_Rect result_area  = {0, 0, 0, 0};
+
+			if (SDL_IntersectRect(&trigger_area, &entity_area, &result_area)) {
+				std::string type = iterator->attribute("type").value();
+
+				if (type.compare("sign") == 0) {
+					signText = iterator->child("properties").child("property").attribute("value").value();
+					printf("%s\n", signText.c_str());
+				}
+				
+				if (type.compare("door") == 0) {
+					tooltip = "Press [W] to good luck";
+					std::string levelName = iterator->child("properties")
+											.find_child_by_attribute("name", "changeLevel").
+											attribute("value").value();
+					std::string levelPath = "levels/" + levelName;
+					currentDoor = new Exit;
+
+					currentDoor->level = levelPath;
+					currentDoor->spawnpoint = SPAWN_LEFT;
+				}
+			}
+		}
 }
 
 // TODO(jouni): Muuttujaksi kameran X
@@ -177,13 +276,32 @@ int Level::pointToTile(int x) {
 }
 
 std::string Level::getRightmostLevel() {
-	return "levels/hamond_02.tmx";
+	return "levels/" + rightExit->level;
 }
 
 std::string Level::getLeftmostLevel() {
-	return "levels/lumbroff_01.tmx";
+	return "levels/" + leftExit->level;
 }
 
+Exit *Level::getCurrentDoor() {
+	if (currentDoor) {
+		return currentDoor;
+	}
+
+	return nullptr;
+}
+
+SDL_Point Level::getRightSpawn() {
+	return rightSpawn;
+}
+
+SDL_Point Level::getLeftSpawn() {
+	return leftSpawn;
+}
+
+SDL_Point Level::getStartSpawn() {
+	return startSpawn;
+}
 /*
 bool Level::collides(Entity *entity)
 {

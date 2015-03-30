@@ -4,13 +4,20 @@ GameState::GameState(Window *window) :
 	window(window),
 	entity(nullptr),
 	level(nullptr),
-	camera(nullptr) {
+	camera(nullptr),
+	font("fonts/AveriaSerif-Bold.ttf", 12),
+	tooltip(new Text(&font, Color("white"))),
+	signText(new Text(&font, Color("white"))),
+	tooltip_s(""),
+	signText_s("") {
 		SDL_Rect hitbox = {0, 0, 10, 10};
 		entity = new MovingEntity(200, 120, 10, 10, 5, hitbox);
 		camera = new Camera(400, 240);
 
 		level = new Level(window, camera);
-		level->load("levels/hamond_02.tmx");
+		level->load("levels/lumbroff_01.tmx");
+
+		SDL_Point spawnpoint = level->getStartSpawn();
 }
 
 GameState::~GameState() {
@@ -52,28 +59,45 @@ stateStatus GameState::update() {
 	}
 
 	if (Input::keyState(SDL_SCANCODE_RETURN)) {
-		
+		Exit *door = level->getCurrentDoor();
+
+		if (door) {
+			std::string level_name = door->level;
+
+			level = new Level(window, camera);
+			level->load(level_name);
+		}
 	}
 
-	printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
+	//printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
 
 	entity->update();
 	entity->commitMovement();
+
+	level->update(entity);
+
+	// Update tooltip and sign text
+	tooltip_s  = level->tooltip;
+	signText_s = level->signText;
 
 	//camera->update(entity->getX(), entity->getY());
 
 	// 16 = tilesize
 	// TODO(jouni): (camera->frame.w/2)+8 is only for testing, you need to change this in future!
 	if (level->pointToTile(entity->getX()) > level->getLevelWidth() - (camera->frame.w/2)+8) {
+		std::string rightLevel = level->getRightmostLevel();
+
 		level = new Level(window, camera);
-		level->load(level->getRightmostLevel());
+		level->load(rightLevel);
 		camera->frame.x = 15;
 		camera->frame.y = 0;
 	}
 
 	if (level->pointToTile(entity->getX()) < 0 - (camera->frame.w/2)+8) {
+		std::string leftLevel = level->getLeftmostLevel();
+		
 		level = new Level(window, camera);
-		level->load(level->getLeftmostLevel());
+		level->load(leftLevel);
 		camera->frame.x = 15;
 		camera->frame.y = 0;
 	}
@@ -93,4 +117,12 @@ void GameState::render() {
 					 Color("red"));
 
 	level->render(FG_LAYER);
+
+	if (tooltip_s.length() > 0) {
+		tooltip->print(window, tooltip_s, 10, 10);
+	}
+
+	if (signText_s.length() > 0) {
+		tooltip->print(window, signText_s, 100, 20);
+	}
 }
