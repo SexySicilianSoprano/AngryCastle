@@ -10,7 +10,7 @@ GameState::GameState(Window *window) :
 		camera = new Camera(400, 240);
 
 		level = new Level(window, camera);
-		level->load("levels/lumbroff_01.tmx");
+		level->load("levels/hamond_02.tmx");
 }
 
 GameState::~GameState() {
@@ -51,33 +51,46 @@ stateStatus GameState::update() {
 		camera->frame.x += speed;
 	}
 
+	if (Input::keyState(SDL_SCANCODE_RETURN)) {
+		
+	}
+
+	printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
+
 	entity->update();
 	entity->commitMovement();
 
 	//camera->update(entity->getX(), entity->getY());
 
 	// 16 = tilesize
-	if (level->pointToTile(entity->getX()) > level->getLevelWidth()) {
+	// TODO(jouni): (camera->frame.w/2)+8 is only for testing, you need to change this in future!
+	if (level->pointToTile(entity->getX()) > level->getLevelWidth() - (camera->frame.w/2)+8) {
 		level = new Level(window, camera);
 		level->load(level->getRightmostLevel());
 		camera->frame.x = 15;
 		camera->frame.y = 0;
 	}
 
-	if (level->pointToTile(entity->getX()) < 0) {
-		printf("Level at left\n");
+	if (level->pointToTile(entity->getX()) < 0 - (camera->frame.w/2)+8) {
+		level = new Level(window, camera);
+		level->load(level->getLeftmostLevel());
+		camera->frame.x = 15;
+		camera->frame.y = 0;
 	}
 
 	return status;
 }
 
 void GameState::render() {
-	
-	level->render();
+	level->render(SIL_LAYER);
+	level->render(BG_LAYER);
+	level->render(GAME_LAYER);
 
 	window->drawRect(entity->getX(),
 					 entity->getY(),
 					 entity->getW(),
 					 entity->getH(),
 					 Color("red"));
+
+	level->render(FG_LAYER);
 }

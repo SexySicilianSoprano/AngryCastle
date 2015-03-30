@@ -89,7 +89,7 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 
 void Window::clear()
 {
-	fill(Color("black"));
+	fill(Color("white"));
 }
 
 void Window::fill(Color color)

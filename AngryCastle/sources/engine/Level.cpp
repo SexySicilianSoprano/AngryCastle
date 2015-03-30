@@ -25,33 +25,74 @@ void Level::load(std::string level_name)
 	levelHeight = atoi(levelDocument.child("map").attribute("height").value());
 
 	// Get node which contains tileids
-	tileNode = levelDocument.child("map").child("layer").child("data");
+	SilhouetteLayer = levelDocument.child("map").find_child_by_attribute("name", "SilhouetteLayer").child("data");
+	BackgroundLayer = levelDocument.child("map").find_child_by_attribute("name", "BackgroundLayer").child("data");
+	GameLayer		= levelDocument.child("map").find_child_by_attribute("name", "GameLayer").child("data");
+	ForegroundLayer = levelDocument.child("map").find_child_by_attribute("name", "ForegroundLayer").child("data");
 
 	// Load level tileset
 	std::string tileSet = levelDocument.child("map").child("tileset").child("image").attribute("source").value();
+	// Correct tileset path
+	std::string prefix("../");
+	if (!tileSet.compare(0, prefix.size(), prefix)) {
+		tileSet = tileSet.substr(prefix.size()).c_str();
+	}
+
 	levelTileSheet = new Sprite(window, tileSet, tileSize, tileSize);
 
 	int iteratorCount = 0;
 	std::vector<int> levelRow;
 
-	// Go through tile-nodes
-	for(pugi::xml_node_iterator iterator = tileNode.begin();
-		iterator != tileNode.end();
-		++iterator)
-	{
-		iteratorCount++;
+	// TODO(jouni): Make only 1 for-loop
+	for(int i = 0; i < LAYER_COUNT; i++) {
+		pugi::xml_node *tempLayer;
+		std::vector<std::vector<int>> *tempData;
 
-		// Add tile id to 
-		int gid = atoi(iterator->attribute("gid").value());
-		levelRow.push_back(gid);
-		
-		// NOTE(juha): Kun päästään kentän loppuun, vaihdetaan riviä.
-		if (iteratorCount % levelWidth == 0)
+		switch (i)
 		{
-			levelData.push_back(levelRow);
-			levelRow.clear();
+			case SIL_LAYER:
+				tempLayer = &SilhouetteLayer;
+				tempData = &SilhouetteData;
+				break;
+
+			case BG_LAYER:
+				tempLayer = &BackgroundLayer;
+				tempData = &BackgroundData;
+				break;
+
+			case GAME_LAYER:
+				tempLayer = &GameLayer;
+				tempData = &GameData;
+				break;
+
+			case FG_LAYER:
+				tempLayer = &ForegroundLayer;
+				tempData = &ForegroundData;
+				break;
+
+			default:
+				break;
+		}
+
+		for(pugi::xml_node_iterator iterator = tempLayer->begin();
+			iterator != tempLayer->end();
+			++iterator)
+		{
+			iteratorCount++;
+
+			// Add tile id to 
+			int gid = atoi(iterator->attribute("gid").value());
+			levelRow.push_back(gid);
+		
+			// NOTE(juha): Kun päästään kentän loppuun, vaihdetaan riviä.
+			if (iteratorCount % levelWidth == 0)
+			{
+				tempData->push_back(levelRow);
+				levelRow.clear();
+			}
 		}
 	}
+
 }
 
 void Level::update() {
@@ -74,15 +115,38 @@ void Level::update() {
 }
 
 // TODO(jouni): Muuttujaksi kameran X
-void Level::render()
+void Level::render(int layer)
 {
 	std::vector<std::vector<int>>::iterator row;
 	std::vector<int>::iterator col;
+	std::vector<std::vector<int>> *data;
 
-	for (row = levelData.begin(); row != levelData.end(); ++row) {
+	switch (layer)
+	{
+		case SIL_LAYER:
+			data = &SilhouetteData;
+			break;
+
+		case BG_LAYER:
+			data = &BackgroundData;
+			break;
+
+		case GAME_LAYER:
+			data = &GameData;
+			break;
+
+		case FG_LAYER:
+			data = &ForegroundData;
+			break;
+
+		default:
+			break;
+	}
+
+	for (row = data->begin(); row != data->end(); ++row) {
 		for (col = row->begin(); col != row->end(); ++col) {
 			int X = col - row->begin();
-			int Y = row - levelData.begin();
+			int Y = row - data->begin();
 			levelTileSheet->setIndex(*col-1);
 			levelTileSheet->render(X*tileSize - camera->frame.x, Y*tileSize - camera->frame.y);
 		}
@@ -99,10 +163,10 @@ int Level::getTile(int x, int y)
 {
 	if (y >= 0 &&
 		x >= 0 &&
-		y < levelData.size()*tileSize &&
-		x < levelData[0].size()*tileSize)
+		y < GameData.size()*tileSize &&
+		x < GameData[0].size()*tileSize)
 	{
-		return (levelData[y/tileSize][(camera->frame.x + x)/tileSize]);
+		return (GameData[y/tileSize][(camera->frame.x + x)/tileSize]);
 	}
 
 	return 0;
@@ -113,6 +177,10 @@ int Level::pointToTile(int x) {
 }
 
 std::string Level::getRightmostLevel() {
+	return "levels/hamond_02.tmx";
+}
+
+std::string Level::getLeftmostLevel() {
 	return "levels/lumbroff_01.tmx";
 }
 

@@ -7,6 +7,13 @@
 #include "PugiXML.h"
 #include "Sprite.h"
 
+#define SIL_LAYER	0	// SilhouetteLayer
+#define BG_LAYER	1	// BackgroundLayer
+#define GAME_LAYER	2	// GameLayer
+#define FG_LAYER	3	// ForegroundLayer
+
+#define LAYER_COUNT 4
+
 class Level
 {
 	public:
@@ -15,13 +22,15 @@ class Level
 
 		void load(std::string level_name);
 		void update();
-		void render();
+		void render(int layer);
 
 		int getTile(int x, int y);
 		int pointToTile(int x);
 		int getLevelWidth();
 
 		std::string getRightmostLevel();
+		std::string getLeftmostLevel();
+
 
 		//bool collides(Entity *entity);
 
@@ -31,14 +40,13 @@ class Level
 
 		pugi::xml_document levelDocument;
 		pugi::xml_parse_result result;
-		pugi::xml_node tileNode;
-		pugi::xml_node enemySpawn;
+		pugi::xml_node SilhouetteLayer, BackgroundLayer, GameLayer, ForegroundLayer;
 
 		int levelWidth, levelHeight;
 		int tileSize;
 
 		Sprite *levelTileSheet;
-		std::vector<std::vector<int>> levelData;
+		std::vector<std::vector<int>> SilhouetteData, BackgroundData, GameData, ForegroundData;
 };
 
 #endif //__LEVEL_H_DEFINED__
