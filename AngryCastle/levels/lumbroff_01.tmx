@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="15" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="15" tilewidth="16" tileheight="16" nextobjectid="15">
+ <properties>
+  <property name="exitLeft" value="filmoor_01.tmx"/>
+  <property name="exitRight" value="hamond_01.tmx"/>
+  <property name="spawnLeft" value="playerSpawnRight"/>
+  <property name="spawnRight" value="playerSpawnLeft"/>
+ </properties>
  <tileset firstgid="1" name="Lumbroff_tileset" tilewidth="16" tileheight="16">
   <image source="../graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
   <terraintypes>
@@ -4211,8 +4217,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="582"/>
-   <tile gid="583"/>
-   <tile gid="584"/>
+   <tile gid="711"/>
+   <tile gid="712"/>
    <tile gid="585"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -4411,8 +4417,8 @@
    <tile gid="0"/>
    <tile gid="197"/>
    <tile gid="614"/>
-   <tile gid="615"/>
-   <tile gid="616"/>
+   <tile gid="743"/>
+   <tile gid="744"/>
    <tile gid="617"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -5180,7 +5186,7 @@
    <tile gid="898"/>
    <tile gid="899"/>
    <tile gid="900"/>
-   <tile gid="901"/>
+   <tile gid="773"/>
    <tile gid="0"/>
    <tile gid="705"/>
    <tile gid="706"/>
@@ -5380,7 +5386,7 @@
    <tile gid="930"/>
    <tile gid="931"/>
    <tile gid="932"/>
-   <tile gid="933"/>
+   <tile gid="805"/>
    <tile gid="197"/>
    <tile gid="737"/>
    <tile gid="738"/>
@@ -5448,8 +5454,8 @@
    <tile gid="0"/>
    <tile gid="244"/>
    <tile gid="582"/>
-   <tile gid="583"/>
-   <tile gid="584"/>
+   <tile gid="711"/>
+   <tile gid="712"/>
    <tile gid="585"/>
    <tile gid="0"/>
    <tile gid="244"/>
@@ -5648,8 +5654,8 @@
    <tile gid="0"/>
    <tile gid="276"/>
    <tile gid="614"/>
-   <tile gid="615"/>
-   <tile gid="616"/>
+   <tile gid="743"/>
+   <tile gid="744"/>
    <tile gid="617"/>
    <tile gid="0"/>
    <tile gid="276"/>
@@ -12077,5 +12083,60 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers"/>
+ <objectgroup name="Triggers">
+  <object id="3" name="door_04" type="door" x="2174" y="74" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="lumbroff_house_05.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="4" name="door_01" type="door" x="31.25" y="167.583" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="lumbroff_house_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="5" name="door_05" type="door" x="2687.36" y="171.841" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="lumbroff_house_04.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="6" name="door_02" type="door" x="1502.25" y="169.25" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="lumbroff_house_02.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="7" name="door_03" type="door" x="1891.25" y="155.25" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="lumbroff_house_03.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="8" name="playerSpawnLeft" type="spawn" x="8" y="200.5">
+   <ellipse/>
+  </object>
+  <object id="9" name="playerSpawnRight" type="spawn" x="3191.5" y="201">
+   <ellipse/>
+  </object>
+  <object id="11" name="sign_01" type="sign" x="140.333" y="171" width="23.3333" height="40">
+   <properties>
+    <property name="text" value="West to Filmoor Road"/>
+   </properties>
+  </object>
+  <object id="12" name="sign_02" type="sign" x="1432" y="171" width="23.3333" height="40">
+   <properties>
+    <property name="text" value="Welcome to Lumbroff"/>
+   </properties>
+  </object>
+  <object id="13" name="sign_03" type="sign" x="3020.33" y="169.75" width="23.3333" height="40">
+   <properties>
+    <property name="text" value="East to Hamond Road"/>
+   </properties>
+  </object>
+  <object id="14" name="playerSpawnStart" type="spawn" x="1287" y="198.5">
+   <ellipse/>
+  </object>
+ </objectgroup>
 </map>
