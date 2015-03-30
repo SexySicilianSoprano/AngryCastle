@@ -12114,18 +12114,12 @@
     <property name="spawn" value="playerSpawnLeft"/>
    </properties>
   </object>
-  <object id="8" name="playerSpawnLeft" type="spawn" x="8" y="200.5">
-   <ellipse/>
-  </object>
-  <object id="9" name="playerSpawnRight" type="spawn" x="3191.5" y="201">
-   <ellipse/>
-  </object>
   <object id="11" name="sign_01" type="sign" x="140.333" y="171" width="23.3333" height="40">
    <properties>
     <property name="text" value="West to Filmoor Road"/>
    </properties>
   </object>
-  <object id="12" name="sign_02" type="sign" x="1432" y="171" width="23.3333" height="40">
+  <object id="12" name="sign_02" type="sign" x="1435.67" y="170.667" width="23.3333" height="40">
    <properties>
     <property name="text" value="Welcome to Lumbroff"/>
    </properties>
@@ -12134,6 +12128,14 @@
    <properties>
     <property name="text" value="East to Hamond Road"/>
    </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Actors">
+  <object id="8" name="playerSpawnLeft" type="spawn" x="8" y="200.5">
+   <ellipse/>
+  </object>
+  <object id="9" name="playerSpawnRight" type="spawn" x="3191.5" y="201">
+   <ellipse/>
   </object>
   <object id="14" name="playerSpawnStart" type="spawn" x="1287" y="198.5">
    <ellipse/>
