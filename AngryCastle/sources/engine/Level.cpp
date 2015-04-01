@@ -1,8 +1,9 @@
 #include "Level.h"
 
-Level::Level(Window *window, Camera *camera):
+Level::Level(Window *window, Camera *camera, EntityCollection<Entity> *collection):
 	window(window),
 	camera(camera),
+	collection(collection),
 	currentDoor(nullptr),
 	leftExit(nullptr),
 	rightExit(nullptr)
@@ -156,15 +157,46 @@ void Level::load(std::string level_name)
 		}
 
 		if (type.compare("npcSpawn") == 0) {
-			// TODO
+			std::string type   = iterator->child("properties").find_child_by_attribute("name", "npcType").attribute("value").value();
+			std::string script = iterator->child("properties").find_child_by_attribute("name", "script").attribute("value").value(); 
+
+			int npc_x = atoi(iterator->attribute("x").value());
+			int npc_y = atoi(iterator->attribute("y").value());
+
+			// NOTE(jouni): **Factory creates entity of given type**
+			// int x, int y, int w, int h, SDL_Rect hitbox_offset
+			SDL_Rect hitbox = {0, 0, 0, 0};
+			Entity entity(0, 0, 10, 10, hitbox);
+			entity.setPosition(npc_x, npc_y);
+			collection->push(entity);
 		}
 
 		if (type.compare("enemySpawn") == 0) {
-			// TODO
+			std::string type   = iterator->child("properties").find_child_by_attribute("name", "enemyType").attribute("value").value();
+
+			int npc_x = atoi(iterator->attribute("x").value());
+			int npc_y = atoi(iterator->attribute("y").value());
+
+			// NOTE(jouni): **Factory creates entity of given type**
+			// int x, int y, int w, int h, SDL_Rect hitbox_offset
+			SDL_Rect hitbox = {0, 0, 0, 0};
+			Entity entity(0, 0, 20, 20, hitbox);
+			entity.setPosition(npc_x, npc_y);
+			collection->push(entity);
 		}
 
 		if (type.compare("item") == 0) {
-			// TODO
+			std::string type   = iterator->child("properties").find_child_by_attribute("name", "itemType").attribute("value").value();
+
+			int npc_x = atoi(iterator->attribute("x").value());
+			int npc_y = atoi(iterator->attribute("y").value());
+
+			// NOTE(jouni): **Factory creates entity of given type**
+			// int x, int y, int w, int h, SDL_Rect hitbox_offset
+			SDL_Rect hitbox = {0, 0, 0, 0};
+			Entity entity(0, 0, 5, 5, hitbox);
+			entity.setPosition(npc_x, npc_y);
+			collection->push(entity);
 		}
 	}
 }
@@ -184,8 +216,8 @@ void Level::update(Entity *entity) {
 			int h = atoi(iterator->attribute("height").value());
 			
 			SDL_Rect trigger_area = {x, y, w, h};
-			SDL_Rect entity_area  = {camera->frame.x + entity->getX(),
-									 camera->frame.y + entity->getY(),
+			SDL_Rect entity_area  = {entity->getX(),
+									 entity->getY(),
 									 entity->getW(),
 									 entity->getH()};
 			SDL_Rect result_area  = {0, 0, 0, 0};
@@ -265,21 +297,32 @@ int Level::getTile(int x, int y)
 		y < GameData.size()*tileSize &&
 		x < GameData[0].size()*tileSize)
 	{
-		return (GameData[y/tileSize][(camera->frame.x + x)/tileSize]);
+		return (GameData[y/tileSize][x/tileSize]);
 	}
 
 	return 0;
 }
 
-int Level::pointToTile(int x) {
-	return camera->frame.x + x / tileSize;
+int Level::pointToTile(int x, int y) {
+	int tile_x = x / tileSize;
+	int tile_y = y / tileSize;
+
+	return GameData[tile_y][tile_x];
 }
 
 std::string Level::getRightmostLevel() {
+	if (rightExit->level.empty()) {
+		return "";
+	}
+
 	return "levels/" + rightExit->level;
 }
 
 std::string Level::getLeftmostLevel() {
+	if (leftExit->level.empty()) {
+		return "";
+	}
+
 	return "levels/" + leftExit->level;
 }
 
@@ -302,45 +345,33 @@ SDL_Point Level::getLeftSpawn() {
 SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
-/*
+
 bool Level::collides(Entity *entity)
 {
-	int hbX;
-	int hbY;
+	SDL_Rect player_hitbox = entity->getHitbox();
+	int tile = getTile(player_hitbox.x, player_hitbox.y);
 
-	// Palauttaa hitboxin vasemman yläkulman tilen
-	hbX = entity->hitbox.x;
-	hbY = entity->hitbox.y;
-
-	if(getTile(hbX, hbY) > 0)
-	{
+	if (tile != 0) {
 		return true;
 	}
 
-	// Palauttaa hitboxin oikean yläkulman tilen
-	hbX = entity->hitbox.x + entity->hitbox.w;
-	hbY = entity->hitbox.y;
+	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
 
-	if(getTile(hbX, hbY) > 0){
+	if (tile != 0) {
 		return true;
 	}
 
-	// Palauttaa hitboxin vasemman alakulman tilen
-	hbX = entity->hitbox.x + entity->hitbox.w;
-	hbY = entity->hitbox.y + entity->hitbox.h;
-
-	if(getTile(hbX, hbY) > 0){
-		return true;
-	}
-
-	// Palauttaa hitboxin oikean alakulman tilen
-	hbX = entity->hitbox.x;
-	hbY = entity->hitbox.y + entity->hitbox.h;
-
-	if(getTile(hbX, hbY) > 0){
+	tile = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+	
+	if (tile != 0) {
 		return true;
 	}
 	
+	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+	if (tile != 0) {
+		return true;
+	}
+
 	return false;
 }
-*/

@@ -20,7 +20,7 @@ class Entity
 		Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset);
 		~Entity();
 
-		virtual void update() = 0;
+		void update();
 
 		bool collides(Entity *other);
 		void setPosition(int x, int y);
@@ -29,12 +29,12 @@ class Entity
 		int getY();
 		int getW();
 		int getH();
+		SDL_Rect getHitbox();
 
 	protected:
 		int x, y, w, h;
 		int desiredX, desiredY;
 		SDL_Rect hitbox_offset;
-
 };
 
 #endif //__ENTITY_H_DEFINED__

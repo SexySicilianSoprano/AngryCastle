@@ -6,6 +6,8 @@
 #include "Camera.h"
 #include "PugiXML.h"
 #include "Sprite.h"
+#include "EntityCollection.h"
+#include "MovingEntity.h"
 
 #define SIL_LAYER	0	// Silhouette layer
 #define BG_LAYER	1	// Background layer
@@ -25,15 +27,16 @@ struct Exit {
 class Level
 {
 	public:
-		Level(Window *window, Camera *camera);
+		Level(Window *window, Camera *camera, EntityCollection<Entity> *collection);
 		~Level();
 
 		void load(std::string level_name);
 		void update(Entity *entity);
 		void render(int layer);
+		bool collides(Entity *entity);
 
 		int getTile(int x, int y);
-		int pointToTile(int x);
+		int pointToTile(int x, int y);
 		int getLevelWidth();
 		Exit *getCurrentDoor();
 
@@ -50,6 +53,7 @@ class Level
 	private:
 		Window *window;
 		Camera *camera;
+		EntityCollection<Entity> *collection;
 
 		pugi::xml_document levelDocument;
 		pugi::xml_parse_result result;

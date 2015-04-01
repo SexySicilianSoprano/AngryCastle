@@ -27,11 +27,11 @@ class Camera {
 
 		SDL_Rect frame;
 
-		// TODO(jouni):
-		// lock(Entity *entity);
+		void lock(Entity *entity);
+		void update();
 
 	private:
-		Entity *entity;
+		Entity *locked_entity;
 };
 
 #endif // __CAMERA_H_DEFINED__

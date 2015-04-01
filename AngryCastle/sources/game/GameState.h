@@ -25,6 +25,7 @@ class GameState : public BaseState {
 		Window *window;
 		Level *level;
 		Camera *camera;
+		EntityCollection<Entity> *collection;
 
 		MovingEntity *entity;
 

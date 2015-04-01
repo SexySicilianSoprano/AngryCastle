@@ -24,6 +24,10 @@ Entity::~Entity()
 
 }
 
+void Entity::update() {
+
+}
+
 void Entity::setPosition(int new_x, int new_y) {
 	// Move entity
 	x = new_x;
@@ -81,4 +85,14 @@ int Entity::getW() {
 
 int Entity::getH() {
 	return h;
+}
+
+SDL_Rect Entity::getHitbox() {
+	SDL_Rect primary_hitbox;
+	primary_hitbox.x = desiredX + hitbox_offset.x;
+	primary_hitbox.y = desiredY + hitbox_offset.y;
+	primary_hitbox.w = hitbox_offset.w;
+	primary_hitbox.h = hitbox_offset.h;
+
+	return primary_hitbox;
 }

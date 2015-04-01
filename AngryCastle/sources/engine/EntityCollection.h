@@ -51,7 +51,7 @@ class EntityCollection {
 			for (std::vector<T>::iterator it = Bag.begin();
 				it != Bag.end();
 				++it) {
-					it->render();
+					//it->render();
 
 			}
 		}
