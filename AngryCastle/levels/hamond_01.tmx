@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="4">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="20">
  <properties>
   <property name="exitLeft" value="lumbroff_01.tmx"/>
   <property name="exitRight" value="hamond_02.tmx"/>
@@ -24083,7 +24083,120 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers">
+ <objectgroup name="Triggers"/>
+ <objectgroup name="Actors">
+  <object id="4" name="enemySpawn_01" type="enemySpawn" x="540.17" y="362.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="5" name="enemySpawn_02" type="enemySpawn" x="440.167" y="198.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="6" name="enemySpawn_03" type="enemySpawn" x="296.5" y="360.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="7" name="enemySpawn_04" type="enemySpawn" x="646.5" y="361.5">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="8" name="enemySpawn_05" type="enemySpawn" x="1485.67" y="313.5">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="9" name="enemySpawn_06" type="enemySpawn" x="1558.34" y="312.166">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="10" name="enemySpawn_07" type="enemySpawn" x="2200" y="104.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="11" name="enemySpawn_08" type="enemySpawn" x="1061.5" y="266.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="12" name="enemySpawn_09" type="enemySpawn" x="2800" y="150">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" name="enemySpawn_10" type="enemySpawn" x="1300" y="121.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="14" name="enemySpawn_11" type="enemySpawn" x="1862" y="313">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="spikedwolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="15" name="enemySpawn_12" type="enemySpawn" x="2345" y="311">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="16" name="enemySpawn_13" type="enemySpawn" x="2632" y="391">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="17" name="enemySpawn_14" type="enemySpawn" x="2970" y="376">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="18" name="enemySpawn_15" type="enemySpawn" x="2888" y="373">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="19" name="playerSpawnRight" type="spawn" x="3192.5" y="375">
+   <properties>
+    <property name="Orientation" value="right"/>
+    <property name="muuta" value="on jo"/>
+   </properties>
+   <ellipse/>
+  </object>
   <object id="3" name="playerSpawnLeft" type="spawn" x="9.33333" y="311.333">
    <ellipse/>
   </object>
