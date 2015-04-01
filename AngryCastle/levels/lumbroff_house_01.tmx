@@ -1172,7 +1172,7 @@
    <tile gid="36"/>
    <tile gid="36"/>
    <tile gid="36"/>
-   <tile gid="70"/>
+   <tile gid="37"/>
    <tile gid="100"/>
    <tile gid="0"/>
    <tile gid="100"/>
@@ -1581,14 +1581,15 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers">
+ <objectgroup name="Triggers"/>
+ <objectgroup name="Actors">
   <object id="1" name="playerSpawnLeft" type="spawn" x="7.5" y="201">
    <ellipse/>
   </object>
-  <object id="2" name="lumbroff_merchant_01" type="npcSpawn" x="248" y="199">
+  <object id="2" name="lumbroffMerchant_02" type="npcSpawn" x="248" y="199">
    <properties>
     <property name="npcType" value="merchant"/>
-    <property name="script" value="lumbroff_merchant_01"/>
+    <property name="script" value="lumbroff_merchant_02"/>
    </properties>
    <ellipse/>
   </object>
