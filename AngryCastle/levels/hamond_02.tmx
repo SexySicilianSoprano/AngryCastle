@@ -24108,7 +24108,7 @@
   <object id="5" name="enemySpawn_02" type="enemySpawn" x="1098.94" y="183.394">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="raven"/>
+    <property name="enemyType" value="bat"/>
    </properties>
    <ellipse/>
   </object>
@@ -24122,7 +24122,7 @@
   <object id="7" name="enemySpawn_04" type="enemySpawn" x="198.936" y="199.894">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="raven"/>
+    <property name="enemyType" value="bat"/>
    </properties>
    <ellipse/>
   </object>
@@ -24150,14 +24150,14 @@
   <object id="11" name="enemySpawn_08" type="enemySpawn" x="2363.33" y="88.6667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="raven"/>
+    <property name="enemyType" value="bat"/>
    </properties>
    <ellipse/>
   </object>
   <object id="12" name="enemySpawn_09" type="enemySpawn" x="2888" y="136">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="raven"/>
+    <property name="enemyType" value="bat"/>
    </properties>
    <ellipse/>
   </object>
