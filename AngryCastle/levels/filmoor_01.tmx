@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="7">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="24">
  <properties>
   <property name="exitLeft" value="filmoor_02.tmx"/>
   <property name="exitRight" value="lumbroff_01.tmx"/>
@@ -1751,9 +1751,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="27"/>
+   <tile gid="58"/>
+   <tile gid="29"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1950,10 +1950,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="27"/>
+   <tile gid="59"/>
+   <tile gid="60"/>
+   <tile gid="125"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2069,10 +2069,6 @@
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="125"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2154,6 +2150,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="27"/>
+   <tile gid="59"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
+   <tile gid="61"/>
    <tile gid="58"/>
    <tile gid="58"/>
    <tile gid="29"/>
@@ -2348,12 +2348,12 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="27"/>
-   <tile gid="58"/>
    <tile gid="59"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="61"/>
@@ -2548,10 +2548,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="27"/>
-   <tile gid="59"/>
+   <tile gid="123"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -2748,9 +2748,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="27"/>
-   <tile gid="59"/>
+   <tile gid="123"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -2947,9 +2947,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="123"/>
+   <tile gid="27"/>
+   <tile gid="59"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -3147,9 +3147,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="123"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -3347,9 +3347,9 @@
    <tile gid="0"/>
    <tile gid="350"/>
    <tile gid="351"/>
-   <tile gid="352"/>
-   <tile gid="27"/>
-   <tile gid="59"/>
+   <tile gid="123"/>
+   <tile gid="60"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -3547,9 +3547,9 @@
    <tile gid="0"/>
    <tile gid="382"/>
    <tile gid="383"/>
-   <tile gid="384"/>
    <tile gid="155"/>
    <tile gid="91"/>
+   <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -3748,8 +3748,8 @@
    <tile gid="414"/>
    <tile gid="415"/>
    <tile gid="416"/>
-   <tile gid="0"/>
-   <tile gid="123"/>
+   <tile gid="155"/>
+   <tile gid="91"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -3948,8 +3948,8 @@
    <tile gid="446"/>
    <tile gid="447"/>
    <tile gid="448"/>
-   <tile gid="0"/>
-   <tile gid="123"/>
+   <tile gid="27"/>
+   <tile gid="59"/>
    <tile gid="60"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -4148,8 +4148,8 @@
    <tile gid="478"/>
    <tile gid="479"/>
    <tile gid="480"/>
-   <tile gid="0"/>
    <tile gid="155"/>
+   <tile gid="154"/>
    <tile gid="91"/>
    <tile gid="60"/>
    <tile gid="60"/>
@@ -21735,7 +21735,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="243"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -21935,7 +21935,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="212"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -22135,7 +22135,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="244"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -22335,7 +22335,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="276"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -24089,6 +24089,111 @@
    <ellipse/>
   </object>
   <object id="5" name="playerSpawnLeft" type="spawn" x="8.33334" y="312.167">
+   <ellipse/>
+  </object>
+  <object id="7" name="enemySpawn_01" type="enemySpawn" x="2743.34" y="357.834">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="8" name="enemySpawn_02" type="enemySpawn" x="2676" y="193.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="9" name="enemySpawn_03" type="enemySpawn" x="2680.67" y="359.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="10" name="enemySpawn_04" type="enemySpawn" x="2138.66" y="422.832">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="11" name="enemySpawn_05" type="enemySpawn" x="2377.33" y="391">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="12" name="enemySpawn_06" type="enemySpawn" x="1753.33" y="437.832">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="13" name="enemySpawn_07" type="enemySpawn" x="1946" y="437.667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="16" name="enemySpawn_08" type="enemySpawn" x="1354.33" y="408.832">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="17" name="enemySpawn_09" type="enemySpawn" x="1498" y="421.667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="18" name="enemySpawn_10" type="enemySpawn" x="821.33" y="345.499">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="19" name="enemySpawn_11" type="enemySpawn" x="1047" y="393">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="spikedwolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="20" name="enemySpawn_12" type="enemySpawn" x="326.33" y="330.499">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="21" name="enemySpawn_13" type="enemySpawn" x="487" y="344">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="22" name="enemySpawn_14" type="enemySpawn" x="2052" y="253">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="23" name="enemySpawn_15" type="enemySpawn" x="1427" y="251">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
