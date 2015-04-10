@@ -22,22 +22,16 @@ void MovingEntity::commitMovement() {
 }
 
 void MovingEntity::move(int direction) {
-	if (direction == UP) {
-		desiredY = y - speed;
-		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
-	}
-
-	if (direction == DOWN) {
-		desiredY = y + speed;
-		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
-	}
+	facing_direction = NONE;
 
 	if (direction == LEFT) {
+		facing_direction = LEFT;
 		desiredX = x - speed;
 		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}
 
 	if (direction == RIGHT) {
+		facing_direction = RIGHT;
 		desiredX = x + speed;
 		//printf("Entity x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
 	}

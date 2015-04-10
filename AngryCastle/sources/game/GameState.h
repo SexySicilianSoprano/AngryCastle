@@ -27,7 +27,7 @@ class GameState : public BaseState {
 		Camera *camera;
 		EntityCollection<Entity> *collection;
 
-		MovingEntity *entity;
+		FallingEntity *entity;
 
 		Font font;
 		Text *tooltip, *signText;

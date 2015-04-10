@@ -30,11 +30,12 @@ class Entity
 		int getW();
 		int getH();
 		SDL_Rect getHitbox();
+		int desiredX, desiredY;
+		SDL_Rect hitbox_offset;
+
 
 	protected:
 		int x, y, w, h;
-		int desiredX, desiredY;
-		SDL_Rect hitbox_offset;
 };
 
 #endif //__ENTITY_H_DEFINED__

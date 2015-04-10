@@ -21,8 +21,7 @@ class MovingEntity : public Entity
 		~MovingEntity();
 
 		enum DIRECTION {
-			UP,
-			DOWN,
+			NONE,
 			LEFT,
 			RIGHT
 		};
@@ -36,6 +35,9 @@ class MovingEntity : public Entity
 
 	private:
 		int speed;
+		int facing_direction;
+		bool inAir;
+
 };
 
 #endif // __MOVINGENTITY_H_DEFINED__

@@ -15,6 +15,8 @@
 #include "Window.h"
 #include "MovingEntity.h"
 
+#define GRAVITY 7
+
 class FallingEntity : public MovingEntity
 {
 	public:
@@ -23,9 +25,11 @@ class FallingEntity : public MovingEntity
 
 		// Makes entity suffer gravity
 		void update(float dt);
+		void jump();
+		float velocity_x, velocity_y;
+		bool in_air;
 
 	private:
-		float velocity_x, velocity_y;
 		float acceleration_x, acceleration_y;
 };
 

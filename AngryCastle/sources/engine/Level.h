@@ -36,7 +36,7 @@ class Level
 		bool collides(Entity *entity);
 
 		int getTile(int x, int y);
-		int pointToTile(int x, int y);
+		SDL_Rect pointToTile(int x, int y);
 		int getLevelWidth();
 		Exit *getCurrentDoor();
 
