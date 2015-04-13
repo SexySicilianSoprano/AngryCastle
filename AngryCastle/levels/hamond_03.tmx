@@ -2,7 +2,9 @@
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="23">
  <properties>
   <property name="exitLeft" value="hamond_02.tmx"/>
+  <property name="exitRight" value="grema_01.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
+  <property name="spawnRight" value="playerSpawnLeft"/>
  </properties>
  <tileset firstgid="1" name="Hamond_tileset" tilewidth="16" tileheight="16">
   <image source="../graphics/levels/Hamond_tileset.png" trans="ff00ff" width="512" height="512"/>

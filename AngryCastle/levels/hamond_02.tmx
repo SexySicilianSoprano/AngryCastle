@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="22">
  <properties>
   <property name="exitLeft" value="hamond_01.tmx"/>
-  <property name="exitRight" value="hamond_02.tmx"/>
+  <property name="exitRight" value="hamond_03.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
  </properties>
