@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog>
+	<lumbroff>
+		<npc value="elder_01">
+			<dialogtext id="afterattack">The village is safe. But, I fear for our lumberjacks...</dialogtext>
+			<dialogtext id="afterlumberjacks">Our boys are safely home! Here, take this.</dialogtext>
+			<dialogtext id="normal">I can feel it, brave stranger. Something is off...</dialogtext>
+		</npc>
+		<npc value="lumbroffcommoner_01">
+			<dialogtext id="afterattack">Boy, was that scary or what!</dialogtext>
+			<dialogtext id="afterlumberjacks">I feared for the worst, but god bless I was wrong</dialogtext>		
+			<dialogtext id="normal">Text here</dialogtext>		
+		</npc>
+		<npc value="lumbrofcommoner_02">
+			<dialogtext id="afterattack">I think I'm going to need a new pair of pants</dialogtext>
+			<dialogtext id="afterlumberjacks"></dialogtext>		
+			<dialogtext id="normal">Text here</dialogtext>					
+		</npc>
+		<npc value="lumbroffcommoner_02">
+			<dialogtext id="afterattack">A..are they gone now?</dialogtext>
+			<dialogtext id="afterlumberjacks">Hey, our boys are back!</dialogtext>		
+			<dialogtext id="normal"></dialogtext>
+		</npc>
+		<npc value="lumbroffcommoner_03">
+			<dialogtext id="afterattack">They're gone! But what about our boys in the forest?</dialogtext>
+			<dialogtext id="afterlumberjacks">Thanks for saving our lumberjacks.</dialogtext>		
+			<dialogtext id="normal">Text here</dialogtext>					
+		</npc>
+		<npc value="lumbroffcommoner_04">
+			<dialogtext id="afterattack">I hope I don't need to get used to that...</dialogtext>
+			<dialogtext id="afterlumberjacks">Oh yeah, </dialogtext>		
+			<dialogtext id="normal">Text here</dialogtext>		
+		</npc>
+		<npc value="lumbroffcommoner_05">
+			<dialogtext id="afterattack">My brother is still in the forest! Hope he's fine...</dialogtext>
+			<dialogtext id="afterlumberjacks">Thank god he's fine! Thank you stranger!</dialogtext>		
+			<dialogtext id="normal">I wonder if the city of Grema is fine.</dialogtext>			
+		</npc>
+		<npc value="lumbroffcommoner_06">
+			<dialogtext id="afterattack">M-My husband! He's still at lumber camp!</dialogtext>
+			<dialogtext id="afterlumberjacks">My husband's back safe and sound!</dialogtext>		
+			<dialogtext id="normal">I'm glad we're okay, but we can't get lumber like this...</dialogtext>			
+		</npc>
+		<npc value="lumbroffcommoner_07">
+			<dialogtext id="afterattack">Text here</dialogtext>
+			<dialogtext id="afterlumberjacks">Text here</dialogtext>		
+			<dialogtext id="normal">Text here</dialogtext>				
+		</npc>
+
+	</lumbroff>
+</dialog>
