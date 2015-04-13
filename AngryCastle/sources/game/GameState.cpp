@@ -10,8 +10,8 @@ GameState::GameState(Window *window) :
 	signText(new Text(&font, Color("white"))),
 	tooltip_s(""),
 	signText_s("") {
-		SDL_Rect hitbox = {2, 2, 6, 6};
-		entity = new MovingEntity(0, 0, 10, 10, 1, hitbox);
+		SDL_Rect hitbox = {0, 0, 10, 10};
+		entity = new FallingEntity(0, 0, 10, 10, 1, hitbox);
 		camera = new Camera(400, 240);
 		camera->lock(entity);
 
@@ -43,6 +43,14 @@ stateStatus GameState::update() {
 		entity->setSpeed(15);
 	}
 
+	if (Input::keyState(SDL_SCANCODE_W)) {
+		entity->jump();
+	}
+
+	if (Input::keyState(SDL_SCANCODE_S)) {
+		entity->move(MovingEntity::DOWN);
+	}
+
 	if (Input::keyState(SDL_SCANCODE_A)) {
 		entity->move(MovingEntity::LEFT);
 		//camera->frame.y += speed;
@@ -51,19 +59,11 @@ stateStatus GameState::update() {
 		//camera->frame.x += speed;
 	}
 
-	if (Input::keyState(SDL_SCANCODE_W)) {
-		entity->move(MovingEntity::UP);
-	}
-
-	if (Input::keyState(SDL_SCANCODE_S)) {
-		entity->move(MovingEntity::DOWN);
-	}
-
 	///printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
 	//printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
-	entity->update();
-	//entity->update(window->getDelta());
+	//entity->update();
+	entity->update(window->getDelta());
 
 	//printf("Player position: x%d y%d\nDesired position: x%d y%d\n", entity->getX(), entity->getY(), entity->desiredX, entity->desiredY);
 
@@ -72,7 +72,9 @@ stateStatus GameState::update() {
 //		entity->in_air = 0;
 	//}
 
-	hilight_tile = level->collides(entity);
+	hilight_tile = level->collides(entity, entity->in_air);
+
+	printf("Velocity: %f\n", entity->velocity_y);
 
 	//printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
@@ -147,6 +149,7 @@ void GameState::render() {
 					 entity->getH(),
 					 Color("red"));
 
+	/*
 	SDL_Rect p_hb = entity->getHitbox();
 
 	window->drawRect(p_hb.x - camera->frame.x,
@@ -154,7 +157,7 @@ void GameState::render() {
 					 p_hb.w,
 					 p_hb.h,
 					 Color("blue"));
-
+	*/
 	for (int i = 0; i < collection->length(); i++) {
 		Entity *tmp = collection->get(i);
 

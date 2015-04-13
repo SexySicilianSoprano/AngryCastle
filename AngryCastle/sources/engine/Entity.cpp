@@ -9,7 +9,8 @@ Entity::Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset) :
 	x(x), y(y), w(w), h(h),
 	hitbox_offset(hitbox_offset),
 	desiredX(x),
-	desiredY(y)
+	desiredY(y),
+	velocity_x(0), velocity_y(0)
 {
 	if (SDL_RectEmpty(&hitbox_offset)) {
 		hitbox_offset.x = 0;
@@ -69,6 +70,28 @@ bool Entity::collides(Entity *other) {
 	}
 
 	return false;
+}
+
+bool Entity::collides(SDL_Rect *other) {
+	SDL_Rect player_hitbox = getHitbox();
+
+	if (player_hitbox.y + player_hitbox.h <= other->y) {
+		player_hitbox.y = other->y + player_hitbox.h;
+	}
+
+	if (player_hitbox.y >= other->y + other->h) {
+		player_hitbox.y = other->y + player_hitbox.h;
+	}
+
+	if (player_hitbox.x + player_hitbox.w <= other->x) {
+		player_hitbox.x = other->x;
+	}
+
+	if (player_hitbox.x >= other->x + other->w) {
+		player_hitbox.x = other->x + player_hitbox.w;
+	}
+
+	return true;
 }
 
 int Entity::getX() {

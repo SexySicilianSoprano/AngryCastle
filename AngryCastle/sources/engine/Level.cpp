@@ -351,16 +351,75 @@ SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
 
-SDL_Rect Level::collides(Entity *entity)
+SDL_Rect Level::collides(Entity *entity, bool inair)
 {
+
 	SDL_Rect player_hitbox = entity->getHitbox();
 	SDL_Rect collidetile = {0,0,0,0};
 	SDL_Rect result;
-	int tile = 0;
+	int tile1 = 0;
+	int tile2 = 0;
 	bool collides = false;
 
-	tile = getTile(player_hitbox.x,  player_hitbox.y + player_hitbox.h);
+	if (entity->desiredX > entity->getX()) {
+		// Right side
+		tile1 = getTile(player_hitbox.x + player_hitbox.w,  player_hitbox.y);
+		tile2 = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+		if (tile1) {
+ 			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
+			
+			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+				printf("Width: %d\n", result.w);
+				player_hitbox.x -= result.w;
+				entity->desiredX -= result.w;
+			}
+		}
+
+		if (tile2) {
+			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+				printf("Width: %d\n", result.w);
+				player_hitbox.x -= result.w;
+				entity->desiredX -= result.w;
+			}
+		}
+	} else if(entity->desiredX < entity->getX()) {
+		// Entity is moving left
+	}
+
+	// Bottom 
+	tile1 = getTile(player_hitbox.x + 1,  player_hitbox.y + player_hitbox.h);
+	tile2 = getTile(player_hitbox.x + player_hitbox.w - 1, player_hitbox.y + player_hitbox.h);
+
+	if (tile1) {
+		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+			printf("Height: %d\n", result.h);
+			player_hitbox.y  -= result.h;
+			entity->desiredY -= result.h;
+		}
+	}
+	
+	if(tile2) {
+		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+		
+		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+			printf("YCOLLISION: w%d h%d\n", result.w, result.h);
+			player_hitbox.y  -= result.h;
+			entity->desiredY -= result.h;
+		}
+	}
+
+	if(tile1 || tile2) {
+		entity->velocity_y = 0;
+		entity->in_air = false;
+	}
+	
+	
 	// Bottom right
+	/*
 	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 
 	if (tile != 0) {
@@ -369,28 +428,7 @@ SDL_Rect Level::collides(Entity *entity)
 		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
   			entity->desiredX -= result.w;
 		}
-	}
-
-
-	// Bottom left
-	if (tile != 0) {
-		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-
-		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			entity->desiredY -= result.h;
-		}
-	}
-
-	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-
-	// Bottom right
-	if (tile != 0) {
-		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-
-		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			entity->desiredY -= result.h;
-		}
-	}
+	}*/
 
 	return collidetile;
 	/*
@@ -446,8 +484,8 @@ SDL_Rect Level::collides(Entity *entity)
 	}
 	*/
 	// Entity BOTTOM-LEFT
-	tile = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-	if (tile != 0) {
+	//tile = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+	//if (tile != 0) {
 		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 		//SDL_Rect result;
@@ -472,9 +510,10 @@ SDL_Rect Level::collides(Entity *entity)
 		//collides = true;
 
 
-	}
+	//}
 	
 	// Entity BOTTOM-RIGHT
+	/*
 	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 	if (tile != 0) {
 		SDL_Rect tilepos = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
@@ -484,6 +523,6 @@ SDL_Rect Level::collides(Entity *entity)
 		entity->desiredY = tilepos.y - ((player_hitbox.x - entity->getX()) + player_hitbox.h);
 		collides = true;
 	}
-
+	*/
 	//return collides;
 }

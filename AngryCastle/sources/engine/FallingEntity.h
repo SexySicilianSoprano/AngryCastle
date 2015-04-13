@@ -26,8 +26,7 @@ class FallingEntity : public MovingEntity
 		// Makes entity suffer gravity
 		void update(float dt);
 		void jump();
-		float velocity_x, velocity_y;
-		bool in_air;
+		
 
 	private:
 		float acceleration_x, acceleration_y;

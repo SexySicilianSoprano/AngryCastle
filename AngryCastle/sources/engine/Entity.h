@@ -23,6 +23,7 @@ class Entity
 		void update();
 
 		bool collides(Entity *other);
+		bool collides(SDL_Rect *other);
 		void setPosition(int x, int y);
 
 		int getX();
@@ -42,6 +43,8 @@ class Entity
 		};
 
 		int facing_direction;
+		bool in_air;
+		float velocity_x, velocity_y;
 
 	protected:
 		int x, y, w, h;

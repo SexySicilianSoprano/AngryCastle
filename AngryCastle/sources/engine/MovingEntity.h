@@ -29,7 +29,6 @@ class MovingEntity : public Entity
 
 	private:
 		int speed;
-		bool inAir;
 };
 
 #endif // __MOVINGENTITY_H_DEFINED__
