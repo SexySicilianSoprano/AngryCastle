@@ -7,7 +7,6 @@
 #include "PugiXML.h"
 #include "Sprite.h"
 #include "EntityCollection.h"
-#include "MovingEntity.h"
 
 #define SIL_LAYER	0	// Silhouette layer
 #define BG_LAYER	1	// Background layer
@@ -33,7 +32,7 @@ class Level
 		void load(std::string level_name);
 		void update(Entity *entity);
 		void render(int layer);
-		SDL_Rect collides(Entity *entity, bool inair);
+		SDL_Rect collides(Entity *entity);
 
 		int getTile(int x, int y);
 		SDL_Rect pointToTile(int x, int y);

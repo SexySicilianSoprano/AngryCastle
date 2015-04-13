@@ -17,7 +17,7 @@ FallingEntity::~FallingEntity() {
 
 void FallingEntity::jump() {
 	if (in_air == false) {
-		velocity_y -= 3;
+		velocity_y -= 4;
 		in_air = true;
 	}
 }

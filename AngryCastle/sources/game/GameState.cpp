@@ -72,9 +72,7 @@ stateStatus GameState::update() {
 //		entity->in_air = 0;
 	//}
 
-	hilight_tile = level->collides(entity, entity->in_air);
-
-	printf("Velocity: %f\n", entity->velocity_y);
+	hilight_tile = level->collides(entity);
 
 	//printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 

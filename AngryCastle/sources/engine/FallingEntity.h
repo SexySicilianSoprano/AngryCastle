@@ -15,7 +15,7 @@
 #include "Window.h"
 #include "MovingEntity.h"
 
-#define GRAVITY 7
+#define GRAVITY 13
 
 class FallingEntity : public MovingEntity
 {

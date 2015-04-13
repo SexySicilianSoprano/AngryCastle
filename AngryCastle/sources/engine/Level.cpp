@@ -351,7 +351,7 @@ SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
 
-SDL_Rect Level::collides(Entity *entity, bool inair)
+SDL_Rect Level::collides(Entity *entity)
 {
 
 	SDL_Rect player_hitbox = entity->getHitbox();
@@ -359,34 +359,52 @@ SDL_Rect Level::collides(Entity *entity, bool inair)
 	SDL_Rect result;
 	int tile1 = 0;
 	int tile2 = 0;
-	bool collides = false;
 
+	// Entity moving right
 	if (entity->desiredX > entity->getX()) {
 		// Right side
-		tile1 = getTile(player_hitbox.x + player_hitbox.w,  player_hitbox.y);
+		tile1 = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
 		tile2 = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 
 		if (tile1) {
  			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
 			
 			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				printf("Width: %d\n", result.w);
 				player_hitbox.x -= result.w;
 				entity->desiredX -= result.w;
 			}
-		}
-
-		if (tile2) {
+		} else if (tile2) {
 			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 
 			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				printf("Width: %d\n", result.w);
 				player_hitbox.x -= result.w;
 				entity->desiredX -= result.w;
 			}
 		}
-	} else if(entity->desiredX < entity->getX()) {
-		// Entity is moving left
+	// Entity moving left
+	} 
+	
+	if(entity->desiredX < entity->getX()) {
+		// Left side
+		tile1 = getTile(player_hitbox.x, player_hitbox.y);
+		tile2 = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+
+
+		if (tile1) {
+ 			collidetile = pointToTile(player_hitbox.x, player_hitbox.y);
+			
+			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+				player_hitbox.x += result.w;
+				entity->desiredX += result.w;
+			}
+		} else if (tile2) {
+			collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+
+			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+				player_hitbox.x += result.w;
+				entity->desiredX += result.w;
+			}
+		}
 	}
 
 	// Bottom 
@@ -396,17 +414,13 @@ SDL_Rect Level::collides(Entity *entity, bool inair)
 	if (tile1) {
 		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			printf("Height: %d\n", result.h);
 			player_hitbox.y  -= result.h;
 			entity->desiredY -= result.h;
 		}
-	}
-	
-	if(tile2) {
+	} else if(tile2) {
 		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 		
 		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			printf("YCOLLISION: w%d h%d\n", result.w, result.h);
 			player_hitbox.y  -= result.h;
 			entity->desiredY -= result.h;
 		}
@@ -416,6 +430,7 @@ SDL_Rect Level::collides(Entity *entity, bool inair)
 		entity->velocity_y = 0;
 		entity->in_air = false;
 	}
+
 	
 	
 	// Bottom right

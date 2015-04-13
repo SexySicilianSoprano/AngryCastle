@@ -96,6 +96,9 @@
     <ClCompile Include="sources\engine\FallingEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\engine\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\game\VictoryState.h">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\engine\FallingEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\engine\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,6 +23,7 @@
     <ClCompile Include="sources\engine\Level.cpp" />
     <ClCompile Include="sources\engine\MovingEntity.cpp" />
     <ClCompile Include="sources\engine\Music.cpp" />
+    <ClCompile Include="sources\engine\Player.cpp" />
     <ClCompile Include="sources\engine\PugiXML.cpp" />
     <ClCompile Include="sources\engine\SDL.cpp" />
     <ClCompile Include="sources\engine\SFX.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="sources\engine\Level.h" />
     <ClInclude Include="sources\engine\MovingEntity.h" />
     <ClInclude Include="sources\engine\Music.h" />
+    <ClInclude Include="sources\engine\Player.h" />
     <ClInclude Include="sources\engine\PugiConfig.h" />
     <ClInclude Include="sources\engine\PugiXML.h" />
     <ClInclude Include="sources\engine\SDL.h" />
