@@ -20,12 +20,6 @@ class MovingEntity : public Entity
 		MovingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox);
 		~MovingEntity();
 
-		enum DIRECTION {
-			NONE,
-			LEFT,
-			RIGHT
-		};
-
 		void move(int direction);
 		void commitMovement();
 		void update();
@@ -35,9 +29,7 @@ class MovingEntity : public Entity
 
 	private:
 		int speed;
-		int facing_direction;
 		bool inAir;
-
 };
 
 #endif // __MOVINGENTITY_H_DEFINED__

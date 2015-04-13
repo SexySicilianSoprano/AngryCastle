@@ -33,7 +33,7 @@ class Level
 		void load(std::string level_name);
 		void update(Entity *entity);
 		void render(int layer);
-		bool collides(Entity *entity);
+		SDL_Rect collides(Entity *entity);
 
 		int getTile(int x, int y);
 		SDL_Rect pointToTile(int x, int y);

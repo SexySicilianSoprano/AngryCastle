@@ -351,12 +351,74 @@ SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
 
-bool Level::collides(Entity *entity)
+SDL_Rect Level::collides(Entity *entity)
 {
 	SDL_Rect player_hitbox = entity->getHitbox();
+	SDL_Rect collidetile = {0,0,0,0};
+	SDL_Rect result;
 	int tile = 0;
 	bool collides = false;
 
+	tile = getTile(player_hitbox.x,  player_hitbox.y + player_hitbox.h);
+	// Bottom right
+	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+	if (tile != 0) {
+		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+  			entity->desiredX -= result.w;
+		}
+	}
+
+
+	// Bottom left
+	if (tile != 0) {
+		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+
+		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+			entity->desiredY -= result.h;
+		}
+	}
+
+	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+	// Bottom right
+	if (tile != 0) {
+		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+
+		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+			entity->desiredY -= result.h;
+		}
+	}
+
+	return collidetile;
+	/*
+	if (tile != 0) {
+		SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+
+		if (player_hitbox.y + player_hitbox.h <= tilepos.y) {
+			player_hitbox.y = tilepos.y + player_hitbox.h;
+		}
+
+		if (player_hitbox.y >= tilepos.y + tilepos.h) {
+			return true
+		}
+
+		if (player_hitbox.x + player_hitbox.w <= tilepos.x) {
+			return true;
+		}
+
+		if (player_hitbox.x >= tilepos.x + tilepos.w) {
+			return true;
+		}
+		//return true;
+	}
+	*/
+	//return false;
+
+
+	/*
 	// Entity TOP-LEFT
 	tile = getTile(player_hitbox.x, player_hitbox.y);
 	if (tile != 0) {
@@ -367,7 +429,7 @@ bool Level::collides(Entity *entity)
 
 		entity->desiredX = tilepos.x + tilepos.w - entity->hitbox_offset.x;
 		entity->desiredY = entity->getY();
-		//collides = true;
+		collides = true;
 	}
 
 	// Entity TOP-RIGHT
@@ -380,17 +442,17 @@ bool Level::collides(Entity *entity)
 
 		entity->desiredX = tilepos.x - (entity->hitbox_offset.x + entity->hitbox_offset.w);
 		entity->desiredY = entity->getY();
-		//collides = true;
+		collides = true;
 	}
-
+	*/
 	// Entity BOTTOM-LEFT
 	tile = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 	if (tile != 0) {
 		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-		SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-		SDL_Rect result;
+		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+		//SDL_Rect result;
 
-		SDL_IntersectRect(&player_hitbox, &tilepos, &result);
+		//SDL_IntersectRect(&player_hitbox, &tilepos, &result);
 		/*
 		printf("Tilepos>\tx%d y%d w%d h%d\n", tilepos.x, tilepos.y, tilepos.w, tilepos.h);
 		printf("Result>\t\tx%d y%d w%d h%d\n", result.x, result.y, result.w, result.h);
@@ -404,9 +466,12 @@ bool Level::collides(Entity *entity)
 						  Colliding tile
 						  Y-position					Hitbox bottom left
 						   _________	____________________________________________________*/
-		entity->desiredY = tilepos.y - ((player_hitbox.x - entity->getX()) + player_hitbox.h);
+		//entity->desiredY = tilepos.y - ((player_hitbox.x - entity->getX()) + player_hitbox.h);
+		//entity->desiredY = tilepos.y - (entity->getX() + player_hitbox.h);
 		//printf("New dpos>\tx%d y%d w%d h%d\n", entity->desiredX, entity->desiredY, entity->getW(), entity->getH());
-		collides = true;
+		//collides = true;
+
+
 	}
 	
 	// Entity BOTTOM-RIGHT
@@ -420,5 +485,5 @@ bool Level::collides(Entity *entity)
 		collides = true;
 	}
 
-	return collides;
+	//return collides;
 }

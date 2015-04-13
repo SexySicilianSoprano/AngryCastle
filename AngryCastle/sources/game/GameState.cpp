@@ -11,7 +11,7 @@ GameState::GameState(Window *window) :
 	tooltip_s(""),
 	signText_s("") {
 		SDL_Rect hitbox = {2, 2, 6, 6};
-		entity = new FallingEntity(0, 0, 10, 10, 5, hitbox);
+		entity = new MovingEntity(0, 0, 10, 10, 1, hitbox);
 		camera = new Camera(400, 240);
 		camera->lock(entity);
 
@@ -36,9 +36,11 @@ stateStatus GameState::update() {
 		status.status = STATE_MENU;
 	}
 
+	entity->setSpeed(1);
 	if (Input::keyState(SDL_SCANCODE_SPACE)) {
 		//entity->move(MovingEntity::UP);
-		entity->jump();
+		//entity->jump();
+		entity->setSpeed(15);
 	}
 
 	if (Input::keyState(SDL_SCANCODE_A)) {
@@ -48,20 +50,31 @@ stateStatus GameState::update() {
 		entity->move(MovingEntity::RIGHT);
 		//camera->frame.x += speed;
 	}
-	printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
+
+	if (Input::keyState(SDL_SCANCODE_W)) {
+		entity->move(MovingEntity::UP);
+	}
+
+	if (Input::keyState(SDL_SCANCODE_S)) {
+		entity->move(MovingEntity::DOWN);
+	}
+
+	///printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
 	//printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
-
-	entity->update(window->getDelta());
+	entity->update();
+	//entity->update(window->getDelta());
 
 	//printf("Player position: x%d y%d\nDesired position: x%d y%d\n", entity->getX(), entity->getY(), entity->desiredX, entity->desiredY);
 
-	if(level->collides(entity)) {
-		entity->velocity_y = 0;
-		entity->in_air = 0;
-	}
+	//if(level->collides(entity)) {
+	//	entity->velocity_y = 0;
+//		entity->in_air = 0;
+	//}
 
-	printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
+	hilight_tile = level->collides(entity);
+
+	//printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
 	entity->commitMovement();
 
@@ -152,6 +165,19 @@ void GameState::render() {
 						 Color("blue"));
 	}
 
+	if (!SDL_RectEmpty(&hilight_tile)) {
+		window->drawRect(hilight_tile.x - camera->frame.x,
+					 hilight_tile.y - camera->frame.y,
+					 hilight_tile.w,
+					 hilight_tile.h,
+					 Color("magenta"));
+
+		hilight_tile.x = 0;
+		hilight_tile.y = 0;
+		hilight_tile.w = 0;
+		hilight_tile.h = 0;
+	}
+	
 	level->render(FG_LAYER);
 
 	if (tooltip_s.length() > 0) {

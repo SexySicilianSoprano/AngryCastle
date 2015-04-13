@@ -33,6 +33,15 @@ class Entity
 		int desiredX, desiredY;
 		SDL_Rect hitbox_offset;
 
+		enum DIRECTION {
+			NONE,
+			LEFT,
+			RIGHT,
+			DOWN,
+			UP
+		};
+
+		int facing_direction;
 
 	protected:
 		int x, y, w, h;

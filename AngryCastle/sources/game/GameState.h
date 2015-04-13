@@ -27,11 +27,13 @@ class GameState : public BaseState {
 		Camera *camera;
 		EntityCollection<Entity> *collection;
 
-		FallingEntity *entity;
+		MovingEntity *entity;
 
 		Font font;
 		Text *tooltip, *signText;
 		std::string tooltip_s, signText_s;
+
+		SDL_Rect hilight_tile;
 };
 
 #endif // __GAMESTATE_H_DEFINED__
