@@ -37,6 +37,7 @@ class Level
 		int getTile(int x, int y);
 		SDL_Rect pointToTile(int x, int y);
 		int getLevelWidth();
+		int getLevelHeight();
 		Exit *getCurrentDoor();
 
 		SDL_Point getRightSpawn();

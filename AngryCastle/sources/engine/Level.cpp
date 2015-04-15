@@ -274,8 +274,39 @@ void Level::render(int layer)
 			break;
 	}
 
-	for (row = data->begin(); row != data->end(); ++row) {
-		for (col = row->begin(); col != row->end(); ++col) {
+	int tiles_y = camera->frame.h / tileSize + 1;
+	int start_tile_y = (camera->frame.y / tileSize);
+	if (start_tile_y < 0) {
+		start_tile_y = 0;
+	}
+
+	int tiles_x = (camera->frame.w / tileSize) + 1;
+	int start_tile_x = (camera->frame.x / tileSize);
+	if (start_tile_x < 0) {
+		start_tile_x = 0;
+	}
+
+	std::vector<std::vector<int>>::iterator row_begin = data->begin() + start_tile_y;
+	std::vector<std::vector<int>>::iterator row_end;
+
+	if (start_tile_y + tiles_y < data->size()) {
+		row_end = data->begin() + start_tile_y + tiles_y;
+	} else {
+		row_end = data->end();
+	}
+
+	std::vector<int>::iterator col_begin;
+	std::vector<int>::iterator col_end;
+
+	for (row = row_begin; row != row_end; ++row) {
+		col_begin = row->begin() + start_tile_x;
+		if (start_tile_x + tiles_x < row->size()) {
+			col_end = row->begin() + start_tile_x + tiles_x;
+		} else {
+			col_end = row->end();
+		}
+
+		for (col = col_begin; col != col_end; ++col) {
 			int X = col - row->begin();
 			int Y = row - data->begin();
 			levelTileSheet->setIndex(*col-1);
@@ -288,6 +319,11 @@ void Level::render(int layer)
 int Level::getLevelWidth()
 {
 	return levelWidth*tileSize;
+}
+
+int Level::getLevelHeight()
+{
+	return levelHeight*tileSize;
 }
 
 int Level::getTile(int x, int y)
@@ -377,8 +413,13 @@ SDL_Rect Level::collides(Entity *entity)
 			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 
 			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				player_hitbox.x -= result.w;
-				entity->desiredX -= result.w;
+				if (result.h > result.w) {
+					player_hitbox.x  -= result.w;
+					entity->desiredX -= result.w;
+				} else {
+					player_hitbox.y  -= result.h;
+					entity->desiredY -= result.h;
+				}
 			}
 		}
 	// Entity moving left
@@ -401,8 +442,13 @@ SDL_Rect Level::collides(Entity *entity)
 			collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 
 			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				player_hitbox.x += result.w;
-				entity->desiredX += result.w;
+				if (result.h > result.w) {
+					player_hitbox.x  += result.w;
+					entity->desiredX += result.w;
+				} else {
+					player_hitbox.y  -= result.h;
+					entity->desiredY -= result.h;
+				}
 			}
 		}
 	}
@@ -414,15 +460,25 @@ SDL_Rect Level::collides(Entity *entity)
 	if (tile1) {
 		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
 		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			player_hitbox.y  -= result.h;
-			entity->desiredY -= result.h;
+			if (result.h > result.w) {
+				player_hitbox.x  -= result.w;
+				entity->desiredX -= result.w;
+			} else {
+				player_hitbox.y  -= result.h;
+				entity->desiredY -= result.h;
+			}
 		}
 	} else if(tile2) {
 		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
 		
 		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			player_hitbox.y  -= result.h;
-			entity->desiredY -= result.h;
+			if (result.h > result.w) {
+				player_hitbox.x  -= result.w;
+				entity->desiredX -= result.w;
+			} else {
+				player_hitbox.y  -= result.h;
+				entity->desiredY -= result.h;
+			}
 		}
 	}
 
