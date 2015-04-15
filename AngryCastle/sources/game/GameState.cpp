@@ -11,7 +11,7 @@ GameState::GameState(Window *window) :
 	tooltip_s(""),
 	signText_s("") {
 		SDL_Rect hitbox = {0, 0, 10, 10};
-		entity = new FallingEntity(0, 0, 10, 10, 1, hitbox);
+		entity = new FallingEntity(0, 0, 10, 10, 8, hitbox);
 		camera = new Camera(400, 240);
 		camera->lock(entity);
 
@@ -36,7 +36,7 @@ stateStatus GameState::update() {
 		status.status = STATE_MENU;
 	}
 
-	entity->setSpeed(1);
+	entity->setSpeed(3);
 	if (Input::keyState(SDL_SCANCODE_SPACE)) {
 		//entity->move(MovingEntity::UP);
 		//entity->jump();
@@ -82,7 +82,7 @@ stateStatus GameState::update() {
 	//printf("Player> x%d y%d\nHitbox> x%d y%d\nCamera> x%d y%d\n", entity->getX(), entity->getY(), playerhb.x, playerhb.y, camera->frame.x, camera->frame.y);
 
 	level->update(entity);
-	camera->update();
+	camera->update(level->getLevelWidth(), level->getLevelHeight());
 
 	// Update tooltip and sign text
 	tooltip_s  = level->tooltip;
@@ -99,6 +99,11 @@ stateStatus GameState::update() {
 		if (door) {
 			std::string level_name = door->level;
 
+			// Clean up old level stuff
+			delete level;
+			delete collection;
+
+			collection = new EntityCollection<Entity>;
 			level = new Level(window, camera, collection);
 			level->load(level_name);
 
@@ -108,23 +113,38 @@ stateStatus GameState::update() {
 		}
 	}
 
-	if (camera->frame.x > level->getLevelWidth() - (camera->frame.w/2)) {
+	if (entity->getX() > level->getLevelWidth()) {
 		std::string rightLevel = level->getRightmostLevel();
 
+		printf("Entering %s\n", rightLevel.c_str());
+
 		if (!rightLevel.empty()) {
+			// Clean up old level stuff
+			delete level;
+			delete collection;
+
+			collection = new EntityCollection<Entity>;
+
 			level = new Level(window, camera, collection);
 			level->load(rightLevel);
 			
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			entity->setPosition(spawnpoint.x, spawnpoint.y - 10);
+			entity->setPosition(spawnpoint.x, spawnpoint.y);
 		}
 
 	}
-
-	if (camera->frame.x < 0 - (camera->frame.w/2)-8) {
+	
+	if (entity->getX() < -entity->getW()) {
 		std::string leftLevel = level->getLeftmostLevel();
 		
+		printf("Entering %s\n", leftLevel.c_str());
+
 		if (!leftLevel.empty()) {
+			// Clean up old level stuff
+			delete level;
+			delete collection;
+
+			collection = new EntityCollection<Entity>;
 			level = new Level(window, camera, collection);
 			level->load(leftLevel);
 			
@@ -132,7 +152,6 @@ stateStatus GameState::update() {
 			entity->setPosition(spawnpoint.x, spawnpoint.y - 10);
 		}
 	}
-
 	return status;
 }
 

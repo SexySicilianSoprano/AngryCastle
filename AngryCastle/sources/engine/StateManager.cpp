@@ -21,7 +21,7 @@ void StateManager::popState() {
 
 void StateManager::run() {
 	music = new Music("music//ost.wav");
-	music->play();
+	//music->play();
 
 	while (love) {
 		BaseState *currentState = states.back();
