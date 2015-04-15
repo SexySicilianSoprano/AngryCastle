@@ -24085,13 +24085,13 @@
  </layer>
  <objectgroup name="Triggers"/>
  <objectgroup name="Actors">
-  <object id="3" name="playerSpawnLeft" x="7.48485" y="151.962">
+  <object id="3" name="playerSpawnLeft" type="spawn" x="7.48485" y="151.962">
    <properties>
     <property name="Orientation" value="right"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="4" name="playerSpawnRight" x="3193" y="184">
+  <object id="4" name="playerSpawnRight" type="spawn" x="3193" y="184">
    <properties>
     <property name="Orientation" value="left"/>
    </properties>
