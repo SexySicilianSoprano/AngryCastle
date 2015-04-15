@@ -28,7 +28,7 @@ class Camera {
 		SDL_Rect frame;
 
 		void lock(Entity *entity);
-		void update();
+		void update(int levelWidth, int levelHeight);
 
 	private:
 		Entity *locked_entity;
