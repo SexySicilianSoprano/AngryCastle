@@ -2468,24 +2468,24 @@
    <tile gid="100"/>
    <tile gid="161"/>
    <tile gid="100"/>
-   <tile gid="135"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="71"/>
-   <tile gid="132"/>
+   <tile gid="165"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2493,25 +2493,25 @@
    <tile gid="100"/>
    <tile gid="161"/>
    <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="100"/>
-   <tile gid="135"/>
-   <tile gid="132"/>
+   <tile gid="165"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="166"/>
@@ -3425,12 +3425,19 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="204"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3468,12 +3475,19 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -3511,33 +3525,19 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="235"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -4027,10 +4027,10 @@
   <object id="2" name="playerSpawnLeft" type="spawn" x="6" y="520.5">
    <ellipse/>
   </object>
-  <object id="3" name="gremaCommoner_06" type="npcSpawn" x="201.833" y="279.333">
+  <object id="3" name="gremaMerchant_02" type="npcSpawn" x="318.333" y="343.833">
    <properties>
-    <property name="npcType" value="commoner"/>
-    <property name="script" value="grema_commoner_06"/>
+    <property name="npcType" value="merchant"/>
+    <property name="script" value="grema_merchant_02"/>
    </properties>
    <ellipse/>
   </object>
