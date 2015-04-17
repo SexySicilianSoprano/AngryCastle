@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" nextobjectid="30">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" nextobjectid="39">
  <properties>
   <property name="exitLeft" value="erreck_02.tmx"/>
   <property name="exitRight" value="null.tmx"/>
@@ -40139,6 +40139,69 @@
    <property name="spawnLeft" value="playerSpawnRight"/>
   </properties>
   <object id="21" name="playerSpawnLeft" type="spawn" x="7.33333" y="649">
+   <ellipse/>
+  </object>
+  <object id="30" name="gremaCommoner_08" type="npcSpawn" x="294.667" y="716.667">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_08"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="31" name="gremaCommoner_09" type="npcSpawn" x="681.333" y="714.667">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_09"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="32" name="gremaCommoner_10" type="npcSpawn" x="1130.67" y="661.333">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_10"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="33" name="gremaCommoner_11" type="npcSpawn" x="1962.67" y="553.333">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_11"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="34" name="gremaCommoner_12" type="npcSpawn" x="2825.33" y="600">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_12"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="35" name="gremaCommoner_13" type="npcSpawn" x="2742.67" y="360">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_13"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="36" name="gremaCommoner_14" type="npcSpawn" x="2217.33" y="361.333">
+   <properties>
+    <property name="npcType" value="commoner"/>
+    <property name="script" value="grema_commoner_14"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="37" name="gremaMerchant_04" type="npcSpawn" x="2056" y="362.667">
+   <properties>
+    <property name="npcType" value="merchant"/>
+    <property name="script" value="grema_merchant_04"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="38" name="gremaMerchant_03" type="npcSpawn" x="1478.67" y="617.333">
+   <properties>
+    <property name="npcType" value="merchant"/>
+    <property name="script" value="grema_merchant_03"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
