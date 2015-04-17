@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="26">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="41">
  <properties>
   <property name="exitLeft" value="erreck_02.tmx"/>
   <property name="exitRight" value="null.tmx"/>
@@ -24089,6 +24089,111 @@
    <ellipse/>
   </object>
   <object id="25" name="playerSpawnLeft" type="spawn" x="9.33333" y="344">
+   <ellipse/>
+  </object>
+  <object id="26" name="enemySpawn_01" type="enemySpawn" x="2968" y="411">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="27" name="enemySpawn_02" type="enemySpawn" x="2680" y="410">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="28" name="enemySpawn_03" type="enemySpawn" x="2646" y="407">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="29" name="enemySpawn_04" type="enemySpawn" x="2619" y="408">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="30" name="enemySpawn_05" type="enemySpawn" x="2204" y="377">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="31" name="enemySpawn_06" type="enemySpawn" x="1516" y="229">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="32" name="enemySpawn_07" type="enemySpawn" x="1240" y="149">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="33" name="enemySpawn_08" type="enemySpawn" x="1130" y="151">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="34" name="enemySpawn_09" type="enemySpawn" x="698" y="300">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="35" name="enemySpawn_10" type="enemySpawn" x="668" y="298">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="36" name="enemySpawn_11" type="enemySpawn" x="632" y="294">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="37" name="enemySpawn_12" type="enemySpawn" x="454.333" y="311">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="38" name="enemySpawn_13" type="enemySpawn" x="297.333" y="342">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="39" name="enemySpawn_14" type="enemySpawn" x="330.667" y="341.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="skeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="40" name="enemySpawn_15" type="enemySpawn" x="1942.33" y="343.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="mimicmaiden"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
