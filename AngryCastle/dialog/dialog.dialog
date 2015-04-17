@@ -3,49 +3,72 @@
 	<lumbroff>
 		<npc value="elder_01">
 			<dialogtext id="afterattack">The village is safe. But, I fear for our lumberjacks...</dialogtext>
-			<dialogtext id="afterlumberjacks">Our boys are safely home! Here, take this.</dialogtext>
+			<dialogtext id="afterlumberjacks">Our sons are safely home! Here, take this.</dialogtext>
 			<dialogtext id="normal">I can feel it, brave stranger. Something is off...</dialogtext>
 		</npc>
-		<npc value="lumbroffcommoner_01">
+		<npc value="lumbroff_commoner_01">
 			<dialogtext id="afterattack">Boy, was that scary or what!</dialogtext>
-			<dialogtext id="afterlumberjacks">I feared for the worst, but god bless I was wrong</dialogtext>		
-			<dialogtext id="normal">Text here</dialogtext>		
+			<dialogtext id="afterlumberjacks">Now that they're back, we can defend the village.</dialogtext>		
+			<dialogtext id="normal">We're safe, but what about other towns?</dialogtext>		
 		</npc>
-		<npc value="lumbrofcommoner_02">
-			<dialogtext id="afterattack">I think I'm going to need a new pair of pants</dialogtext>
-			<dialogtext id="afterlumberjacks"></dialogtext>		
-			<dialogtext id="normal">Text here</dialogtext>					
+		<npc value="lumbroff_commoner_02">
+			<dialogtext id="afterattack">Thank god my pants were brown already.</dialogtext>
+			<dialogtext id="afterlumberjacks">Seriously though, don't tell anyone I soiled my pants.</dialogtext>		
+			<dialogtext id="normal">I heard about this priest that lives at the mountain.</dialogtext>					
 		</npc>
-		<npc value="lumbroffcommoner_02">
+		<npc value="lumbroff_commoner_02">
 			<dialogtext id="afterattack">A..are they gone now?</dialogtext>
 			<dialogtext id="afterlumberjacks">Hey, our boys are back!</dialogtext>		
-			<dialogtext id="normal"></dialogtext>
+			<dialogtext id="normal">I kinda like turnips.</dialogtext>
 		</npc>
-		<npc value="lumbroffcommoner_03">
+		<npc value="lumbroff_commoner_03">
 			<dialogtext id="afterattack">They're gone! But what about our boys in the forest?</dialogtext>
 			<dialogtext id="afterlumberjacks">Thanks for saving our lumberjacks.</dialogtext>		
-			<dialogtext id="normal">Text here</dialogtext>					
+			<dialogtext id="normal">So many undead. I wonder where they come from.</dialogtext>					
 		</npc>
-		<npc value="lumbroffcommoner_04">
+		<npc value="lumbroff_commoner_04">
 			<dialogtext id="afterattack">I hope I don't need to get used to that...</dialogtext>
-			<dialogtext id="afterlumberjacks">Oh yeah, </dialogtext>		
-			<dialogtext id="normal">Text here</dialogtext>		
+			<dialogtext id="afterlumberjacks">Good, one thing less to stress about.</dialogtext>		
+			<dialogtext id="normal">So much going on lately, I need a rest</dialogtext>		
 		</npc>
-		<npc value="lumbroffcommoner_05">
+		<npc value="lumbroff_commoner_05">
+			<dialogtext id="afterattack">A monster hunter? Here? Can't complain though.</dialogtext>
+			<dialogtext id="afterlumberjacks">Assar's blessing for your deeds, stranger.</dialogtext>		
+			<dialogtext id="normal">If you seek work here, try traveling around.</dialogtext>						
+		</npc>
+		<npc value="lumbroff_commoner_05">
 			<dialogtext id="afterattack">My brother is still in the forest! Hope he's fine...</dialogtext>
-			<dialogtext id="afterlumberjacks">Thank god he's fine! Thank you stranger!</dialogtext>		
+			<dialogtext id="afterlumberjacks">Thank Assar he's fine! Thank you stranger!</dialogtext>		
 			<dialogtext id="normal">I wonder if the city of Grema is fine.</dialogtext>			
 		</npc>
-		<npc value="lumbroffcommoner_06">
+		<npc value="lumbroff_commoner_07">
 			<dialogtext id="afterattack">M-My husband! He's still at lumber camp!</dialogtext>
 			<dialogtext id="afterlumberjacks">My husband's back safe and sound!</dialogtext>		
 			<dialogtext id="normal">I'm glad we're okay, but we can't get lumber like this...</dialogtext>			
 		</npc>
-		<npc value="lumbroffcommoner_07">
-			<dialogtext id="afterattack">Text here</dialogtext>
-			<dialogtext id="afterlumberjacks">Text here</dialogtext>		
-			<dialogtext id="normal">Text here</dialogtext>				
-		</npc>
-
 	</lumbroff>
+	<hamond>
+		<npc value="foreman_01">
+			<dialogtext id="aftersaving">Thank you for saving me! I must take my men back home.</dialogtext>
+		</npc>		
+		<npc value="lumberjack_01">
+			<dialogtext id="beforesaving">This forest is crawling with monsters!</dialogtext>
+		</npc>		
+		<npc value="lumberjack_02">
+			<dialogtext id="beforesaving">Village was attacked? But we can't go back without the foreman</dialogtext>
+		</npc>		
+		<npc value="lumberjack_03">
+			<dialogtext id="beforesaving">Has anyone seen the foreman?</dialogtext>
+		</npc>		
+		<npc value="lumberjack_04">
+			<dialogtext id="beforesaving">I swear I saw the old man here just a moment ago</dialogtext>
+		</npc>			
+	</hamond>
+	<mountain_shrine>
+		npc value="shrine_priest_01">
+			<dialogtext id="beforeweapontier3">Assar's shrine welcomes you, traveler.</dialogtext>
+			<dialogtext id="requirerelic">Bring me a holy relic and I may help you.</dialogtext>		
+			<dialogtext id="normal">May Assar's light guide your blade.</dialogtext>			
+		</npc>
+	</mountain_shrine>
 </dialog>
