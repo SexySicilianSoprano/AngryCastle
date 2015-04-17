@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\engine\AI.cpp" />
     <ClCompile Include="sources\engine\Animation.cpp" />
     <ClCompile Include="sources\engine\Camera.cpp" />
     <ClCompile Include="sources\engine\Color.cpp" />
@@ -41,7 +40,6 @@
     <ClCompile Include="sources\game\VictoryState.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\engine\AI.h" />
     <ClInclude Include="sources\engine\Animation.h" />
     <ClInclude Include="sources\engine\BaseState.h" />
     <ClInclude Include="sources\engine\Camera.h" />

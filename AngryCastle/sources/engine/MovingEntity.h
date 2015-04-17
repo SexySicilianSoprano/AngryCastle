@@ -17,18 +17,23 @@
 class MovingEntity : public Entity
 {
 	public:
-		MovingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox);
+		MovingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox);
 		~MovingEntity();
 
-		void move(int direction);
+		void jump();
+		void left();
+		void right();
+
 		void commitMovement();
-		void update();
+		void update(float dt);
 
 		void setSpeed(int speed);
 		int getSpeed();
 
-	private:
-		int speed;
+	protected:
+		float acceleration;
+		float targetVx;
+		float stoppedThreshold;
 };
 
 #endif // __MOVINGENTITY_H_DEFINED__

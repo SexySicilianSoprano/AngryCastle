@@ -406,8 +406,13 @@ SDL_Rect Level::collides(Entity *entity)
  			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
 			
 			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				player_hitbox.x -= result.w;
-				entity->desiredX -= result.w;
+				if (result.h > result.w) {
+					player_hitbox.x  -= result.w;
+					entity->desiredX -= result.w;
+				} else {
+					player_hitbox.y  -= result.h;
+					entity->desiredY -= result.h;
+				}
 			}
 		} else if (tile2) {
 			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
@@ -485,6 +490,8 @@ SDL_Rect Level::collides(Entity *entity)
 	if(tile1 || tile2) {
 		entity->velocity_y = 0;
 		entity->in_air = false;
+	} else {
+		entity->in_air = true;
 	}
 
 	

@@ -2,18 +2,20 @@
 
 GameState::GameState(Window *window) :
 	window(window),
-	entity(nullptr),
+	player(nullptr),
 	level(nullptr),
 	camera(nullptr),
 	font("fonts/AveriaSerif-Bold.ttf", 12),
 	tooltip(new Text(&font, Color("white"))),
 	signText(new Text(&font, Color("white"))),
 	tooltip_s(""),
-	signText_s("") {
-		SDL_Rect hitbox = {0, 0, 10, 10};
-		entity = new FallingEntity(0, 0, 10, 10, 8, hitbox);
+	signText_s(""),
+	test(nullptr)
+	{
+		SDL_Rect hitbox = {15, 16, 13, 27};
+		player = new Player(window, 0, 0, 46, 43, 100, 1.8, hitbox);
 		camera = new Camera(400, 240);
-		camera->lock(entity);
+		camera->lock(player);
 
 		collection = new EntityCollection<Entity>;
 
@@ -21,7 +23,9 @@ GameState::GameState(Window *window) :
 		level->load("levels/lumbroff_01.tmx");
 
 		SDL_Point spawnpoint = level->getLeftSpawn();
-		entity->setPosition(spawnpoint.x, spawnpoint.y - 10);
+		player->setPosition(spawnpoint.x, spawnpoint.y - player->getH());
+
+		//test = new Animation(window, "graphics/character/player_idle.png", 
 }
 
 GameState::~GameState() {
@@ -36,34 +40,12 @@ stateStatus GameState::update() {
 		status.status = STATE_MENU;
 	}
 
-	entity->setSpeed(3);
-	if (Input::keyState(SDL_SCANCODE_SPACE)) {
-		//entity->move(MovingEntity::UP);
-		//entity->jump();
-		entity->setSpeed(15);
-	}
-
-	if (Input::keyState(SDL_SCANCODE_W)) {
-		entity->jump();
-	}
-
-	if (Input::keyState(SDL_SCANCODE_S)) {
-		entity->move(MovingEntity::DOWN);
-	}
-
-	if (Input::keyState(SDL_SCANCODE_A)) {
-		entity->move(MovingEntity::LEFT);
-		//camera->frame.y += speed;
-	} else if (Input::keyState(SDL_SCANCODE_D)) {
-		entity->move(MovingEntity::RIGHT);
-		//camera->frame.x += speed;
-	}
+	player->update(window->getDelta());
 
 	///printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
 	//printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
 	//entity->update();
-	entity->update(window->getDelta());
 
 	//printf("Player position: x%d y%d\nDesired position: x%d y%d\n", entity->getX(), entity->getY(), entity->desiredX, entity->desiredY);
 
@@ -72,16 +54,16 @@ stateStatus GameState::update() {
 //		entity->in_air = 0;
 	//}
 
-	hilight_tile = level->collides(entity);
+	level->collides(player);
 
 	//printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
 
-	entity->commitMovement();
+	player->commitMovement();
 
 	//SDL_Rect playerhb = entity->getHitbox();
 	//printf("Player> x%d y%d\nHitbox> x%d y%d\nCamera> x%d y%d\n", entity->getX(), entity->getY(), playerhb.x, playerhb.y, camera->frame.x, camera->frame.y);
 
-	level->update(entity);
+	level->update(player);
 	camera->update(level->getLevelWidth(), level->getLevelHeight());
 
 	// Update tooltip and sign text
@@ -113,7 +95,7 @@ stateStatus GameState::update() {
 		}
 	}
 
-	if (entity->getX() > level->getLevelWidth()) {
+	if (player->getX() > level->getLevelWidth()) {
 		std::string rightLevel = level->getRightmostLevel();
 
 		printf("Entering %s\n", rightLevel.c_str());
@@ -129,12 +111,12 @@ stateStatus GameState::update() {
 			level->load(rightLevel);
 			
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			entity->setPosition(spawnpoint.x, spawnpoint.y);
+			player->setPosition(spawnpoint.x, spawnpoint.y);
 		}
 
 	}
 	
-	if (entity->getX() < -entity->getW()) {
+	if (player->getX() < -player->getW()) {
 		std::string leftLevel = level->getLeftmostLevel();
 		
 		printf("Entering %s\n", leftLevel.c_str());
@@ -149,7 +131,7 @@ stateStatus GameState::update() {
 			level->load(leftLevel);
 			
 			SDL_Point spawnpoint = level->getRightSpawn();
-			entity->setPosition(spawnpoint.x, spawnpoint.y - 10);
+			player->setPosition(spawnpoint.x, spawnpoint.y - 10);
 		}
 	}
 	return status;
@@ -160,12 +142,15 @@ void GameState::render() {
 	level->render(BG_LAYER);
 	level->render(GAME_LAYER);
 
-	window->drawRect(entity->getX() - camera->frame.x,
-					 entity->getY() - camera->frame.y,
-					 entity->getW(),
-					 entity->getH(),
+	player->render(camera);
+	/*
+	SDL_Rect hitbox = player->getHitbox();
+	window->drawRect(hitbox.x - camera->frame.x,
+					 hitbox.y - camera->frame.y,
+					 hitbox.w,
+					 hitbox.h,
 					 Color("red"));
-
+	*/
 	/*
 	SDL_Rect p_hb = entity->getHitbox();
 
@@ -183,19 +168,6 @@ void GameState::render() {
 						 tmp->getW(),
 						 tmp->getH(),
 						 Color("blue"));
-	}
-
-	if (!SDL_RectEmpty(&hilight_tile)) {
-		window->drawRect(hilight_tile.x - camera->frame.x,
-					 hilight_tile.y - camera->frame.y,
-					 hilight_tile.w,
-					 hilight_tile.h,
-					 Color("magenta"));
-
-		hilight_tile.x = 0;
-		hilight_tile.y = 0;
-		hilight_tile.w = 0;
-		hilight_tile.h = 0;
 	}
 	
 	level->render(FG_LAYER);

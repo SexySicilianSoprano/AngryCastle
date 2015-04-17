@@ -18,21 +18,24 @@ class Animation : public Sprite
 		void setFramerate(int framerate);
 
 		int getFramecount();
+		void setCurrentFrame(int i);
 		int getCurrentFrame();
 
 		void play(int times);
 		void pause();
+		void nextFrame();
 		void render(int x, int y);
 		bool done();
 
 		Sprite *animated;
+		bool running;
+		int times_played;
 
 	private:
 		Window *window;
 		
 		std::vector<int> frames;
 		int play_count, frametime, current_frame, current_frametime;
-		bool running;
 };
 
 #endif // __ANIMATION_H_INCLUDED__

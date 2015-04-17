@@ -7,7 +7,8 @@ Animation::Animation(Window *window, std::string filename,
 					 window(window),
 					 current_frame(0),
 					 current_frametime(0),
-					 running(true)
+					 running(true),
+					 times_played(0)
 {
 	setFramerate(framerate);
 
@@ -23,6 +24,14 @@ Animation::~Animation() {
 
 int Animation::getCurrentFrame() {
 	return current_frame;
+}
+
+void Animation::setCurrentFrame(int i) {
+	current_frame = i;
+}
+
+void Animation::nextFrame() {
+	current_frame++;
 }
 
 int Animation::getFramecount() {
@@ -50,6 +59,7 @@ void Animation::render(int x, int y) {
 		if (current_frametime > frametime) {
 			if (current_frame >= (int)frames.size() - 1) {
 				play_count--;
+				times_played++;
 
 				if (play_count == 0) {
 					running = false;
@@ -72,5 +82,9 @@ void Animation::render(int x, int y) {
 }
 
 bool Animation::done() {
-	return (running ? false : true);
+	if (running && current_frame == frames.size() - 1) {
+		return true;
+	}
+	
+	return false;
 }

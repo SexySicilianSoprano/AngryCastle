@@ -11,6 +11,9 @@
 #include "..//engine//Level.h"
 #include "..//engine//Font.h"
 #include "..//engine//Text.h"
+#include "..//engine//Player.h"
+
+#include "..//engine//Animation.h"
 
 class GameState : public BaseState {
 
@@ -22,12 +25,13 @@ class GameState : public BaseState {
 		void render();
 
 	private:
+		Animation *test;
 		Window *window;
 		Level *level;
 		Camera *camera;
 		EntityCollection<Entity> *collection;
 
-		FallingEntity *entity;
+		Player *player;
 
 		Font font;
 		Text *tooltip, *signText;

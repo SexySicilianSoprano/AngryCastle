@@ -10,7 +10,8 @@ Entity::Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset) :
 	hitbox_offset(hitbox_offset),
 	desiredX(x),
 	desiredY(y),
-	velocity_x(0), velocity_y(0)
+	velocity_y(0),
+	velocity_x(0)
 {
 	if (SDL_RectEmpty(&hitbox_offset)) {
 		hitbox_offset.x = 0;

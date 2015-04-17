@@ -20,16 +20,12 @@
 class FallingEntity : public MovingEntity
 {
 	public:
-		FallingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox);
+		FallingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox);
 		~FallingEntity();
 
 		// Makes entity suffer gravity
 		void update(float dt);
-		void jump();
-		
 
-	private:
-		float acceleration_x, acceleration_y;
 };
 
 #endif //__FALLINGENTITY_H_DEFINED__

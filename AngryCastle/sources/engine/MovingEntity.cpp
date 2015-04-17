@@ -5,53 +5,41 @@
 
 #include "MovingEntity.h"
 
-MovingEntity::MovingEntity(int x, int y, int w, int h, int speed, SDL_Rect hitbox) :
+MovingEntity::MovingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox) :
 	Entity(x, y, w, h, hitbox),
-	speed(speed) {
+	acceleration(speed), stoppedThreshold(acceleration/10),
+	targetVx(0) {
 }
 
 MovingEntity::~MovingEntity() {
 }
 
-void MovingEntity::update() {
+void MovingEntity::update(float dt) {
+	velocity_x = (acceleration * targetVx) + ((1 - acceleration) * acceleration) * (dt/1000.f);
 	
+	if (fabs(this->velocity_x) < stoppedThreshold) {
+		velocity_x = 0;
+	}
+
+	desiredX = x + velocity_x;
+	targetVx = 0;
 }
 
 void MovingEntity::commitMovement() {
 	setPosition(desiredX, desiredY);
 }
 
-void MovingEntity::move(int direction) {
-	facing_direction = NONE;
-
-	if (direction == LEFT) {
-		facing_direction = LEFT;
-		desiredX = x - speed;
-		//printf("Entity x%d\\y%d\tHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
-	}
-
-	if (direction == RIGHT) {
-		facing_direction = RIGHT;
-		desiredX = x + speed;
-		//printf("Entity x%d\\y%d\atHitbox x%d\\y%d\n", x, y, hitbox.x, hitbox.y);
-	}
-
-	if (direction == DOWN) {
-		desiredY = y + speed;
-	}
-
-	if (direction == UP) {
-		desiredY = y - speed;
-	}
-
-	//printf("X:\t\t%d\nY:\t\t%d\nDesired X:\t%d\nDesired Y:\t%d\nHitbox X:\t%d\nHitbox Y:\t%d\n\n",
-	//	x, y, desiredX, desiredY, desiredX + hitbox_offset.x, desiredY + hitbox_offset.y);
+void MovingEntity::left() {
+	targetVx = (-1 * acceleration);
 }
 
-void MovingEntity::setSpeed(int new_speed) {
-	speed = new_speed;
+void MovingEntity::right() {
+	targetVx = acceleration;
 }
 
-int MovingEntity::getSpeed() {
-	return speed;
+void MovingEntity::jump() {
+	if (in_air == false) {
+		velocity_y -= 5;
+		in_air = true;
+	}
 }

@@ -30,9 +30,6 @@
     <ClCompile Include="sources\game\VictoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\AI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sources\engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,9 +108,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\game\GameOverState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\engine\AI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\engine\Animation.h">
