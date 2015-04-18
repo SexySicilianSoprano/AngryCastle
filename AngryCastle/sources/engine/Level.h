@@ -65,7 +65,7 @@ class Level
 		Exit *currentDoor, *leftExit, *rightExit;
 
 		Sprite *levelTileSheet;
-		std::vector<std::vector<int>> SilhouetteData, BackgroundData, GameData, ForegroundData;
+		std::vector<std::vector<int> > SilhouetteData, BackgroundData, GameData, ForegroundData;
 
 		SDL_Point leftSpawn, rightSpawn, startSpawn;
 };

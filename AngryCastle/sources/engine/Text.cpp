@@ -4,7 +4,7 @@
  */
 
 // Includetaan vain luokan header-tiedosto
-#include "text.h"
+#include "Text.h"
 
 Text::Text(Font *font, Color font_color):
 	texture(nullptr),

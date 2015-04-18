@@ -19,7 +19,7 @@ class Texture
 		void crop(SDL_Rect rect);
 		
 		// Renderöi tekstuurin kohtaan x, y.
-		void render(int x, int y, bool flip);
+		void render(int x, int y);
 
 		// Vapauttaa SDL-tyypit muistista.
 		void free();

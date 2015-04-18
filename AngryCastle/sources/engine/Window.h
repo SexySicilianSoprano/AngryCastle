@@ -12,7 +12,7 @@
 
 #include <string>
 #include "SDL.h"
-#include "color.h"
+#include "Color.h"
 #include "Timer.h"
 
 #define FRAMERATE 30

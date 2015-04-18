@@ -3,7 +3,7 @@
  *
  */
 
-#include "input.h"
+#include "Input.h"
 
 bool Input::key[KEYBOARD_SIZE] = {0};
 bool Input::isLocked = false;

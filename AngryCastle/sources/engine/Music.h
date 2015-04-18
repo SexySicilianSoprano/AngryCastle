@@ -12,7 +12,6 @@
 
 #include "SDL.h"
 #include <string>
-#include <SDL_mixer.h>
 
 /// Loads and plays a music.
 ///

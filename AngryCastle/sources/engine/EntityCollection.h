@@ -36,7 +36,7 @@ class EntityCollection {
 		void update() {
 			int index = 0;
 
-			for (std::vector<T>::iterator it = Bag.begin();
+			for (typename std::vector<T>::iterator it = Bag.begin();
 				it != Bag.end();
 				++it) {
 					//TODO(jouni):  Remove entities which are out of range/out of screen
@@ -48,7 +48,7 @@ class EntityCollection {
 		}
 
 		void render() {
-			for (std::vector<T>::iterator it = Bag.begin();
+			for (typename std::vector<T>::iterator it = Bag.begin();
 				it != Bag.end();
 				++it) {
 					//it->render();

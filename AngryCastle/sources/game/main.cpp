@@ -1,6 +1,7 @@
+#include "..//engine//SDL.h"
 #include "..//engine//Input.h"
 #include "..//engine//StateManager.h"
-#include "..//game//GameState.h"
+#include "GameState.h"
 #include "..//engine//Window.h"
 
 #define SCREEN_TITLE "Angry Castle - pre-release"

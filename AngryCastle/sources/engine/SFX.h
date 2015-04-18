@@ -9,6 +9,7 @@
 #ifndef SFX_H_DEFINED
 #define SFX_H_DEFINED
 
+#include <string>
 #include <vector>
 #include "SDL.h"
 

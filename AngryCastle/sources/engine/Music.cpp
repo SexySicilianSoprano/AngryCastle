@@ -24,7 +24,7 @@ bool Music::play(int times, int fadeInMs)
 
     if (Mix_FadeInMusic(this->music, times, fadeInMs))
     {
-	    printf("Mix_FadeInMusic: Couldn't play music on %s", this->filepath);
+	    printf("Mix_FadeInMusic: Couldn't play music on %s", filepath.c_str());
 
 	    return false;
     }
@@ -64,7 +64,7 @@ void Music::setPosition(double seconds)
 	this->rewind();
 	if (Mix_SetMusicPosition(seconds) == -1)
 	{
-		printf("Mix_SetMusicPosition: Couldn't do that: %s", std::string(Mix_GetError()));
+		printf("Mix_SetMusicPosition: Couldn't do that: %s", std::string(Mix_GetError()).c_str());
 	}
 }
 bool Music::isPlaying()

@@ -1,5 +1,4 @@
 #include "SFX.h"
-#include "SDL_mixer.h"
 
 std::vector<SFX*> SFX::all;
 

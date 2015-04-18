@@ -12,7 +12,7 @@
 
 #include <string>
 #include "SDL.h"
-#include "window.h"
+#include "Window.h"
 #include "Font.h"
 #include "Color.h"
 

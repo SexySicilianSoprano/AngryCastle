@@ -41,7 +41,7 @@ SDL_Texture *Texture::loadImage(std::string filename)
 }
 
 // source = kuvasta leikatun alueen sijainti ja koko
-void Texture::render(int x, int y, bool flip = false)
+void Texture::render(int x, int y)
 {
 	// NOTE(jouni): Jos source on tyhj‰ k‰ytet‰‰n kuvan alkup. kokoa
 	if (clipRect.w <= 0 && clipRect.h <= 0)
@@ -54,15 +54,15 @@ void Texture::render(int x, int y, bool flip = false)
 	}
 
 	SDL_Rect destination = {x, y, clipRect.w, clipRect.h};
-
+	bool flip = false;
 	// NOTE(jouni): You know what to do whit this..
 	if (flip) {
-		SDL_RendererFlip = SDL_FLIP_VERTICAL;
+	//	SDL_RendererFlip = SDL_FLIP_VERTICAL;
 	} else {
-		SDL_RendererFlip = SDL_FLIP_NONE;
+//		SDL_RendererFlip = SDL_FLIP_NONE;
 	}
 
-		SDL_RenderCopyEx(renderer, texture, &clipRect, &destination, NULL, NULL, SDL_FLIP_VERTICAL);
+	SDL_RenderCopyEx(renderer, texture, &clipRect, &destination, NULL, NULL, SDL_FLIP_NONE);
 
 	/*
 	int SDL_RenderCopyEx(SDL_Renderer*          renderer,
