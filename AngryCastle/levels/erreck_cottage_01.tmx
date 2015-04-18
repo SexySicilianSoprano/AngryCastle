@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="25" height="15" tilewidth="16" tileheight="16" nextobjectid="23">
  <properties>
-  <property name="exitLeft" value="erreck_02.tmx"/>
-  <property name="exitRight" value="null.tmx"/>
-  <property name="spawnLeft" value="playerSpawnRight"/>
-  <property name="spawnRight" value="playerSpawnLeft"/>
+  <property name="exitLeft" value="erreck_05.tmx"/>
+  <property name="spawnLeft" value="door_01"/>
  </properties>
  <tileset firstgid="1" name="Erreck_Road_tileset" tilewidth="16" tileheight="16">
   <image source="../graphics/levels/Erreck_Road_tileset.png" trans="ff00ff" width="512" height="512"/>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="80" height="30" tilewidth="16" tileheight="16" nextobjectid="22">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="80" height="30" tilewidth="16" tileheight="16" nextobjectid="23">
  <properties>
-  <property name="exitLeft" value="erreck_02.tmx"/>
-  <property name="exitRight" value="null.tmx"/>
-  <property name="spawnLeft" value="playerSpawnRight"/>
+  <property name="exitRight" value="erreck_04.tmx"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
  </properties>
  <tileset firstgid="1" name="Erreck_Road_tileset" tilewidth="16" tileheight="16">
@@ -9748,6 +9746,12 @@
  <objectgroup name="Actors">
   <object id="20" name="playerSpawnRight" type="spawn" x="1271.33" y="313.167">
    <ellipse/>
+  </object>
+  <object id="22" name="door_01" type="door" x="400.25" y="310.5" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="erreck_cottage_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

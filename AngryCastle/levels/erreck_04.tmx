@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" nextobjectid="38">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" nextobjectid="44">
  <properties>
-  <property name="exitLeft" value="null.tmx"/>
+  <property name="exitLeft" value="erreck_05.tmx"/>
   <property name="exitRight" value="erreck_03.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
@@ -2377,8 +2377,8 @@
    <tile gid="123"/>
    <tile gid="715"/>
    <tile gid="716"/>
-   <tile gid="717"/>
-   <tile gid="718"/>
+   <tile gid="322"/>
+   <tile gid="298"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -18083,7 +18083,9 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers"/>
+ <objectgroup name="Triggers">
+  <object id="42" name="Boss_03" type="bossTrigger" x="1537.33" y="280" width="365.333" height="110.667"/>
+ </objectgroup>
  <objectgroup name="Actors">
   <object id="20" name="playerSpawnRight" type="spawn" x="2393" y="345.5">
    <ellipse/>
@@ -18143,14 +18145,14 @@
   <object id="29" name="enemySpawn_08" type="enemySpawn" x="214.667" y="221.333">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="ghost"/>
+    <property name="enemyType" value="banshee"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="30" name="enemySpawn_09" type="enemySpawn" x="340" y="161.333">
+  <object id="30" name="enemySpawn_09" type="enemySpawn" x="248" y="217.333">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="ghost"/>
+    <property name="enemyType" value="banshee"/>
    </properties>
    <ellipse/>
   </object>
@@ -18192,7 +18194,7 @@
   <object id="36" name="enemySpawn_15" type="enemySpawn" x="716" y="266">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="vampire"/>
+    <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
   </object>
@@ -18200,6 +18202,39 @@
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="vampire"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="38" name="enemySpawn_17" type="enemySpawn" x="442.667" y="264">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="39" name="enemySpawn_18" type="enemySpawn" x="2089" y="376.5">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="40" name="door_01" type="door" x="2046.92" y="343.583" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="erreck_house_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="41" name="door_02" type="door" x="798" y="231.25" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="erreck_house_02.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="43" name="enemySpawn_19" type="enemySpawn" x="890.667" y="263.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="construct"/>
    </properties>
    <ellipse/>
   </object>

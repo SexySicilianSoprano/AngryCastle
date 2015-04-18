@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="41">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="45">
  <properties>
   <property name="exitLeft" value="erreck_02.tmx"/>
-  <property name="exitRight" value="null.tmx"/>
+  <property name="exitRight" value="aragas_02.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
  </properties>
@@ -24250,7 +24250,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="36" name="enemySpawn_15" type="enemySpawn" x="2264" y="249">
+  <object id="36" name="enemySpawn_15" type="enemySpawn" x="1704" y="279">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
@@ -24264,7 +24264,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="38" name="enemySpawn_17" type="enemySpawn" x="869.5" y="347.5">
+  <object id="38" name="enemySpawn_17" type="enemySpawn" x="967.5" y="311.5">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
@@ -24282,6 +24282,27 @@
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="42" name="enemySpawn_20" type="enemySpawn" x="889" y="341">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="43" name="enemySpawn_21" type="enemySpawn" x="651" y="315">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="44" name="enemySpawn_22" type="enemySpawn" x="601" y="311">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="construct"/>
    </properties>
    <ellipse/>
   </object>

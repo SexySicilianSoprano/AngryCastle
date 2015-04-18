@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="47">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="48">
  <properties>
   <property name="exitLeft" value="erreck_03.tmx"/>
   <property name="exitRight" value="erreck_01.tmx"/>
@@ -24098,10 +24098,10 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="23" name="enemySpawn_02" type="enemySpawn" x="2745" y="249">
+  <object id="23" name="enemySpawn_02" type="enemySpawn" x="2357" y="229">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="ghost"/>
+    <property name="enemyType" value="giantbat"/>
    </properties>
    <ellipse/>
   </object>
@@ -24196,14 +24196,14 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="37" name="enemySpawn_16" type="enemySpawn" x="2433.33" y="270.667">
+  <object id="37" name="enemySpawn_16" type="enemySpawn" x="2519.33" y="280.667">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="38" name="enemySpawn_17" type="enemySpawn" x="2351.33" y="247.333">
+  <object id="38" name="enemySpawn_17" type="enemySpawn" x="2167.33" y="245.333">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
@@ -24217,17 +24217,17 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="40" name="enemySpawn_19" type="enemySpawn" x="1856" y="270.667">
+  <object id="40" name="enemySpawn_19" type="enemySpawn" x="1736" y="264">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="banshee"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="41" name="enemySpawn_20" type="enemySpawn" x="1806" y="277.333">
+  <object id="41" name="enemySpawn_20" type="enemySpawn" x="1800.67" y="296">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="banshee"/>
+    <property name="enemyType" value="vampire"/>
    </properties>
    <ellipse/>
   </object>
@@ -24259,10 +24259,17 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="46" name="enemySpawn_25" type="enemySpawn" x="484.667" y="240.667">
+  <object id="46" name="enemySpawn_25" type="enemySpawn" x="488.667" y="263.334">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="banshee"/>
+    <property name="enemyType" value="vampire"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="47" name="enemySpawn_26" type="enemySpawn" x="1548" y="298">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
   </object>
