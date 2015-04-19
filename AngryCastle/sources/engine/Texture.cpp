@@ -1,11 +1,12 @@
 #include "Texture.h"
 
 Texture::Texture(Window *window, std::string filename):
-	clipRect()
+	clipRect(),
+	flip(false)
 {
 	renderer = window->getRenderer();
 	texture = loadImage(filename);
-	
+
 	// Set width and height
 	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 }
@@ -17,12 +18,13 @@ Texture::~Texture()
 
 SDL_Texture *Texture::loadImage(std::string filename)
 {
+	printf("Loading %s\n", filename.c_str());
 	SDL_Surface* surface = IMG_Load(filename.c_str());
 
 	if (!surface) {
 		printf("Tekstuurin lataaminen ei onnistunut\n");
 		printf("IMG_LoadTexture: %s\n", IMG_GetError());
-		return false;
+		return NULL;
 	}
 
 	SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format,
@@ -32,7 +34,7 @@ SDL_Texture *Texture::loadImage(std::string filename)
 
 	if (!newTexture) {
 		printf("Unable to create texture from %s!\nSDL Error: %s\n", filename.c_str(), SDL_GetError());
-		return false;
+		return NULL;
 	}
 
 	SDL_FreeSurface(surface);
@@ -54,15 +56,13 @@ void Texture::render(int x, int y)
 	}
 
 	SDL_Rect destination = {x, y, clipRect.w, clipRect.h};
-	bool flip = false;
-	// NOTE(jouni): You know what to do whit this..
+	SDL_RendererFlip flag = SDL_FLIP_NONE;
+
 	if (flip) {
-	//	SDL_RendererFlip = SDL_FLIP_VERTICAL;
-	} else {
-//		SDL_RendererFlip = SDL_FLIP_NONE;
+		flag = SDL_FLIP_HORIZONTAL;
 	}
 
-	SDL_RenderCopyEx(renderer, texture, &clipRect, &destination, NULL, NULL, SDL_FLIP_NONE);
+	SDL_RenderCopyEx(renderer, texture, &clipRect, &destination, 0, NULL, flag);
 
 	/*
 	int SDL_RenderCopyEx(SDL_Renderer*          renderer,

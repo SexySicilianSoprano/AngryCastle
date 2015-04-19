@@ -51,7 +51,7 @@ void Level::load(std::string level_name)
 		if (propertyName.compare("spawnLeft") == 0) {
 			leftExit->spawnpoint = atoi(propertyValue.c_str());
 		}
-		
+
 		if (propertyName.compare("spawnRight") == 0) {
 			rightExit->spawnpoint = atoi(propertyValue.c_str());
 		}
@@ -115,10 +115,10 @@ void Level::load(std::string level_name)
 		{
 			iteratorCount++;
 
-			// Add tile id to 
+			// Add tile id to
 			int gid = atoi(iterator->attribute("gid").value());
 			levelRow.push_back(gid);
-		
+
 			// NOTE(juha): Kun päästään kentän loppuun, vaihdetaan riviä.
 			if (iteratorCount % levelWidth == 0)
 			{
@@ -158,7 +158,7 @@ void Level::load(std::string level_name)
 
 		if (type.compare("npcSpawn") == 0) {
 			std::string type   = iterator->child("properties").find_child_by_attribute("name", "npcType").attribute("value").value();
-			std::string script = iterator->child("properties").find_child_by_attribute("name", "script").attribute("value").value(); 
+			std::string script = iterator->child("properties").find_child_by_attribute("name", "script").attribute("value").value();
 
 			int npc_x = atoi(iterator->attribute("x").value());
 			int npc_y = atoi(iterator->attribute("y").value());
@@ -214,7 +214,7 @@ void Level::update(Entity *entity) {
 			int y = atoi(iterator->attribute("y").value());
 			int w = atoi(iterator->attribute("width").value());
 			int h = atoi(iterator->attribute("height").value());
-			
+
 			SDL_Rect trigger_area = {x, y, w, h};
 			SDL_Rect entity_area  = {entity->getX(),
 									 entity->getY(),
@@ -229,7 +229,7 @@ void Level::update(Entity *entity) {
 					signText = iterator->child("properties").child("property").attribute("value").value();
 					printf("%s\n", signText.c_str());
 				}
-				
+
 				if (type.compare("door") == 0) {
 					tooltip = "Press [W] to good luck";
 					std::string levelName = iterator->child("properties")
@@ -389,218 +389,51 @@ SDL_Point Level::getStartSpawn() {
 
 SDL_Rect Level::collides(Entity *entity)
 {
-
-	SDL_Rect player_hitbox = entity->getHitbox();
-	SDL_Rect collidetile = {0,0,0,0};
+	SDL_Rect hitbox = entity->getHitbox();
 	SDL_Rect result;
-	int tile1 = 0;
-	int tile2 = 0;
+	std::vector<SDL_Point> tiles;
 
-	// Entity moving right
-	if (entity->desiredX > entity->getX()) {
-		// Right side
-		tile1 = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
-		tile2 = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+	SDL_Point top_right_tile = {hitbox.x / tileSize, hitbox.y / tileSize};
+	SDL_Point bottom_right_tile = {(hitbox.x + hitbox.w) / tileSize,
+								   (hitbox.y + hitbox.h) / tileSize};
 
-		if (tile1) {
- 			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
-			
-			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				if (result.h > result.w) {
-					player_hitbox.x  -= result.w;
-					entity->desiredX -= result.w;
-				} else {
-					player_hitbox.y  -= result.h;
-					entity->desiredY -= result.h;
-				}
-			}
-		} else if (tile2) {
-			collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
+	// Number of tiles entity overlaps vertically
+	int tiles_x = bottom_right_tile.x - top_right_tile.x;
+	// Number of tiles entity overlaps horizontally
+	int tiles_y = bottom_right_tile.y - top_right_tile.y;
 
-			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				if (result.h > result.w) {
-					player_hitbox.x  -= result.w;
-					entity->desiredX -= result.w;
-				} else {
-					player_hitbox.y  -= result.h;
-					entity->desiredY -= result.h;
-				}
-			}
+	// Get all tiles entity overlaps
+	for (int i = 0; i <= tiles_y; i++) {
+		for (int j = 0; j <= tiles_x; j++) {
+			SDL_Point tmp = {hitbox.x + (j * tileSize), hitbox.y + (i *tileSize)};
+			tiles.push_back(tmp);
 		}
-	// Entity moving left
-	} 
-	
-	if(entity->desiredX < entity->getX()) {
-		// Left side
-		tile1 = getTile(player_hitbox.x, player_hitbox.y);
-		tile2 = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+	}
 
+	// Collision correction
+	for (std::vector<SDL_Point>::iterator it = tiles.begin();
+		 it != tiles.end();
+		 ++it) {
 
-		if (tile1) {
- 			collidetile = pointToTile(player_hitbox.x, player_hitbox.y);
-			
-			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-				player_hitbox.x += result.w;
-				entity->desiredX += result.w;
-			}
-		} else if (tile2) {
-			collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
+		if (getTile(it->x, it->y) != 0) {
+			SDL_Rect tile = pointToTile(it->x, it->y);
 
-			if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
+			if (SDL_IntersectRect(&hitbox, &tile, &result)) {
 				if (result.h > result.w) {
-					player_hitbox.x  += result.w;
-					entity->desiredX += result.w;
+					if (hitbox.x < tile.x) {
+						hitbox.x 		 -= result.w;
+						entity->desiredX -= result.w;
+					} else {
+						hitbox.x 		 += result.w;
+						entity->desiredX += result.w;
+					}
 				} else {
-					player_hitbox.y  -= result.h;
-					entity->desiredY -= result.h;
+					hitbox.y 		 	-= result.h;
+					entity->desiredY	-= result.h;
+					entity->velocity_y	= 0;
+					entity->in_air		= false;
 				}
 			}
 		}
 	}
-
-	// Bottom 
-	tile1 = getTile(player_hitbox.x + 1,  player_hitbox.y + player_hitbox.h);
-	tile2 = getTile(player_hitbox.x + player_hitbox.w - 1, player_hitbox.y + player_hitbox.h);
-
-	if (tile1) {
-		collidetile = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			if (result.h > result.w) {
-				player_hitbox.x  -= result.w;
-				entity->desiredX -= result.w;
-			} else {
-				player_hitbox.y  -= result.h;
-				entity->desiredY -= result.h;
-			}
-		}
-	} else if(tile2) {
-		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-		
-		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-			if (result.h > result.w) {
-				player_hitbox.x  -= result.w;
-				entity->desiredX -= result.w;
-			} else {
-				player_hitbox.y  -= result.h;
-				entity->desiredY -= result.h;
-			}
-		}
-	}
-
-	if(tile1 || tile2) {
-		entity->velocity_y = 0;
-		entity->in_air = false;
-	} else {
-		entity->in_air = true;
-	}
-
-	
-	
-	// Bottom right
-	/*
-	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-
-	if (tile != 0) {
-		collidetile = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-
-		if (SDL_IntersectRect(&player_hitbox, &collidetile, &result)) {
-  			entity->desiredX -= result.w;
-		}
-	}*/
-
-	return collidetile;
-	/*
-	if (tile != 0) {
-		SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-
-		if (player_hitbox.y + player_hitbox.h <= tilepos.y) {
-			player_hitbox.y = tilepos.y + player_hitbox.h;
-		}
-
-		if (player_hitbox.y >= tilepos.y + tilepos.h) {
-			return true
-		}
-
-		if (player_hitbox.x + player_hitbox.w <= tilepos.x) {
-			return true;
-		}
-
-		if (player_hitbox.x >= tilepos.x + tilepos.w) {
-			return true;
-		}
-		//return true;
-	}
-	*/
-	//return false;
-
-
-	/*
-	// Entity TOP-LEFT
-	tile = getTile(player_hitbox.x, player_hitbox.y);
-	if (tile != 0) {
-		SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y);
-		SDL_Rect result;
-
-		SDL_IntersectRect(&player_hitbox, &tilepos, &result);
-
-		entity->desiredX = tilepos.x + tilepos.w - entity->hitbox_offset.x;
-		entity->desiredY = entity->getY();
-		collides = true;
-	}
-
-	// Entity TOP-RIGHT
-	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
-	if (tile != 0) {
-		SDL_Rect tilepos = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y);
-		SDL_Rect result;
-
-		SDL_IntersectRect(&player_hitbox, &tilepos, &result);
-
-		entity->desiredX = tilepos.x - (entity->hitbox_offset.x + entity->hitbox_offset.w);
-		entity->desiredY = entity->getY();
-		collides = true;
-	}
-	*/
-	// Entity BOTTOM-LEFT
-	//tile = getTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-	//if (tile != 0) {
-		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-		//SDL_Rect tilepos = pointToTile(player_hitbox.x, player_hitbox.y + player_hitbox.h);
-		//SDL_Rect result;
-
-		//SDL_IntersectRect(&player_hitbox, &tilepos, &result);
-		/*
-		printf("Tilepos>\tx%d y%d w%d h%d\n", tilepos.x, tilepos.y, tilepos.w, tilepos.h);
-		printf("Result>\t\tx%d y%d w%d h%d\n", result.x, result.y, result.w, result.h);
-		printf("Playerpos>\tx%d y%d w%d h%d\n", entity->getX(), entity->getY(), entity->getW(), entity->getH());
-		printf("Hitbox>\t\tx%d y%d w%d h%d\n", player_hitbox.x, player_hitbox.y, player_hitbox.w, player_hitbox.h);
-		printf("Desired pos>\tx%d y%d w%d h%d\n", entity->desiredX, entity->desiredY, entity->getW(), entity->getH());
-		*/
-		/* NOTE(jouni):
-			Substract colliding tile Y-position by entity hitbox to get 
-
-						  Colliding tile
-						  Y-position					Hitbox bottom left
-						   _________	____________________________________________________*/
-		//entity->desiredY = tilepos.y - ((player_hitbox.x - entity->getX()) + player_hitbox.h);
-		//entity->desiredY = tilepos.y - (entity->getX() + player_hitbox.h);
-		//printf("New dpos>\tx%d y%d w%d h%d\n", entity->desiredX, entity->desiredY, entity->getW(), entity->getH());
-		//collides = true;
-
-
-	//}
-	
-	// Entity BOTTOM-RIGHT
-	/*
-	tile = getTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-	if (tile != 0) {
-		SDL_Rect tilepos = pointToTile(player_hitbox.x + player_hitbox.w, player_hitbox.y + player_hitbox.h);
-		SDL_Rect result;
-
-		SDL_IntersectRect(&player_hitbox, &tilepos, &result);
-		entity->desiredY = tilepos.y - ((player_hitbox.x - entity->getX()) + player_hitbox.h);
-		collides = true;
-	}
-	*/
-	//return collides;
 }

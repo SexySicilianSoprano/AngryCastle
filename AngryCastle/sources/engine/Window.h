@@ -23,7 +23,7 @@ class Window
 	public:
 		// Constructor
 		Window(int width, int height, int logical_width, int logical_height, std::string title, bool fullscreen);
-	
+
 		// Destructor & destroy()
 		virtual ~Window();
 		void destroy();
@@ -49,19 +49,18 @@ class Window
 		void drawRect(int x, int y, int w, int h, Color color);
 		void fill(Color color);
 
-		unsigned int width, logical_width; 
-		unsigned int height, logical_height; 
+		unsigned int width, logical_width;
+		unsigned int height, logical_height;
 		unsigned int originalWidth;
 		unsigned int originalHeight;
-	
+
 		//The actual hardware texture
 		// SDL_Texture* texture;
 
 	private:
 		SDL_Window *window;
-		SDL_Surface *surface;
 		SDL_Renderer *renderer;
-	
+
 		Timer frametimeTimer, fpsTimer;
 		Uint32 framerate, frame_delay, current_delta;
 		int fps_current, fps;

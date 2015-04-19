@@ -1,9 +1,9 @@
 /*
  * DamageableEntity.h
- * 
- * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ *
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa,
  * eli, joilla on health pointit.
- * 
+ *
  * Esimerkki:
  *		DamageableEntity damageableEntity = new DamageableEntity();
  *		damageableEntity->damage(100);
@@ -11,11 +11,6 @@
 
 #ifndef __DAMAGEABLEENTITY_H_DEFINED__
 #define __DAMAGEABLEENTITY_H_DEFINED__
-
-#include "SDL.h"
-#include "Window.h"
-#include "Sprite.h"
-#include "Entity.h"
 
 class DamageableEntity
 {

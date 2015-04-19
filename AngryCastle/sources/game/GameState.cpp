@@ -25,7 +25,7 @@ GameState::GameState(Window *window) :
 		SDL_Point spawnpoint = level->getLeftSpawn();
 		player->setPosition(spawnpoint.x, spawnpoint.y - player->getH());
 
-		//test = new Animation(window, "graphics/character/player_idle.png", 
+		//test = new Animation(window, "graphics/character/player_idle.png",
 }
 
 GameState::~GameState() {
@@ -42,26 +42,11 @@ stateStatus GameState::update() {
 
 	player->update(window->getDelta());
 
-	///printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
-
-	//printf("Camera %d\\%d\n", camera->frame.x, camera->frame.y);
-	//entity->update();
-
-	//printf("Player position: x%d y%d\nDesired position: x%d y%d\n", entity->getX(), entity->getY(), entity->desiredX, entity->desiredY);
-
-	//if(level->collides(entity)) {
-	//	entity->velocity_y = 0;
-//		entity->in_air = 0;
-	//}
-
+	// Correct player position
 	level->collides(player);
 
-	//printf("DesiredX>\t%d\nPlayerX>\t%d\n", entity->desiredX, entity->getX());
-
+	// Commit player movement
 	player->commitMovement();
-
-	//SDL_Rect playerhb = entity->getHitbox();
-	//printf("Player> x%d y%d\nHitbox> x%d y%d\nCamera> x%d y%d\n", entity->getX(), entity->getY(), playerhb.x, playerhb.y, camera->frame.x, camera->frame.y);
 
 	level->update(player);
 	camera->update(level->getLevelWidth(), level->getLevelHeight());
@@ -69,11 +54,6 @@ stateStatus GameState::update() {
 	// Update tooltip and sign text
 	tooltip_s  = level->tooltip;
 	signText_s = level->signText;
-
-	// 16 = tilesize
-	// TODO(jouni): (camera->frame.w/2)+8 is only for testing, you need to change this in future!
-
-	//printf("RIGHT: %d > %d\nLEFT:  %d < %d\n", camera->frame.x, (level->getLevelWidth() - (camera->frame.w/2)), camera->frame.x, 0 - (camera->frame.w/2)-8);
 
 	if (Input::keyState(SDL_SCANCODE_RETURN)) {
 		Exit *door = level->getCurrentDoor();
@@ -109,16 +89,16 @@ stateStatus GameState::update() {
 
 			level = new Level(window, camera, collection);
 			level->load(rightLevel);
-			
+
 			SDL_Point spawnpoint = level->getLeftSpawn();
 			player->setPosition(spawnpoint.x, spawnpoint.y);
 		}
 
 	}
-	
+
 	if (player->getX() < -player->getW()) {
 		std::string leftLevel = level->getLeftmostLevel();
-		
+
 		printf("Entering %s\n", leftLevel.c_str());
 
 		if (!leftLevel.empty()) {
@@ -129,7 +109,7 @@ stateStatus GameState::update() {
 			collection = new EntityCollection<Entity>;
 			level = new Level(window, camera, collection);
 			level->load(leftLevel);
-			
+
 			SDL_Point spawnpoint = level->getRightSpawn();
 			player->setPosition(spawnpoint.x, spawnpoint.y - 10);
 		}
@@ -143,6 +123,7 @@ void GameState::render() {
 	level->render(GAME_LAYER);
 
 	player->render(camera);
+
 	/*
 	SDL_Rect hitbox = player->getHitbox();
 	window->drawRect(hitbox.x - camera->frame.x,
@@ -151,15 +132,7 @@ void GameState::render() {
 					 hitbox.h,
 					 Color("red"));
 	*/
-	/*
-	SDL_Rect p_hb = entity->getHitbox();
 
-	window->drawRect(p_hb.x - camera->frame.x,
-					 p_hb.y - camera->frame.y,
-					 p_hb.w,
-					 p_hb.h,
-					 Color("blue"));
-	*/
 	for (int i = 0; i < collection->length(); i++) {
 		Entity *tmp = collection->get(i);
 
@@ -169,7 +142,7 @@ void GameState::render() {
 						 tmp->getH(),
 						 Color("blue"));
 	}
-	
+
 	level->render(FG_LAYER);
 
 	if (tooltip_s.length() > 0) {

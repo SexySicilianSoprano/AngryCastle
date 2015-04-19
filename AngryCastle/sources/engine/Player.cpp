@@ -16,6 +16,8 @@ Player::Player(Window *window, float x, float y, int w, int h, int hp, float spe
 	animations.push_back(new Animation(window, "graphics/characters/player_crouch.png", 46, 43, 0, 3, 8));
 	animations.push_back(new Animation(window, "graphics/characters/player_attack.png", 46, 43, 0, 4, 8));
 
+	delete tmp;
+
 	currentAnimation = animations[IDLE];
 	currentAnimation->play(INFINITE_LOOP);
 }
@@ -65,6 +67,11 @@ void Player::update(float dt) {
 }
 
 void Player::render(Camera *camera) {
+	if (facing_direction == 2) {
+		currentAnimation->flip = true;
+	} else {
+		currentAnimation->flip = false;
+	}
 	currentAnimation->render(x - camera->frame.x, y - camera->frame.y);
 }
 
@@ -75,7 +82,7 @@ void Player::updateAnimation() {
 		currentAnimation = animations[IDLE];
 	}
 
-	if (velocity_x > 0) {
+	if (velocity_x != 0) {
 		currentAnimation = animations[WALK];
 	}
 
@@ -87,8 +94,6 @@ void Player::updateAnimation() {
 	if (in_air) {
 		currentAnimation = animations[JUMP];
 		currentAnimation->pause();
-
-		printf("vely: %f\n", velocity_y);
 
 		if (velocity_y < 0) {
 			currentAnimation->setCurrentFrame(2);

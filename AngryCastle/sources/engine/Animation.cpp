@@ -5,10 +5,13 @@ Animation::Animation(Window *window, std::string filename,
 					 int frame_count, int framerate):
 					 Sprite(window, filename, width, height),
 					 window(window),
-					 current_frame(0),
-					 current_frametime(0),
+					 times_played(0),
 					 running(true),
-					 times_played(0)
+					 play_count(0),
+					 frametime(0),
+					 current_frame(0),
+					 current_frametime(0)
+
 {
 	setFramerate(framerate);
 
@@ -20,7 +23,7 @@ Animation::Animation(Window *window, std::string filename,
 
 Animation::~Animation() {
 
-} 
+}
 
 int Animation::getCurrentFrame() {
 	return current_frame;
@@ -85,6 +88,6 @@ bool Animation::done() {
 	if (running && current_frame == frames.size() - 1) {
 		return true;
 	}
-	
+
 	return false;
 }

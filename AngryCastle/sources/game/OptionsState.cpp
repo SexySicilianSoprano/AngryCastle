@@ -6,8 +6,8 @@ OptionsState::OptionsState(Window *window, Music *music) :
 	menu_x(170),
 	menu_y(110),
 	menu_index(0),
-	selector(window, "graphics//ui//selector.png") {
-		font = new Font("fonts//AveriaSerif-Bold.ttf", 14);
+	selector(window, "graphics/ui/selector.png") {
+		font = new Font("fonts/AveriaSerif-Bold.ttf", 14);
 
 		menu_items.push_back(new Text(font, Color("white")));
 		menu_items.push_back(new Text(font, Color("white")));

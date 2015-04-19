@@ -16,7 +16,7 @@ MovingEntity::~MovingEntity() {
 
 void MovingEntity::update(float dt) {
 	velocity_x = (acceleration * targetVx) + ((1 - acceleration) * acceleration) * (dt/1000.f);
-	
+
 	if (fabs(this->velocity_x) < stoppedThreshold) {
 		velocity_x = 0;
 	}
@@ -30,10 +30,12 @@ void MovingEntity::commitMovement() {
 }
 
 void MovingEntity::left() {
+	facing_direction = 2;
 	targetVx = (-1 * acceleration);
 }
 
 void MovingEntity::right() {
+	facing_direction = 1;
 	targetVx = acceleration;
 }
 

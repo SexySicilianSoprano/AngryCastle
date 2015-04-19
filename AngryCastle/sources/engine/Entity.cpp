@@ -11,7 +11,8 @@ Entity::Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset) :
 	desiredX(x),
 	desiredY(y),
 	velocity_y(0),
-	velocity_x(0)
+	velocity_x(0),
+	facing_direction(FACING_RIGHT)
 {
 	if (SDL_RectEmpty(&hitbox_offset)) {
 		hitbox_offset.x = 0;
@@ -61,12 +62,7 @@ bool Entity::collides(Entity *other) {
 	//printf("Primary:\tw%d h%d x%d y%d\n", primary_hitbox.w, primary_hitbox.h, primary_hitbox.x, primary_hitbox.y);
 	//printf("Secondary:\tw%d h%d x%d y%d\n", secondary_hitbox.w, secondary_hitbox.h, secondary_hitbox.x, secondary_hitbox.y);
 
-	if (SDL_IntersectRect(&primary_hitbox, &secondary_hitbox, &result)) {
-		//printf("Result:\tw%d h%d x%d y%d\n\n", result.w, result.h, result.x, result.y);
-
-		desiredX = x;
-		desiredY = y;
-
+	if (SDL_HasIntersection(&primary_hitbox, &secondary_hitbox)) {
 		return true;
 	}
 

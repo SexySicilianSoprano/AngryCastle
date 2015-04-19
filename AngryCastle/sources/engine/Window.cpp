@@ -2,7 +2,6 @@
 
 Window::Window(int width, int height, int logical_width, int logical_height, std::string title, bool fullscreen):
 	window(nullptr),
-	surface(nullptr),
 	renderer(nullptr),
 	width(width),
 	height(height),
@@ -60,7 +59,7 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 	}
 
 	SDL_CreateWindowAndRenderer(width, height, window_flag, &window, &renderer);
-	
+
 	// NOTE(jouni): Perus virhetarkistusta; jos window tai renderer ei ssaa arvoa,
 	// ei anneta ohjelman vaan raa'asti kaatua vaan ilmotetaan siitä käyttäjälle.
 	if (!window || !renderer)
@@ -68,20 +67,13 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 		printf("SDL_Window tai SDL_Renderer ei pelaa!\n");
 		return;
 	}
-	
+
 	// Nearest-neighbour resize
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 	SDL_RenderSetLogicalSize(renderer, logical_width, logical_height);
 
 	// Asetetaan title
 	setTitle(title);
-
-	surface = SDL_GetWindowSurface(window);
-	if (!surface)
-	{
-		printf("SDL_GetWindowSurface failas!\n");
-		return;
-	}
 
 	this->width = width;
 	this->height = height;
@@ -108,7 +100,7 @@ void Window::refresh()
 	SDL_RenderPresent(renderer);
 
 	fps_current++;
-	
+
 	int ticks = frametimeTimer.getTicks();
 
 	if (ticks < (1000 / FRAMERATE)) {
@@ -134,7 +126,7 @@ void Window::setTitle(std::string title)
 	}
 }
 
-void Window::minimize() 
+void Window::minimize()
 {
 	if (window)
 	{
@@ -160,7 +152,7 @@ bool Window::isFullscreen()
 	return fullscreen;
 }
 
-SDL_Renderer* Window::getRenderer() 
+SDL_Renderer* Window::getRenderer()
 {
 	return renderer;
 }

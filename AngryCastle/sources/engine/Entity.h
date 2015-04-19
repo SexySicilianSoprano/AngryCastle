@@ -1,9 +1,9 @@
 /*
  * Entity.h
- * 
+ *
  * Tämä luokka on yläluokka kaikille pelin entiteeteille, joita voivat olla
  * esimerkiksi, pelaaja, viholliset ja ammukset.
- * 
+ *
  * Esimerkki:
  *		Entity entity = new Entity();
  *		entity->metodi();
@@ -13,6 +13,9 @@
 #define __ENTITY_H_DEFINED__
 
 #include "SDL.h"
+
+#define FACING_RIGHT 1
+#define FACING_LEFT 2
 
 class Entity
 {
@@ -33,14 +36,6 @@ class Entity
 		SDL_Rect getHitbox();
 		int desiredX, desiredY;
 		SDL_Rect hitbox_offset;
-
-		enum DIRECTION {
-			NONE,
-			LEFT,
-			RIGHT,
-			DOWN,
-			UP
-		};
 
 		int facing_direction;
 		bool in_air;
