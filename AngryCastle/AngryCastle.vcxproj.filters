@@ -15,21 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sources\game\GameOverState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\VictoryState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sources\engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -45,6 +30,9 @@
     <ClCompile Include="sources\engine\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\engine\FallingEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sources\engine\Font.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\engine\Music.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\engine\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\engine\PugiXML.cpp">
@@ -84,32 +75,35 @@
     <ClCompile Include="sources\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\engine\Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sources\engine\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\GameOverState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\MenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sources\game\OptionsState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\FallingEntity.cpp">
+    <ClCompile Include="sources\game\VictoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\Player.cpp">
+    <ClCompile Include="sources\engine\Rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sources\game\VictoryState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\GameOverState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sources\engine\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -131,6 +125,9 @@
     <ClInclude Include="sources\engine\EntityCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sources\engine\FallingEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="sources\engine\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -146,7 +143,7 @@
     <ClInclude Include="sources\engine\Music.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\PugiConfig.h">
+    <ClInclude Include="sources\engine\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\engine\PugiXML.h">
@@ -173,16 +170,28 @@
     <ClInclude Include="sources\engine\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sources\engine\Weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="sources\engine\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\GameOverState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\MenuState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sources\game\OptionsState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\FallingEntity.h">
+    <ClInclude Include="sources\game\VictoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\Player.h">
+    <ClInclude Include="sources\engine\Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

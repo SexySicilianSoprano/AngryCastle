@@ -24,6 +24,7 @@
     <ClCompile Include="sources\engine\Music.cpp" />
     <ClCompile Include="sources\engine\Player.cpp" />
     <ClCompile Include="sources\engine\PugiXML.cpp" />
+    <ClCompile Include="sources\engine\Rectangle.cpp" />
     <ClCompile Include="sources\engine\SDL.cpp" />
     <ClCompile Include="sources\engine\SFX.cpp" />
     <ClCompile Include="sources\engine\Sprite.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="sources\engine\Text.cpp" />
     <ClCompile Include="sources\engine\Texture.cpp" />
     <ClCompile Include="sources\engine\Timer.cpp" />
+    <ClCompile Include="sources\engine\Weapon.cpp" />
     <ClCompile Include="sources\engine\Window.cpp" />
     <ClCompile Include="sources\game\GameOverState.cpp" />
     <ClCompile Include="sources\game\GameState.cpp" />
@@ -54,8 +56,8 @@
     <ClInclude Include="sources\engine\MovingEntity.h" />
     <ClInclude Include="sources\engine\Music.h" />
     <ClInclude Include="sources\engine\Player.h" />
-    <ClInclude Include="sources\engine\PugiConfig.h" />
     <ClInclude Include="sources\engine\PugiXML.h" />
+    <ClInclude Include="sources\engine\Rectangle.h" />
     <ClInclude Include="sources\engine\SDL.h" />
     <ClInclude Include="sources\engine\SFX.h" />
     <ClInclude Include="sources\engine\Sprite.h" />
@@ -63,6 +65,7 @@
     <ClInclude Include="sources\engine\Text.h" />
     <ClInclude Include="sources\engine\Texture.h" />
     <ClInclude Include="sources\engine\Timer.h" />
+    <ClInclude Include="sources\engine\Weapon.h" />
     <ClInclude Include="sources\engine\Window.h" />
     <ClInclude Include="sources\game\GameOverState.h" />
     <ClInclude Include="sources\game\GameState.h" />
