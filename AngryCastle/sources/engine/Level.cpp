@@ -176,23 +176,19 @@ void Level::load(std::string level_name)
 
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			SDL_Rect hitbox = {0, 0, 0, 0};
-			Entity entity(0, 0, 10, 10, hitbox);
-			entity.setPosition(npc_x, npc_y);
+			Entity entity(Rectangle(npc_x, npc_y, 10, 10));
 			collection->push(entity);
 		}
 
 		if (type.compare("enemySpawn") == 0) {
 			std::string type   = iterator->child("properties").find_child_by_attribute("name", "enemyType").attribute("value").value();
 
-			int npc_x = atoi(iterator->attribute("x").value());
-			int npc_y = atoi(iterator->attribute("y").value());
+			int enemy_x = atoi(iterator->attribute("x").value());
+			int enemy_y = atoi(iterator->attribute("y").value());
 
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			SDL_Rect hitbox = {0, 0, 0, 0};
-			Entity entity(0, 0, 20, 20, hitbox);
-			entity.setPosition(npc_x, npc_y);
+			Entity entity(Rectangle(enemy_x, enemy_y, 20, 20));
 			collection->push(entity);
 		}
 
@@ -204,9 +200,7 @@ void Level::load(std::string level_name)
 
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			SDL_Rect hitbox = {0, 0, 0, 0};
-			Entity entity(0, 0, 5, 5, hitbox);
-			entity.setPosition(npc_x, npc_y);
+			Entity entity(Rectangle(npc_x, npc_y, 5, 5));
 			collection->push(entity);
 		}
 	}
@@ -227,10 +221,7 @@ void Level::update(Entity *entity) {
 			int h = atoi(iterator->attribute("height").value());
 
 			SDL_Rect trigger_area = {x, y, w, h};
-			SDL_Rect entity_area  = {entity->getX(),
-									 entity->getY(),
-									 entity->getW(),
-									 entity->getH()};
+			SDL_Rect entity_area  = (SDL_Rect) entity->hitbox;
 			SDL_Rect result_area  = {0, 0, 0, 0};
 
 			if (SDL_IntersectRect(&trigger_area, &entity_area, &result_area)) {
@@ -397,9 +388,68 @@ SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
 
-SDL_Rect Level::collides(Entity *entity)
+SDL_Rect Level::collides(MovingEntity *entity)
 {
-	SDL_Rect hitbox = entity->getHitbox();
+#if 1
+
+Rectangle old_entity = entity->hitbox;
+Rectangle new_entity = entity->boundbox;
+
+// Get the area of tiles considered for collision
+SDL_Point min_tile_xy = {std::min(old_entity.Center().x, new_entity.Center().x),
+						 std::min(old_entity.Center().y, new_entity.Center().y)};
+SDL_Point max_tile_xy = {std::max(old_entity.Center().x, new_entity.Center().x),
+					 	 std::max(old_entity.Center().y, new_entity.Center().y)};
+
+// Get entity size in tiles (usually expected to be 1 or 2)
+int entity_tile_width  = ceil(entity->hitbox.w / tileSize);
+int entity_tile_height = ceil(entity->hitbox.h / tileSize);
+
+min_tile_xy.x -= entity_tile_width;
+min_tile_xy.y -= entity_tile_height;
+max_tile_xy.x += entity_tile_width;
+max_tile_xy.y += entity_tile_height;
+
+SDL_Rect min_tile = pointToTile(min_tile_xy.x, min_tile_xy.y);
+min_tile.x = min_tile.x / tileSize;
+min_tile.y = min_tile.y / tileSize;
+
+SDL_Rect max_tile = pointToTile(max_tile_xy.x, max_tile_xy.y);
+max_tile.x = max_tile.x / tileSize;
+max_tile.y = max_tile.y / tileSize;
+
+int linestart_x = old_entity.Center().x;
+int linestart_y = old_entity.Center().y;
+
+int lineend_x = new_entity.Center().x;
+int lineend_y = new_entity.Center().y;
+
+for (int y_tile = min_tile.y; y_tile <= max_tile.y; y_tile++) {
+	for (int x_tile = min_tile.x; x_tile <= max_tile.x; x_tile++) {
+		int tile_type = GameData[y_tile][x_tile];
+		if (tile_type) {
+			SDL_Rect tmp = pointToTile(x_tile * 16, y_tile * 16);
+			tmp.x -= (old_entity.w/2);
+			tmp.y -= (old_entity.h/2);
+			tmp.w += old_entity.w;
+			tmp.h += old_entity.h;
+
+			// TODO(jouni): Set loaction by closest tile (to old entity position)
+			if (SDL_IntersectRectAndLine(&tmp, &linestart_x, &linestart_y,
+										 &lineend_x, &lineend_y)) {
+				entity->boundbox.x = tmp.x - 1;
+				entity->boundbox.y = tmp.y - 1;
+			}
+		}
+		printf("Tile x%d y%d\n", x_tile, y_tile);
+	}
+}
+
+SDL_Rect nul = {0,0,0,0};
+return nul;
+
+#else
+	SDL_Rect hitbox = (SDL_Rect) entity->hitbox;
 	SDL_Rect result;
 	std::vector<SDL_Point> tiles;
 
@@ -420,6 +470,8 @@ SDL_Rect Level::collides(Entity *entity)
 		}
 	}
 
+	printf("w%d h%d\n", hitbox.w, hitbox.h);
+
 	// Collision correction
 	for (std::vector<SDL_Point>::iterator it = tiles.begin();
 		 it != tiles.end();
@@ -429,21 +481,19 @@ SDL_Rect Level::collides(Entity *entity)
 			SDL_Rect tile = pointToTile(it->x, it->y);
 
 			if (SDL_IntersectRect(&hitbox, &tile, &result)) {
-				if (result.h > result.w) {
-					if (hitbox.x < tile.x) {
-						hitbox.x 		 -= result.w;
-						entity->desiredX -= result.w;
-					} else {
-						hitbox.x 		 += result.w;
-						entity->desiredX += result.w;
-					}
-				} else {
+				// if (result.h > result.w) {
+				// 	if (hitbox.x < tile.x) {
+				// 		hitbox.x 		 -= result.w;
+				// 	} else {
+				// 		hitbox.x 		 += result.w;
+				// 	}
+				//} else {
 					hitbox.y 		 	-= result.h;
-					entity->desiredY	-= result.h;
 					entity->velocity_y	= 0;
 					entity->in_air		= false;
-				}
+				//}
 			}
 		}
 	}
+#endif
 }

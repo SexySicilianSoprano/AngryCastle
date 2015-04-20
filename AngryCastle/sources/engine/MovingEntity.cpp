@@ -5,28 +5,37 @@
 
 #include "MovingEntity.h"
 
-MovingEntity::MovingEntity(int x, int y, int w, int h, float acceleration, SDL_Rect hitbox) :
-	Entity(x, y, w, h, hitbox),
-	acceleration(acceleration), stoppedThreshold(acceleration/2),
-	targetVx(0) {
+MovingEntity::MovingEntity(Rectangle hitbox, float speed):
+	Entity(hitbox), boundbox(hitbox),
+	acceleration(0.8), stoppedThreshold(acceleration/2),
+	velocity_x(0), velocity_y(0),
+	targetVx(0), in_air(false) {
 }
 
-MovingEntity::~MovingEntity() {
-}
+MovingEntity::~MovingEntity() {}
 
 void MovingEntity::update(float dt) {
-	velocity_x += ((targetVx - velocity_x) * acceleration ) * dt / 100.0f;
+	velocity_x += targetVx; //((targetVx - velocity_x) * acceleration ) * dt / 100.0f;
 
 	if (fabs(velocity_x) <= stoppedThreshold) {
 		velocity_x = 0;
 	}
 
-	desiredX = x + roundf(velocity_x * 1) / 1;
+	if (fabs(velocity_x) > targetVx) {
+		velocity_x = targetVx;
+	}
+
+	printf("Velocity X: %f\n", velocity_x);
+
+	boundbox.x += velocity_x;
 	targetVx = 0;
 }
 
+// NOTE(jouni): Do we even need this thing anymore?
 void MovingEntity::commitMovement() {
-	setPosition(desiredX, desiredY);
+	printf("hitboxy %d, boundboxy %d\n", hitbox.y, boundbox.y);
+	hitbox.x = boundbox.x;
+	hitbox.y = boundbox.y;
 }
 
 void MovingEntity::left() {

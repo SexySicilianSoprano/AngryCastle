@@ -8,6 +8,7 @@
 #include "Window.h"
 #include "FallingEntity.h"
 #include "DamageableEntity.h"
+#include "Rectangle.h"
 #include "Input.h"
 #include "Animation.h"
 #include "Camera.h"
@@ -15,7 +16,7 @@
 class Player : public FallingEntity, public DamageableEntity
 {
 	public:
-		Player(Window *window, float x, float y, int w, int h, int hp, float speed, SDL_Rect hitbox);
+		Player(Window *window, Rectangle hitbox, float speed, int hp);
 		~Player();
 
 		void update(float dt);

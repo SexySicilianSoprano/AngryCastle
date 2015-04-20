@@ -12,37 +12,19 @@
 #ifndef __ENTITY_H_DEFINED__
 #define __ENTITY_H_DEFINED__
 
-#include "SDL.h"
-
-#define FACING_RIGHT 1
-#define FACING_LEFT 2
+#include "Rectangle.h"
 
 class Entity
 {
 	public:
-		Entity(int x, int y, int w, int h, SDL_Rect hitbox_offset);
+		Entity(int x, int y, int w, int h);
+		Entity(Rectangle hitbox);
 		~Entity();
 
-		void update();
+		virtual void update();
 
-		bool collides(Entity *other);
-		bool collides(SDL_Rect *other);
-		void setPosition(int x, int y);
-
-		int getX();
-		int getY();
-		int getW();
-		int getH();
-		SDL_Rect getHitbox();
-		int desiredX, desiredY;
-		SDL_Rect hitbox_offset;
-
-		int facing_direction;
-		bool in_air;
-		float velocity_x, velocity_y;
-
-	protected:
-		int x, y, w, h;
+		SDL_Point render_offset;
+		Rectangle hitbox;
 };
 
 #endif //__ENTITY_H_DEFINED__

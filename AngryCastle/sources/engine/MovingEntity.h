@@ -14,10 +14,13 @@
 
 #include "Entity.h"
 
+#define FACING_RIGHT 1
+#define FACING_LEFT 2
+
 class MovingEntity : public Entity
 {
 	public:
-		MovingEntity(int x, int y, int w, int h, float acceleration, SDL_Rect hitbox);
+		MovingEntity(Rectangle hitbox, float speed);
 		~MovingEntity();
 
 		void jump();
@@ -26,6 +29,12 @@ class MovingEntity : public Entity
 
 		void commitMovement();
 		void update(float dt);
+
+		int facing_direction;
+		bool in_air;
+		float velocity_x, velocity_y;
+
+		Rectangle boundbox;
 
 	protected:
 		float acceleration;

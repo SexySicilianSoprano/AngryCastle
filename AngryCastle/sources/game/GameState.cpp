@@ -13,7 +13,7 @@ GameState::GameState(Window *window) :
 	test(nullptr)
 	{
 		SDL_Rect hitbox = {15, 16, 13, 27};
-		player = new Player(window, 0, 0, 46, 43, 100, 0.85, hitbox);
+		player = new Player(window, Rectangle(0, 0, 13, 26), 3, 100);
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
@@ -23,9 +23,9 @@ GameState::GameState(Window *window) :
 		level->load("levels/lumbroff_01.tmx");
 
 		SDL_Point spawnpoint = level->getLeftSpawn();
-		player->setPosition(spawnpoint.x, spawnpoint.y - player->getH());
 
-		//test = new Animation(window, "graphics/character/player_idle.png",
+		player->hitbox.x = spawnpoint.x;
+		player->hitbox.y = spawnpoint.y - 22;
 }
 
 GameState::~GameState() {
@@ -43,7 +43,7 @@ stateStatus GameState::update() {
 	player->update(window->getDelta());
 
 	// Correct player position
-	level->collides(player);
+	hilight = level->collides(player);
 
 	// Commit player movement
 	player->commitMovement();
@@ -75,7 +75,7 @@ stateStatus GameState::update() {
 		}
 	}
 
-	if (player->getX() > level->getLevelWidth()) {
+	if (player->hitbox.x > level->getLevelWidth()) {
 		std::string rightLevel = level->getRightmostLevel();
 
 		printf("Entering %s\n", rightLevel.c_str());
@@ -91,12 +91,12 @@ stateStatus GameState::update() {
 			level->load(rightLevel);
 
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			player->setPosition(spawnpoint.x + player->getHitbox().w, spawnpoint.y - player->getHitbox().h);
+			//player->setPosition(spawnpoint.x + player->getHitbox().w, spawnpoint.y - player->getHitbox().h);
 		}
 
 	}
 
-	if (player->getX() < -player->getW()) {
+	if (player->hitbox.x < -player->hitbox.w) {
 		std::string leftLevel = level->getLeftmostLevel();
 
 		printf("Entering %s\n", leftLevel.c_str());
@@ -111,7 +111,7 @@ stateStatus GameState::update() {
 			level->load(leftLevel);
 
 			SDL_Point spawnpoint = level->getRightSpawn();
-			player->setPosition(spawnpoint.x - player->getW(), spawnpoint.y - player->getH());
+			//player->setPosition(spawnpoint.x - player->getW(), spawnpoint.y - player->getH());
 		}
 	}
 	return status;
@@ -124,15 +124,20 @@ void GameState::render() {
 
 	player->render(camera);
 
-	/*
-	SDL_Rect hitbox = player->getHitbox();
+	SDL_Rect hitbox = (SDL_Rect) player->hitbox;
 	window->drawRect(hitbox.x - camera->frame.x,
 					 hitbox.y - camera->frame.y,
 					 hitbox.w,
 					 hitbox.h,
 					 Color("red"));
-	*/
 
+	window->drawRect(hilight.x - camera->frame.x,
+					 hilight.y - camera->frame.y,
+					 hilight.w,
+					 hilight.h,
+					 Color("black"));
+
+/*
 	for (int i = 0; i < collection->length(); i++) {
 		Entity *tmp = collection->get(i);
 
@@ -142,7 +147,7 @@ void GameState::render() {
 						 tmp->getH(),
 						 Color("blue"));
 	}
-
+*/
 	level->render(FG_LAYER);
 
 	if (tooltip_s.length() > 0) {

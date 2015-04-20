@@ -1,12 +1,15 @@
 #ifndef __LEVEL_H_DEFINED__
 #define __LEVEL_H_DEFINED__
 
+#include <algorithm>
+#include <math.h>
 #include <vector>
 #include "Window.h"
 #include "Camera.h"
 #include "PugiXML.h"
 #include "Sprite.h"
 #include "EntityCollection.h"
+#include "MovingEntity.h"
 
 #define SIL_LAYER	0	// Silhouette layer
 #define BG_LAYER	1	// Background layer
@@ -32,7 +35,7 @@ class Level
 		void load(std::string level_name);
 		void update(Entity *entity);
 		void render(int layer);
-		SDL_Rect collides(Entity *entity);
+		SDL_Rect collides(MovingEntity *entity);
 
 		int getTile(int x, int y);
 		SDL_Rect pointToTile(int x, int y);

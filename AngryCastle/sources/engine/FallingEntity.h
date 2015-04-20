@@ -1,9 +1,9 @@
 /*
  * FallingEntity.h
- * 
- * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ *
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa,
  * eli, joilla on health pointit.
- * 
+ *
  * Esimerkki:
  *		FallingEntity FallingEntity = new FallingEntity();
  *		FallingEntity->damage(100);
@@ -20,7 +20,7 @@
 class FallingEntity : public MovingEntity
 {
 	public:
-		FallingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox);
+		FallingEntity(Rectangle hitbox, float speed);
 		~FallingEntity();
 
 		// Makes entity suffer gravity

@@ -1,13 +1,16 @@
 #include "Player.h"
 
-Player::Player(Window *window, float x, float y, int w, int h, int hp, float speed, SDL_Rect hitbox):
+Player::Player(Window *window, Rectangle hitbox, float speed, int hp):
 	window(window),
-	FallingEntity(x, y, w, h, speed, hitbox),
+	FallingEntity(hitbox, speed),
 	DamageableEntity(hp),
 	crouch(false),
 	jumping(false),
 	attacking(false)
 {
+	render_offset.x = -16;
+	render_offset.y = -17;
+
 	Animation *tmp = nullptr;
 
 	animations.resize(ANIMATION_MAX);
@@ -83,7 +86,9 @@ void Player::render(Camera *camera) {
 	} else {
 		currentAnimation->flip = false;
 	}
-	currentAnimation->render(x - camera->frame.x, y - camera->frame.y);
+
+	currentAnimation->render((hitbox.x + render_offset.x) - camera->frame.x,
+							 (hitbox.y + render_offset.y) - camera->frame.y);
 }
 
 void Player::updateAnimation() {

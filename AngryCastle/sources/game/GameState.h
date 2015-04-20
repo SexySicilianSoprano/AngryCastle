@@ -37,7 +37,7 @@ class GameState : public BaseState {
 		Text *tooltip, *signText;
 		std::string tooltip_s, signText_s;
 
-		SDL_Rect hilight_tile;
+		SDL_Rect hilight;
 };
 
 #endif // __GAMESTATE_H_DEFINED__
