@@ -13,11 +13,11 @@
 int main(int argc, char* args[]) {
 	SDL::init();
 
-	Window window(SCREEN_WIDTH, 
-				SCREEN_HEIGHT, 
+	Window window(SCREEN_WIDTH,
+				SCREEN_HEIGHT,
 				SCREEN_LOGICAL_WIDTH,
 				SCREEN_LOGICAL_HEIGHT,
-				SCREEN_TITLE, 
+				SCREEN_TITLE,
 				false);
 
 	StateManager manager(&window);

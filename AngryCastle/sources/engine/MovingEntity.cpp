@@ -5,9 +5,9 @@
 
 #include "MovingEntity.h"
 
-MovingEntity::MovingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox) :
+MovingEntity::MovingEntity(int x, int y, int w, int h, float acceleration, SDL_Rect hitbox) :
 	Entity(x, y, w, h, hitbox),
-	acceleration(speed), stoppedThreshold(acceleration/10),
+	acceleration(acceleration), stoppedThreshold(acceleration/2),
 	targetVx(0) {
 }
 
@@ -15,13 +15,13 @@ MovingEntity::~MovingEntity() {
 }
 
 void MovingEntity::update(float dt) {
-	velocity_x = (acceleration * targetVx) + ((1 - acceleration) * acceleration) * (dt/1000.f);
+	velocity_x += ((targetVx - velocity_x) * acceleration ) * dt / 100.0f;
 
-	if (fabs(this->velocity_x) < stoppedThreshold) {
+	if (fabs(velocity_x) <= stoppedThreshold) {
 		velocity_x = 0;
 	}
 
-	desiredX = x + velocity_x;
+	desiredX = x + roundf(velocity_x * 1) / 1;
 	targetVx = 0;
 }
 
@@ -30,13 +30,13 @@ void MovingEntity::commitMovement() {
 }
 
 void MovingEntity::left() {
-	facing_direction = 2;
-	targetVx = (-1 * acceleration);
+	targetVx = -3;
+	facing_direction = FACING_LEFT;
 }
 
 void MovingEntity::right() {
-	facing_direction = 1;
-	targetVx = acceleration;
+	targetVx = 3;
+	facing_direction = FACING_RIGHT;
 }
 
 void MovingEntity::jump() {

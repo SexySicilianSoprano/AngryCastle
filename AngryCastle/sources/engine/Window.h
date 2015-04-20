@@ -15,7 +15,7 @@
 #include "Color.h"
 #include "Timer.h"
 
-#define FRAMERATE 30
+#define FRAMERATE 60
 #define FPS_INTERVAL 1000	// Milliseconds
 
 class Window

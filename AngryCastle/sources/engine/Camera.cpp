@@ -13,18 +13,18 @@ Camera::Camera(int width, int height):
 
 Camera::~Camera()
 {
-	
+
 }
 
 void Camera::lock(Entity *entity) {
 	locked_entity = entity;
-	frame.x = entity->getX() - frame.w/2;
-	frame.y = entity->getY() - frame.h/2;
+	//frame.x = entity->getX() - frame.w/2;
+	//frame.y = entity->getY() - frame.h/2;
 }
 
 void Camera::update(int levelWidth, int levelHeight) {
-	frame.x = locked_entity->getX() - frame.w/2;
-	frame.y = locked_entity->getY() - frame.h/2;
+	frame.x = locked_entity->getHitbox().x - frame.w/2;
+	frame.y = locked_entity->getHitbox().y - frame.h/2;
 
 	if (frame.x < 0) {
 		frame.x = 0;

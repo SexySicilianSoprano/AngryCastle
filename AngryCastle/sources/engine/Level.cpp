@@ -11,7 +11,18 @@ Level::Level(Window *window, Camera *camera, EntityCollection<Entity> *collectio
 }
 
 Level::~Level()
-{ }
+{/*
+	delete window;
+	delete camera;
+	delete collection;
+
+	delete currentDoor;
+	delete leftExit;
+	delete rightExit;
+
+	delete levelTileSheet;
+*/
+}
 
 void Level::load(std::string level_name)
 {
@@ -295,22 +306,21 @@ void Level::render(int layer)
 		row_end = data->end();
 	}
 
-	std::vector<int>::iterator col_begin;
-	std::vector<int>::iterator col_end;
-
 	for (row = row_begin; row != row_end; ++row) {
-		col_begin = row->begin() + start_tile_x;
+		std::vector<int>::iterator col_begin = row->begin() + start_tile_x;
+		std::vector<int>::iterator col_end = row->end();
 		if (start_tile_x + tiles_x < row->size()) {
 			col_end = row->begin() + start_tile_x + tiles_x;
-		} else {
-			col_end = row->end();
 		}
 
 		for (col = col_begin; col != col_end; ++col) {
 			int X = col - row->begin();
 			int Y = row - data->begin();
-			levelTileSheet->setIndex(*col-1);
-			levelTileSheet->render(X*tileSize - camera->frame.x, Y*tileSize - camera->frame.y);
+			if ((*col) != 0) {
+				levelTileSheet->setIndex(*col-1);
+				int frameX = (camera->frame.x % 2 == 0) ? camera->frame.x : camera->frame.x + 1;
+				levelTileSheet->render(X*tileSize - frameX, Y*tileSize - camera->frame.y);
+			}
 		}
 	}
 }

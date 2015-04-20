@@ -13,7 +13,7 @@ GameState::GameState(Window *window) :
 	test(nullptr)
 	{
 		SDL_Rect hitbox = {15, 16, 13, 27};
-		player = new Player(window, 0, 0, 46, 43, 100, 1.8, hitbox);
+		player = new Player(window, 0, 0, 46, 43, 100, 0.85, hitbox);
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
@@ -91,7 +91,7 @@ stateStatus GameState::update() {
 			level->load(rightLevel);
 
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			player->setPosition(spawnpoint.x, spawnpoint.y);
+			player->setPosition(spawnpoint.x + player->getHitbox().w, spawnpoint.y - player->getHitbox().h);
 		}
 
 	}
@@ -111,7 +111,7 @@ stateStatus GameState::update() {
 			level->load(leftLevel);
 
 			SDL_Point spawnpoint = level->getRightSpawn();
-			player->setPosition(spawnpoint.x, spawnpoint.y - 10);
+			player->setPosition(spawnpoint.x - player->getW(), spawnpoint.y - player->getH());
 		}
 	}
 	return status;

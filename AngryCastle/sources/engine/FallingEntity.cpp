@@ -15,7 +15,15 @@ FallingEntity::~FallingEntity() {
 }
 
 void FallingEntity::update(float dt) {
-	velocity_y += GRAVITY * (dt / 1000);
+	velocity_y += GRAVITY * (16.f / 1000);
+	if (velocity_y >= 7) {
+		velocity_y = 7;
+	}
+
+	if (velocity_y != 0) {
+		printf("Velocity Y: %f\n", velocity_y);
+	}
+
 	desiredY += velocity_y;
 	MovingEntity::update(dt);
 }

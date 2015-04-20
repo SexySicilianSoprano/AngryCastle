@@ -23,7 +23,7 @@ class Player : public FallingEntity, public DamageableEntity
 
 		void render(Camera *camera);
 
-		enum PossibleAnimation {
+		enum possible_animations {
 			IDLE=0,
 			WALK,
 			JUMP,

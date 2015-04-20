@@ -1,9 +1,9 @@
 /*
  * MovingEntity.h
- * 
- * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa, 
+ *
+ * Tämä luokka on yläluokka kaikille entityille, joita voi vahingoittaa,
  * eli, joilla on health pointit.
- * 
+ *
  * Esimerkki:
  *		MovingEntity movingEntity = new MovingEntity();
  *		movingEntity->metodi();
@@ -17,7 +17,7 @@
 class MovingEntity : public Entity
 {
 	public:
-		MovingEntity(int x, int y, int w, int h, float speed, SDL_Rect hitbox);
+		MovingEntity(int x, int y, int w, int h, float acceleration, SDL_Rect hitbox);
 		~MovingEntity();
 
 		void jump();
@@ -26,9 +26,6 @@ class MovingEntity : public Entity
 
 		void commitMovement();
 		void update(float dt);
-
-		void setSpeed(int speed);
-		int getSpeed();
 
 	protected:
 		float acceleration;
