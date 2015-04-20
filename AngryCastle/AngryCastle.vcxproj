@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="sources\engine\Animation.cpp" />
     <ClCompile Include="sources\engine\Camera.cpp" />
     <ClCompile Include="sources\engine\Color.cpp" />
@@ -24,7 +25,6 @@
     <ClCompile Include="sources\engine\Music.cpp" />
     <ClCompile Include="sources\engine\Player.cpp" />
     <ClCompile Include="sources\engine\PugiXML.cpp" />
-    <ClCompile Include="sources\engine\Rectangle.cpp" />
     <ClCompile Include="sources\engine\SDL.cpp" />
     <ClCompile Include="sources\engine\SFX.cpp" />
     <ClCompile Include="sources\engine\Sprite.cpp" />
@@ -36,12 +36,14 @@
     <ClCompile Include="sources\engine\Window.cpp" />
     <ClCompile Include="sources\game\GameOverState.cpp" />
     <ClCompile Include="sources\game\GameState.cpp" />
+    <ClCompile Include="sources\game\HUD.cpp" />
     <ClCompile Include="sources\game\main.cpp" />
     <ClCompile Include="sources\game\MenuState.cpp" />
     <ClCompile Include="sources\game\OptionsState.cpp" />
     <ClCompile Include="sources\game\VictoryState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Item.h" />
     <ClInclude Include="sources\engine\Animation.h" />
     <ClInclude Include="sources\engine\BaseState.h" />
     <ClInclude Include="sources\engine\Camera.h" />
@@ -57,7 +59,6 @@
     <ClInclude Include="sources\engine\Music.h" />
     <ClInclude Include="sources\engine\Player.h" />
     <ClInclude Include="sources\engine\PugiXML.h" />
-    <ClInclude Include="sources\engine\Rectangle.h" />
     <ClInclude Include="sources\engine\SDL.h" />
     <ClInclude Include="sources\engine\SFX.h" />
     <ClInclude Include="sources\engine\Sprite.h" />
@@ -69,6 +70,7 @@
     <ClInclude Include="sources\engine\Window.h" />
     <ClInclude Include="sources\game\GameOverState.h" />
     <ClInclude Include="sources\game\GameState.h" />
+    <ClInclude Include="sources\game\HUD.h" />
     <ClInclude Include="sources\game\MenuState.h" />
     <ClInclude Include="sources\game\OptionsState.h" />
     <ClInclude Include="sources\game\VictoryState.h" />

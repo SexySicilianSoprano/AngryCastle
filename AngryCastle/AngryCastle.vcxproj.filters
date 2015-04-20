@@ -99,7 +99,10 @@
     <ClCompile Include="sources\game\VictoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\Rectangle.cpp">
+    <ClCompile Include="sources\game\HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,7 +194,10 @@
     <ClInclude Include="sources\game\VictoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\Rectangle.h">
+    <ClInclude Include="sources\game\HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
