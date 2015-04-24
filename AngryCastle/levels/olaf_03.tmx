@@ -2,8 +2,8 @@
 <map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="41">
  <properties>
   <property name="drainRate" value="6"/>
-  <property name="exitLeft" value="erreck_02.tmx"/>
-  <property name="exitRight" value="null.tmx"/>
+  <property name="exitLeft" value="grema_02.tmx"/>
+  <property name="exitRight" value="olaf_04.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
  </properties>
@@ -24148,7 +24148,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="34" name="enemySpawn_09" type="enemySpawn" x="696.667" y="282.667">
+  <object id="34" name="enemySpawn_09" type="enemySpawn" x="761.334" y="232">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="skeleton"/>
@@ -24162,7 +24162,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object id="36" name="enemySpawn_11" type="enemySpawn" x="854" y="181.333">
+  <object id="36" name="enemySpawn_11" type="enemySpawn" x="854.667" y="186.666">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="skeleton"/>
