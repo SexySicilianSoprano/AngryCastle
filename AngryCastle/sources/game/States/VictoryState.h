@@ -1,14 +1,14 @@
 #ifndef __VICTORYSTATE_H_DEFINED__
 #define __VICTORYSTATE_H_DEFINED__
 
-#include "..//engine//BaseState.h"
-#include "..//engine//Window.h"
-#include "..//engine//Input.h"
-#include "..//engine//Font.h"
-#include "..//engine//Text.h"
-#include "..//engine//Color.h"
-#include "..//engine//Texture.h"
-#include "..//engine//Timer.h"
+#include "..//..//engine//BaseState.h"
+#include "..//..//engine//Window.h"
+#include "..//..//engine//Input.h"
+#include "..//..//engine//Font.h"
+#include "..//..//engine//Text.h"
+#include "..//..//engine//Color.h"
+#include "..//..//engine//Texture.h"
+#include "..//..//engine//Timer.h"
 
 #define SLIDE_TIME 1000
 

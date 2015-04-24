@@ -15,6 +15,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="sources\game\HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\States\GameOverState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\States\GameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\States\MenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\States\OptionsState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\States\VictoryState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\Enemies\Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\game\Enemies\Skeleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sources\engine\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,6 +84,9 @@
     <ClCompile Include="sources\engine\PugiXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sources\engine\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sources\engine\SDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -75,38 +108,41 @@
     <ClCompile Include="sources\engine\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\engine\Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sources\engine\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sources\game\GameOverState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\MenuState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\OptionsState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\VictoryState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\game\HUD.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
+    <ClCompile Include="sources\game\States\InventoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sources\game\HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\States\GameOverState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\States\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\States\MenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\States\OptionsState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\States\VictoryState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\Enemies\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\game\Enemies\Skeleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="sources\engine\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -152,6 +188,9 @@
     <ClInclude Include="sources\engine\PugiXML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sources\engine\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="sources\engine\SDL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -173,31 +212,10 @@
     <ClInclude Include="sources\engine\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\engine\Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sources\engine\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sources\game\GameOverState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\OptionsState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\VictoryState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\game\HUD.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
+    <ClInclude Include="sources\game\States\InventoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

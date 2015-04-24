@@ -56,6 +56,10 @@ void StateManager::run() {
 				pushState(new GameState(window));
 				break;
 
+			case STATE_INVENTORY:
+				pushState(new InventoryState(window));
+				break;
+
 			case STATE_VICTORY:
 				pushState(new VictoryState(window));
 				break;

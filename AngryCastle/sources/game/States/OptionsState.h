@@ -1,13 +1,13 @@
 #ifndef __OPTIONSSTATE_H_DEFINED__
 #define __OPTIONSSTATE_H_DEFINED__
 
-#include "..//engine//BaseState.h"
-#include "..//engine//Window.h"
-#include "..//engine//Input.h"
-#include "..//engine//Color.h"
-#include "..//engine//Text.h"
-#include "..//engine//Texture.h"
-#include "..//engine//Music.h"
+#include "..//..//engine//BaseState.h"
+#include "..//..//engine//Window.h"
+#include "..//..//engine//Input.h"
+#include "..//..//engine//Color.h"
+#include "..//..//engine//Text.h"
+#include "..//..//engine//Texture.h"
+#include "..//..//engine//Music.h"
 
 #define SCREEN_TITLE "Angry Castle - pre-release"
 #define SCREEN_WIDTH 1280

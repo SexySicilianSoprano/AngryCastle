@@ -9,9 +9,10 @@
 #define STATE_MENU		2
 #define STATE_OPTIONS	3
 #define STATE_GAME		4
+#define STATE_INVENTORY 5
 
-#define STATE_VICTORY	5
-#define STATE_GAMEOVER  6
+#define STATE_VICTORY	6
+#define STATE_GAMEOVER  7
 
 #define STATE_CREDITS	666
 

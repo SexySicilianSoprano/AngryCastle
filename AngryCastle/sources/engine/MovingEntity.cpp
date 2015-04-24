@@ -9,7 +9,7 @@ MovingEntity::MovingEntity(Rectangle hitbox, float speed):
 	Entity(hitbox), boundbox(hitbox),
 	acceleration(0.8), stoppedThreshold(acceleration/2),
 	velocity_x(0), velocity_y(0),
-	targetVx(0), in_air(false) {
+	targetVx(0), in_air(false), speed(speed) {
 }
 
 MovingEntity::~MovingEntity() {}
@@ -36,12 +36,12 @@ void MovingEntity::commitMovement() {
 }
 
 void MovingEntity::left() {
-	targetVx = -3;
+	targetVx = -speed;
 	facing_direction = FACING_LEFT;
 }
 
 void MovingEntity::right() {
-	targetVx = 3;
+	targetVx = speed;
 	facing_direction = FACING_RIGHT;
 }
 

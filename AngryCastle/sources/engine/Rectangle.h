@@ -20,7 +20,8 @@ class Rectangle
 		 *
 		 *		test = (SDL_Rect)rect;
 		 */
-		explicit operator SDL_Rect() {
+
+		operator SDL_Rect() {
 			SDL_Rect r = {x, y, w, h};
 			return r;
 		}

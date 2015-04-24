@@ -37,6 +37,7 @@ class MovingEntity : public Entity
 		Rectangle boundbox;
 
 	protected:
+		float speed;
 		float acceleration;
 		float targetVx;
 		float stoppedThreshold;

@@ -6,11 +6,12 @@
 #include "Input.h"
 #include "BaseState.h"
 #include "Music.h"
-#include "..//game//MenuState.h"
-#include "..//game//GameState.h"
-#include "..//game//VictoryState.h"
-#include "..//game//GameOverState.h"
-#include "..//game//OptionsState.h"
+#include "..//game//States//MenuState.h"
+#include "..//game//States//GameState.h"
+#include "..//game//States//VictoryState.h"
+#include "..//game//States//GameOverState.h"
+#include "..//game//States//OptionsState.h"
+#include "..//game//States//InventoryState.h"
 
 class StateManager {
 

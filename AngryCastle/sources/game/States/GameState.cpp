@@ -11,7 +11,8 @@ GameState::GameState(Window *window) :
 	signText(new Text(&font, Color("white"))),
 	tooltip_s(""),
 	signText_s(""),
-	test(nullptr)
+	test(nullptr),
+	background(new Texture(window, "graphics/levels/lumbroff_background.png"))
 	{
 		SDL_Rect hitbox = {15, 16, 13, 27};
 		player = new Player(window, Rectangle(10, 10, 13, 26), 3, 100);
@@ -27,6 +28,8 @@ GameState::GameState(Window *window) :
 
 		player->hitbox.x = spawnpoint.x;
 		player->hitbox.y = spawnpoint.y;
+
+		skeleton = new Skeleton(window, player, Rectangle(300, 100, 13, 26), 1, 100); 
 }
 
 GameState::~GameState() {
@@ -41,6 +44,11 @@ stateStatus GameState::update() {
 		status.status = STATE_MENU;
 	}
 
+	if (Input::keyPressed(SDL_SCANCODE_I)) {
+		status.prepend = true;
+		status.status = STATE_INVENTORY;
+	}
+
 	player->update(window->getDelta());
 
 	// Correct player position
@@ -51,6 +59,10 @@ stateStatus GameState::update() {
 
 	level->update(player);
 	camera->update(level->getLevelWidth(), level->getLevelHeight());
+
+	skeleton->update(window->getDelta()
+		);
+	skeleton->commitMovement();
 
 	// Update tooltip and sign text
 	tooltip_s  = level->tooltip;
@@ -119,11 +131,15 @@ stateStatus GameState::update() {
 }
 
 void GameState::render() {
+	background->render(0, 0);
 	level->render(SIL_LAYER);
 	level->render(BG_LAYER);
 	level->render(GAME_LAYER);
 
 	player->render(camera);
+
+	skeleton->render(camera);
+
 	SDL_Rect hitbox = (SDL_Rect) player->hitbox;
 	/*window->drawRect(hitbox.x - camera->frame.x,
 					 hitbox.y - camera->frame.y,
