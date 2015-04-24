@@ -78,6 +78,9 @@ void Window::resize(std::string title, int width, int height, bool fullscreen)
 	SDL_RenderSetLogicalSize(renderer, logical_width, logical_height);
 	SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1");
 
+	// Scaling test
+	//SDL_RenderSetScale(renderer, 8, 8);
+
 	// Asetetaan title
 	//setTitle(title);
 

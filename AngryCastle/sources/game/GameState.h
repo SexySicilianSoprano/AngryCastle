@@ -12,6 +12,7 @@
 #include "..//engine//Font.h"
 #include "..//engine//Text.h"
 #include "..//engine//Player.h"
+#include "HUD.h"
 
 #include "..//engine//Animation.h"
 
@@ -32,6 +33,7 @@ class GameState : public BaseState {
 		EntityCollection<Entity> *collection;
 
 		Player *player;
+		HUD *hud;
 
 		Font font;
 		Text *tooltip, *signText;

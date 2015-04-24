@@ -3,6 +3,7 @@
 GameState::GameState(Window *window) :
 	window(window),
 	player(nullptr),
+	hud(new HUD(window)),
 	level(nullptr),
 	camera(nullptr),
 	font("fonts/AveriaSerif-Bold.ttf", 12),
@@ -13,7 +14,7 @@ GameState::GameState(Window *window) :
 	test(nullptr)
 	{
 		SDL_Rect hitbox = {15, 16, 13, 27};
-		player = new Player(window, Rectangle(0, 0, 13, 26), 3, 100);
+		player = new Player(window, Rectangle(10, 10, 13, 26), 3, 100);
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
@@ -25,7 +26,7 @@ GameState::GameState(Window *window) :
 		SDL_Point spawnpoint = level->getLeftSpawn();
 
 		player->hitbox.x = spawnpoint.x;
-		player->hitbox.y = spawnpoint.y - 22;
+		player->hitbox.y = spawnpoint.y;
 }
 
 GameState::~GameState() {
@@ -54,7 +55,7 @@ stateStatus GameState::update() {
 	// Update tooltip and sign text
 	tooltip_s  = level->tooltip;
 	signText_s = level->signText;
-
+/*
 	if (Input::keyState(SDL_SCANCODE_RETURN)) {
 		Exit *door = level->getCurrentDoor();
 
@@ -113,7 +114,7 @@ stateStatus GameState::update() {
 			SDL_Point spawnpoint = level->getRightSpawn();
 			//player->setPosition(spawnpoint.x - player->getW(), spawnpoint.y - player->getH());
 		}
-	}
+	}*/
 	return status;
 }
 
@@ -123,22 +124,19 @@ void GameState::render() {
 	level->render(GAME_LAYER);
 
 	player->render(camera);
-
 	SDL_Rect hitbox = (SDL_Rect) player->hitbox;
-	window->drawRect(hitbox.x - camera->frame.x,
+	/*window->drawRect(hitbox.x - camera->frame.x,
 					 hitbox.y - camera->frame.y,
 					 hitbox.w,
 					 hitbox.h,
 					 Color("red"));
-
+*/
 	window->drawRect(hilight.x - camera->frame.x,
 					 hilight.y - camera->frame.y,
 					 hilight.w,
 					 hilight.h,
 					 Color("black"));
-
-/*
-	for (int i = 0; i < collection->length(); i++) {
+/*	for (int i = 0; i < collection->length(); i++) {
 		Entity *tmp = collection->get(i);
 
 		window->drawRect(tmp->getX() - camera->frame.x,
@@ -146,8 +144,7 @@ void GameState::render() {
 						 tmp->getW(),
 						 tmp->getH(),
 						 Color("blue"));
-	}
-*/
+	}*/
 	level->render(FG_LAYER);
 
 	if (tooltip_s.length() > 0) {
@@ -157,4 +154,6 @@ void GameState::render() {
 	if (signText_s.length() > 0) {
 		tooltip->print(window, signText_s, 100, 20);
 	}
+
+	hud->render(player);
 }

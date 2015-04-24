@@ -25,15 +25,12 @@ void MovingEntity::update(float dt) {
 		velocity_x = targetVx;
 	}
 
-	printf("Velocity X: %f\n", velocity_x);
-
 	boundbox.x += velocity_x;
 	targetVx = 0;
 }
 
 // NOTE(jouni): Do we even need this thing anymore?
 void MovingEntity::commitMovement() {
-	printf("hitboxy %d, boundboxy %d\n", hitbox.y, boundbox.y);
 	hitbox.x = boundbox.x;
 	hitbox.y = boundbox.y;
 }
