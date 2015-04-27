@@ -54,6 +54,12 @@ class Level
 		//bool collides(Entity *entity);
 
 	private:
+
+		double getLineLength(int x1, int y1, int x2, int y2);
+		double getLineLength(SDL_Point p1, SDL_Point p2);
+		float getLineAngle(int x1, int y1, int x2, int y2);
+		SDL_Point* getLineIntersection(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
+
 		Window *window;
 		Camera *camera;
 		EntityCollection<Entity> *collection;

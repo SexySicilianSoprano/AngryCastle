@@ -12,6 +12,15 @@ Rectangle::Rectangle(int x, int y, int w, int h):
 	// void
 }
 
+Rectangle::Rectangle(SDL_Rect rect) {
+	if (!SDL_RectEmpty(&rect)) {
+		x = rect.x;
+		y = rect.y;
+		w = rect.w;
+		h = rect.h;
+	}
+}
+
 Rectangle::~Rectangle() {}
 
 SDL_Point Rectangle::Center() {

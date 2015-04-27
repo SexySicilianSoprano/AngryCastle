@@ -1,6 +1,6 @@
 program_NAME := AngryCastleLinux
 program_C_SRCS := $(wildcard *.c)
-program_CXX_SRCS := $(wildcard ./sources/engine/*.cpp) $(wildcard ./sources/game/*.cpp)
+program_CXX_SRCS := $(wildcard ./sources/engine/*.cpp) $(wildcard ./sources/game/*.cpp) $(wildcard ./sources/game/Enemies/*.cpp) $(wildcard ./sources/game/States/*.cpp)
 program_C_OBJS := ${program_C_SRCS:.c=.o}
 program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o}
 program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)

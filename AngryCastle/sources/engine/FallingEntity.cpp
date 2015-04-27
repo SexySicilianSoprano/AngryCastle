@@ -20,7 +20,7 @@ void FallingEntity::update(float dt) {
 		velocity_y = 7;
 	}
 
-	// boundbox.y += velocity_y;
+	boundbox.y += velocity_y;
 
 	MovingEntity::update(dt);
 }

@@ -29,7 +29,7 @@ GameState::GameState(Window *window) :
 		player->hitbox.x = spawnpoint.x;
 		player->hitbox.y = spawnpoint.y;
 
-		skeleton = new Skeleton(window, player, Rectangle(300, 100, 13, 26), 1, 100); 
+		skeleton = new Skeleton(window, player, Rectangle(300, 100, 13, 26), 1, 100);
 }
 
 GameState::~GameState() {
@@ -136,6 +136,11 @@ void GameState::render() {
 	level->render(BG_LAYER);
 	level->render(GAME_LAYER);
 
+	window->drawRect(hilight.x - camera->frame.x,
+					 hilight.y - camera->frame.y,
+					 hilight.w,
+					 hilight.h,
+					 Color("black"));
 	player->render(camera);
 
 	skeleton->render(camera);
@@ -147,11 +152,6 @@ void GameState::render() {
 					 hitbox.h,
 					 Color("red"));
 */
-	window->drawRect(hilight.x - camera->frame.x,
-					 hilight.y - camera->frame.y,
-					 hilight.w,
-					 hilight.h,
-					 Color("black"));
 /*	for (int i = 0; i < collection->length(); i++) {
 		Entity *tmp = collection->get(i);
 

@@ -12,6 +12,7 @@ class Rectangle
 {
 	public:
 		Rectangle(int x, int y, int w, int h);
+		Rectangle(SDL_Rect rect);
 		~Rectangle();
 
 		/* Can be casted to SDL_Rect like;
