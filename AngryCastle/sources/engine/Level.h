@@ -35,7 +35,7 @@ class Level
 		void load(std::string level_name);
 		void update(Entity *entity);
 		void render(int layer);
-		SDL_Rect collides(MovingEntity *entity);
+		void collides(MovingEntity *entity);
 
 		int getTile(int x, int y);
 		SDL_Rect pointToTile(int x, int y);
@@ -54,11 +54,9 @@ class Level
 		//bool collides(Entity *entity);
 
 	private:
-
+		SDL_Point* collisionAt(MovingEntity *entity);
 		double getLineLength(int x1, int y1, int x2, int y2);
 		double getLineLength(SDL_Point p1, SDL_Point p2);
-		float getLineAngle(int x1, int y1, int x2, int y2);
-		SDL_Point* getLineIntersection(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4);
 
 		Window *window;
 		Camera *camera;

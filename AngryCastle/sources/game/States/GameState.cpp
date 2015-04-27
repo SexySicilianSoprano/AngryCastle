@@ -14,17 +14,17 @@ GameState::GameState(Window *window) :
 	test(nullptr),
 	background(new Texture(window, "graphics/levels/lumbroff_background.png"))
 	{
-		SDL_Rect hitbox = {15, 16, 13, 27};
-		player = new Player(window, Rectangle(10, 10, 13, 26), 3, 100);
+		SDL_Rect hitbox = {15, 16, 14, 28};
+		player = new Player(window, Rectangle(400, 200, 13, 26), 3, 100);
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
 		collection = new EntityCollection<Entity>;
 
 		level = new Level(window, camera, collection);
-		level->load("levels/lumbroff_01.tmx");
+		level->load("levels/mountain_shrine_01.tmx");
 
-		SDL_Point spawnpoint = level->getLeftSpawn();
+		SDL_Point spawnpoint = level->getRightSpawn();
 
 		player->hitbox.x = spawnpoint.x;
 		player->hitbox.y = spawnpoint.y;
@@ -52,7 +52,7 @@ stateStatus GameState::update() {
 	player->update(window->getDelta());
 
 	// Correct player position
-	hilight = level->collides(player);
+	level->collides(player);
 
 	// Commit player movement
 	player->commitMovement();
@@ -135,12 +135,13 @@ void GameState::render() {
 	level->render(SIL_LAYER);
 	level->render(BG_LAYER);
 	level->render(GAME_LAYER);
-
+	/*
 	window->drawRect(hilight.x - camera->frame.x,
 					 hilight.y - camera->frame.y,
 					 hilight.w,
 					 hilight.h,
 					 Color("black"));
+					 */
 	player->render(camera);
 
 	skeleton->render(camera);

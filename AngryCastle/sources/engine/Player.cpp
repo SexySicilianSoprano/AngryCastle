@@ -45,8 +45,8 @@ void Player::update(float dt) {
 	}
 
 	if (Input::keyState(SDL_SCANCODE_W)) {
-		// boundbox.y += -4;
-			jump();
+		boundbox.y += -4;
+			// jump();
 	}
 
 	if (Input::keyState(SDL_SCANCODE_A)) {

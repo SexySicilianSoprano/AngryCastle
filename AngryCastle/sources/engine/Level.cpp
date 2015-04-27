@@ -388,13 +388,12 @@ SDL_Point Level::getStartSpawn() {
 	return startSpawn;
 }
 
-SDL_Rect Level::collides(MovingEntity *entity)
+void Level::collides(MovingEntity *entity)
 {
-#if 1
-
-//	Retval
 	Rectangle old_entity = entity->hitbox;
 	Rectangle new_entity = entity->boundbox;
+	new_entity.w = old_entity.w;
+	new_entity.h = old_entity.h;
 
 	// Get the area of tiles considered for collision
 	SDL_Point min_tile_xy = {std::min(old_entity.TopLeft().x, new_entity.TopLeft().x),
@@ -402,190 +401,48 @@ SDL_Rect Level::collides(MovingEntity *entity)
 	SDL_Point max_tile_xy = {std::max(old_entity.BottomRight().x, new_entity.BottomRight().x),
 							 std::max(old_entity.BottomRight().y, new_entity.BottomRight().y)};
 
-	// SDL_Rect min_tile = pointToTile(min_tile_xy.x, min_tile_xy.y);
-	// SDL_Rect max_tile = pointToTile(max_tile_xy.x, max_tile_xy.y);
 	int min_tile_x = (min_tile_xy.x / tileSize) - 1;
 	int min_tile_y = (min_tile_xy.y / tileSize) - 1;
 	int max_tile_x = (max_tile_xy.x / tileSize) + 1;
 	int max_tile_y = (max_tile_xy.y / tileSize) + 1;
 
-	SDL_Rect nul = {min_tile_x * tileSize, min_tile_y * tileSize, (max_tile_x * tileSize) - (min_tile_x  * tileSize), (max_tile_y * tileSize) - (min_tile_y  * tileSize)};
+	SDL_Rect tmpbound = (SDL_Rect) new_entity;
 
- 	SDL_Point line_start = {old_entity.Center().x, old_entity.Center().y};
- 	SDL_Point line_end   = {new_entity.Center().x, new_entity.Center().y};
-
- 	printf("Start x%d y%d - End x%d y%d\n", line_start.x, line_start.y, line_end.x, line_end.y);
-
-	SDL_Point *closest_intersection = new SDL_Point();
-	std::vector<SDL_Point*> intersections;
-	std::vector<float> distances;
+	double target_movement = getLineLength(old_entity.x, old_entity.y, new_entity.x, new_entity.y);
 
 	for (int y_tile = min_tile_y; y_tile <= max_tile_y; y_tile++) {
 		for (int x_tile = min_tile_x; x_tile <= max_tile_x; x_tile++) {
-			SDL_Rect tmp = {(x_tile * tileSize) - (old_entity.w/2),
-							(y_tile * tileSize) - (old_entity.h/2),
-							tileSize + old_entity.w,
-							tileSize + old_entity.h};
+			SDL_Rect tmp = {(x_tile * tileSize),
+							(y_tile * tileSize),
+							tileSize,
+							tileSize};
 			// SDL_Rect tmp = {y_tile, x_tile, tileSize + old_entity.w, tileSize + old_entity.h};
 			// printf("tile[%d][%d]: x%d y%d w%d h%d\n", x_tile, y_tile, tmp.x, tmp.y, tmp.w, tmp.h);
 
-			if (SDL_IntersectRectAndLine(&tmp, &line_start.x, &line_start.y,
-										 &line_end.x, &line_end.y) &&
+			if (SDL_HasIntersection(&tmp, &tmpbound) &&
 				getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
 
-				printf("New tile\n");
-				Rectangle tmp2(tmp);
-				SDL_Point* top_intersect    = getLineIntersection(line_start, line_end, tmp2.TopLeft(), tmp2.TopRight());
-				SDL_Point* right_intersect  = getLineIntersection(line_start, line_end, tmp2.TopRight(), tmp2.BottomRight());
-				SDL_Point* left_intersect   = getLineIntersection(line_start, line_end, tmp2.TopLeft(), tmp2.BottomLeft());
-				SDL_Point* bottom_intersect = getLineIntersection(line_start, line_end, tmp2.BottomLeft(), tmp2.BottomRight());
-
-				if (top_intersect) {
-					distances.push_back(getLineLength(line_start.x, line_start.y, top_intersect->x, top_intersect->y));
-					intersections.push_back(top_intersect);
-
-					printf("Top intersect: x%d y%d - Length: %f\n", top_intersect->x, top_intersect->y,
-						   getLineLength(line_start.x, line_start.y, top_intersect->x, top_intersect->y));
-				}
-
-				if (bottom_intersect) {
-					distances.push_back(getLineLength(line_start.x, line_start.y, bottom_intersect->x, bottom_intersect->y));
-					intersections.push_back(bottom_intersect);
-
-					printf("Bottom intersect: x%d y%d - Length: %f\n", bottom_intersect->x, bottom_intersect->y,
-						   getLineLength(line_start.x, line_start.y, bottom_intersect->x, bottom_intersect->y));
-				}
-
-				if (left_intersect) {
-					distances.push_back(getLineLength(line_start.x, line_start.y, left_intersect->x, left_intersect->y));
-					intersections.push_back(left_intersect);
-
-					printf("Left intersect: x%d y%d - Length: %f\n", left_intersect->x, left_intersect->y,
-						   getLineLength(line_start.x, line_start.y, left_intersect->x, left_intersect->y));
-				}
-
-				if (right_intersect) {
-					distances.push_back(getLineLength(line_start.x, line_start.y, right_intersect->x, right_intersect->y));
-					intersections.push_back(right_intersect);
-
-					printf("Right intersect: x%d y%d - Length: %f\n", right_intersect->x, right_intersect->y,
-						   getLineLength(line_start.x, line_start.y, right_intersect->x, right_intersect->y));
-				}
-			}
-		}
-	}
-
-	std::vector<float>::iterator result = std::min_element(distances.begin(), distances.end());
-
-	if (!intersections.empty()) {
-		closest_intersection->x = intersections[std::distance(std::begin(distances), result)]->x;
-		closest_intersection->y = intersections[std::distance(std::begin(distances), result)]->y;
-	}
-
-	if (closest_intersection->x > 0 && closest_intersection->y > 0) {
-		entity->boundbox.y = closest_intersection->y - (old_entity.h/2) - 1;
-
-		// if (line_start.y != line_end.y) {
-			entity->boundbox.x = closest_intersection->x - (old_entity.w/2);
-		// }
-		entity->in_air = false;
-		entity->velocity_y = 0;
-	}
-
-
-	// if (!SDL_RectEmpty(&closest_tile)) {
-	//  	SDL_Point top_tile_start = {closest_tile.x, closest_tile.y};
-	//  	SDL_Point top_tile_end   = {closest_tile.x + closest_tile.w, closest_tile.y};
-	//  	SDL_Point* top_intersect = getLineIntersection(line_start, line_end, top_tile_start, top_tile_end);
-	//  	if (top_intersect) {
-	// 	 	float top_intersect_length = getLineLength(line_start.x, line_start.y, top_intersect->x, top_intersect->y);
-	// 	 	printf("Top intersect length: %f\n", top_intersect_length);
-	//  	}
-
-	//  	SDL_Point right_side_start = {closest_tile.x, closest_tile.y};
-	//  	SDL_Point right_side_end   = {closest_tile.x, closest_tile.y + closest_tile.h};
-	//  	SDL_Point* right_side_intersect = getLineIntersection(line_start, line_end, right_side_start, right_side_end);
-
-	// 	if (right_side_intersect) {
-	// 	 	float right_intersect_length = getLineLength(line_start.x, line_start.y, right_side_intersect->x, right_side_intersect->y);
-	// 	 	printf("Right intersect length: %f\n", right_intersect_length);
-	//  	}
-
-	//  	if (right_side_intersect) {
-	//  		printf("Intersection: x%d y%d", right_side_intersect->x, right_side_intersect->y);
-
-	//  		entity->boundbox.x = right_side_intersect->x - (old_entity.w/2);
-	//  	}
-
-	//  	if (top_intersect) {
-	// 	 	printf("Itersection: x%d y%d\n", top_intersect->x, top_intersect->y - 1);
-
-	// 	 	entity->boundbox.x = top_intersect->x - (old_entity.w/2);
-	// 	 	entity->boundbox.y = top_intersect->y - (old_entity.h/2);
-	//  	}
-
-	//  	// if (old_x) {
-	// 		// entity->boundbox.y = closest_tile.y - (old_y * new_x) / old_x; //closest_tile.y - (old_entity.h/2);
-	// 		// printf("Something y: %d\n", (old_y * new_x) / old_x);
-	//  	// } else {
-	//  	// 	entity->boundbox.y = closest_tile.y - (old_entity.h/2);
-	//  	// }
-
-	// 	entity->in_air = false;
-	// 	entity->velocity_y = 0;
-	// }
-
-	return nul;
-
-#else
-	SDL_Rect hitbox = (SDL_Rect) entity->hitbox;
-	SDL_Rect result;
-	std::vector<SDL_Point> tiles;
-
-	SDL_Point top_right_tile = {hitbox.x / tileSize, hitbox.y / tileSize};
-	SDL_Point bottom_right_tile = {(hitbox.x + hitbox.w) / tileSize,
-								   (hitbox.y + hitbox.h) / tileSize};
-
-	// Number of tiles entity overlaps vertically
-	int tiles_x = bottom_right_tile.x - top_right_tile.x;
-	// Number of tiles entity overlaps horizontally
-	int tiles_y = bottom_right_tile.y - top_right_tile.y;
-
-	// Get all tiles entity overlaps
-	for (int i = 0; i <= tiles_y; i++) {
-		for (int j = 0; j <= tiles_x; j++) {
-			SDL_Point tmp = {hitbox.x + (j * tileSize), hitbox.y + (i *tileSize)};
-			tiles.push_back(tmp);
-		}
-	}
-
-	printf("w%d h%d\n", hitbox.w, hitbox.h);
-
-	// Collision correction
-	for (std::vector<SDL_Point>::iterator it = tiles.begin();
-		 it != tiles.end();
-		 ++it) {
-
-		if (getTile(it->x, it->y) != 0) {
-			SDL_Rect tile = pointToTile(it->x, it->y);
-
-			if (SDL_IntersectRect(&hitbox, &tile, &result)) {
-				if (result.h > result.w) {
-					if (hitbox.x < tile.x) {
-						hitbox.x 		 -= result.w;
-					} else {
-						hitbox.x 		 += result.w;
-					}
+				SDL_Rect result;
+				SDL_IntersectRect(&tmp, &tmpbound, &result);
+				printf("result w%d h%d\n", result.w, result.h);
+				
+				if (result.w > result.h) {
+					entity->boundbox.y = tmp.y - entity->hitbox.h;
 				} else {
-					hitbox.y 		 	-= result.h;
-					entity->velocity_y	= 0;
-					entity->in_air		= false;
+					entity->boundbox.x -= (result.w > target_movement) ? target_movement : result.w;
 				}
+
+				float movement = getLineLength(old_entity.x, old_entity.y, entity->boundbox.x, entity->boundbox.y);
+				printf("Movement %f/%f\n", movement, target_movement);
+				target_movement -= movement;
+
+				entity->boundbox.y -= target_movement;
+
 			}
 		}
 	}
-#endif
 }
+
 
 double Level::getLineLength(int x1, int y1, int x2, int y2) {
 	// NOTE(jouni): We might need abs here?
@@ -600,36 +457,4 @@ double Level::getLineLength(SDL_Point p1, SDL_Point p2) {
 	int y = p2.y - p2.y;
 
 	return sqrt(pow(x, 2) + pow(y, 2));
-}
-
-float Level::getLineAngle(int x1, int y1, int x2, int y2) {
-	return (atan2(y2 - y1, x2 - x1) * 180) / M_PI;
-}
-
-SDL_Point* Level::getLineIntersection(SDL_Point p1, SDL_Point p2, SDL_Point p3, SDL_Point p4) {
-	// Store the values for fast access and easy
-	// equations-to-code conversion
-	float x1 = p1.x, x2 = p2.x, x3 = p3.x, x4 = p4.x;
-	float y1 = p1.y, y2 = p2.y, y3 = p3.y, y4 = p4.y;
-
-	float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-	// If d is zero, there is no intersection
-	if (d == 0) return NULL;
-
-	// Get the x and y
-	float pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4);
-	float x = ( pre * (x3 - x4) - (x1 - x2) * post ) / d;
-	float y = ( pre * (y3 - y4) - (y1 - y2) * post ) / d;
-
-	// Check if the x and y coordinates are within both lines
-	if ( x < std::min(x1, x2) || x > std::max(x1, x2) ||
-	x < std::min(x3, x4) || x > std::max(x3, x4) ) return NULL;
-	if ( y < std::min(y1, y2) || y > std::max(y1, y2) ||
-	y < std::min(y3, y4) || y > std::max(y3, y4) ) return NULL;
-
-	// Return the point of intersection
-	SDL_Point* ret = new SDL_Point();
-	ret->x = x;
-	ret->y = y;
-	return ret;
 }
