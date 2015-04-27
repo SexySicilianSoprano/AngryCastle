@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="120" height="30" tilewidth="16" tileheight="16" nextobjectid="45">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="120" height="30" tilewidth="16" tileheight="16" nextobjectid="56">
  <properties>
   <property name="drainRate" value="6"/>
   <property name="exitLeft" value="elminas_03.tmx"/>
@@ -1127,6 +1127,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="406"/>
+   <tile gid="407"/>
+   <tile gid="408"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1244,6 +1247,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="438"/>
+   <tile gid="439"/>
+   <tile gid="440"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1361,15 +1367,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="470"/>
+   <tile gid="471"/>
+   <tile gid="472"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1487,6 +1487,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="502"/>
+   <tile gid="503"/>
+   <tile gid="504"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -1996,6 +1999,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="350"/>
+   <tile gid="351"/>
+   <tile gid="352"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2022,6 +2028,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="350"/>
+   <tile gid="351"/>
+   <tile gid="352"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2036,6 +2045,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="350"/>
+   <tile gid="351"/>
+   <tile gid="352"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2107,6 +2119,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="382"/>
+   <tile gid="383"/>
+   <tile gid="384"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2133,6 +2148,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="382"/>
+   <tile gid="383"/>
+   <tile gid="384"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2147,6 +2165,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="382"/>
+   <tile gid="383"/>
+   <tile gid="384"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2218,6 +2239,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="414"/>
+   <tile gid="415"/>
+   <tile gid="416"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2244,6 +2268,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="414"/>
+   <tile gid="415"/>
+   <tile gid="416"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2258,6 +2285,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="414"/>
+   <tile gid="415"/>
+   <tile gid="416"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2329,6 +2359,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="446"/>
+   <tile gid="447"/>
+   <tile gid="448"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2355,6 +2388,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="446"/>
+   <tile gid="447"/>
+   <tile gid="448"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2369,6 +2405,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="446"/>
+   <tile gid="447"/>
+   <tile gid="448"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2440,6 +2479,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="478"/>
+   <tile gid="479"/>
+   <tile gid="480"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2466,6 +2508,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="478"/>
+   <tile gid="479"/>
+   <tile gid="480"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2480,6 +2525,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="478"/>
+   <tile gid="479"/>
+   <tile gid="480"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2548,68 +2596,20 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="406"/>
+   <tile gid="407"/>
+   <tile gid="408"/>
+   <tile gid="510"/>
+   <tile gid="511"/>
+   <tile gid="512"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="406"/>
+   <tile gid="407"/>
+   <tile gid="408"/>
    <tile gid="650"/>
    <tile gid="651"/>
    <tile gid="652"/>
@@ -2628,9 +2628,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="510"/>
+   <tile gid="511"/>
+   <tile gid="512"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2645,6 +2645,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="510"/>
+   <tile gid="511"/>
+   <tile gid="512"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2713,23 +2716,20 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="438"/>
+   <tile gid="439"/>
+   <tile gid="440"/>
+   <tile gid="542"/>
+   <tile gid="543"/>
+   <tile gid="544"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="438"/>
+   <tile gid="439"/>
+   <tile gid="440"/>
    <tile gid="682"/>
    <tile gid="683"/>
    <tile gid="684"/>
@@ -2748,9 +2748,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="542"/>
+   <tile gid="543"/>
+   <tile gid="544"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2765,6 +2765,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="542"/>
+   <tile gid="543"/>
+   <tile gid="544"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2833,23 +2836,20 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="470"/>
+   <tile gid="471"/>
+   <tile gid="472"/>
+   <tile gid="574"/>
+   <tile gid="575"/>
+   <tile gid="576"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="470"/>
+   <tile gid="471"/>
+   <tile gid="472"/>
    <tile gid="714"/>
    <tile gid="715"/>
    <tile gid="716"/>
@@ -2868,9 +2868,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="574"/>
+   <tile gid="575"/>
+   <tile gid="576"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2885,6 +2885,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="574"/>
+   <tile gid="575"/>
+   <tile gid="576"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -2953,23 +2956,20 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="502"/>
+   <tile gid="503"/>
+   <tile gid="504"/>
+   <tile gid="606"/>
+   <tile gid="607"/>
+   <tile gid="608"/>
    <tile gid="0"/>
    <tile gid="293"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="502"/>
+   <tile gid="503"/>
+   <tile gid="504"/>
    <tile gid="746"/>
    <tile gid="747"/>
    <tile gid="748"/>
@@ -2988,9 +2988,9 @@
    <tile gid="0"/>
    <tile gid="293"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="606"/>
+   <tile gid="607"/>
+   <tile gid="608"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="293"/>
@@ -3005,9 +3005,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="606"/>
+   <tile gid="607"/>
+   <tile gid="608"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -14486,63 +14486,63 @@
  </layer>
  <objectgroup name="Triggers"/>
  <objectgroup name="Actors">
-  <object id="31" name="enemySpawn_06" type="enemySpawn" x="1528" y="152.333">
+  <object id="31" name="enemySpawn_06" type="enemySpawn" x="1722.5" y="183.833">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="32" name="enemySpawn_07" type="enemySpawn" x="1273.33" y="153.667">
+  <object id="32" name="enemySpawn_07" type="enemySpawn" x="1384.33" y="153.167">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="construct"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="33" name="enemySpawn_08" type="enemySpawn" x="1130" y="151">
+  <object id="33" name="enemySpawn_08" type="enemySpawn" x="1160" y="89.6667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="giantbat"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="34" name="enemySpawn_09" type="enemySpawn" x="696.667" y="282.667">
+  <object id="34" name="enemySpawn_09" type="enemySpawn" x="694.667" y="327.334">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="ghost"/>
    </properties>
    <ellipse/>
   </object>
   <object id="35" name="enemySpawn_10" type="enemySpawn" x="666.667" y="280.667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="ghost"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="36" name="enemySpawn_11" type="enemySpawn" x="854" y="181.333">
+  <object id="36" name="enemySpawn_11" type="enemySpawn" x="937.333" y="348.666">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="ghost"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="37" name="enemySpawn_12" type="enemySpawn" x="489.666" y="345">
+  <object id="37" name="enemySpawn_12" type="enemySpawn" x="489.666" y="391.667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="vampire"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="38" name="enemySpawn_13" type="enemySpawn" x="296.666" y="345.333">
+  <object id="38" name="enemySpawn_13" type="enemySpawn" x="296.666" y="392">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="39" name="enemySpawn_14" type="enemySpawn" x="328.667" y="346.666">
+  <object id="39" name="enemySpawn_14" type="enemySpawn" x="328.667" y="393.333">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="skeleton"/>
@@ -14553,6 +14553,60 @@
    <ellipse/>
   </object>
   <object id="44" name="playerSpawnLeft" type="spawn" x="7" y="391">
+   <ellipse/>
+  </object>
+  <object id="45" name="door_01" type="door" x="944.75" y="360.25" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="flowerspring_house_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="46" name="door_02" type="door" x="943.75" y="154.75" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="flowerspring_house_01.tmx"/>
+    <property name="spawn" value="playerSpawnRight"/>
+   </properties>
+  </object>
+  <object id="50" name="enemySpawn_01" type="enemySpawn" x="1687.5" y="183">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="51" name="enemySpawn_02" type="enemySpawn" x="1655" y="181">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="52" name="enemySpawn_03" type="enemySpawn" x="1625" y="182.5">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="53" name="enemySpawn_04" type="enemySpawn" x="873.5" y="390.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="54" name="enemySpawn_05" type="enemySpawn" x="841" y="388.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="55" name="enemySpawn_06" type="enemySpawn" x="811" y="389.833">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>

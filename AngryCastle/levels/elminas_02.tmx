@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="43">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="54">
  <properties>
   <property name="drainRate" value="6"/>
   <property name="exitLeft" value="elminas_01.tmx"/>
@@ -24086,101 +24086,101 @@
  </layer>
  <objectgroup name="Triggers"/>
  <objectgroup name="Actors">
-  <object id="26" name="enemySpawn_01" type="enemySpawn" x="2948" y="98.333">
+  <object id="26" name="enemySpawn_01" type="enemySpawn" x="2951.33" y="105">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="27" name="enemySpawn_02" type="enemySpawn" x="2357.33" y="169">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="28" name="enemySpawn_03" type="enemySpawn" x="2328" y="169.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="29" name="enemySpawn_04" type="enemySpawn" x="2295.67" y="169.667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="eliteskeleton"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="30" name="enemySpawn_05" type="enemySpawn" x="2105.33" y="203">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="werewolf"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="31" name="enemySpawn_06" type="enemySpawn" x="1718" y="250.333">
    <properties>
     <property name="amount" value="1"/>
     <property name="enemyType" value="skeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="27" name="enemySpawn_02" type="enemySpawn" x="2643.33" y="114">
+  <object id="32" name="enemySpawn_07" type="enemySpawn" x="1432.33" y="298.667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="28" name="enemySpawn_03" type="enemySpawn" x="2614" y="114.333">
+  <object id="33" name="enemySpawn_08" type="enemySpawn" x="1370" y="296">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="29" name="enemySpawn_04" type="enemySpawn" x="2581.67" y="114.667">
+  <object id="34" name="enemySpawn_09" type="enemySpawn" x="760.667" y="328.667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="30" name="enemySpawn_05" type="enemySpawn" x="2165.33" y="233">
+  <object id="35" name="enemySpawn_10" type="enemySpawn" x="730.667" y="326.667">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="31" name="enemySpawn_06" type="enemySpawn" x="1528" y="152.333">
+  <object id="36" name="enemySpawn_11" type="enemySpawn" x="1013" y="326.333">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="32" name="enemySpawn_07" type="enemySpawn" x="1273.33" y="153.667">
+  <object id="37" name="enemySpawn_12" type="enemySpawn" x="505.666" y="360">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="33" name="enemySpawn_08" type="enemySpawn" x="1130" y="151">
+  <object id="38" name="enemySpawn_13" type="enemySpawn" x="297.666" y="264.333">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="34" name="enemySpawn_09" type="enemySpawn" x="696.667" y="282.667">
+  <object id="39" name="enemySpawn_14" type="enemySpawn" x="329.667" y="265.666">
    <properties>
     <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="35" name="enemySpawn_10" type="enemySpawn" x="666.667" y="280.667">
-   <properties>
-    <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="36" name="enemySpawn_11" type="enemySpawn" x="854" y="181.333">
-   <properties>
-    <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="37" name="enemySpawn_12" type="enemySpawn" x="489.666" y="345">
-   <properties>
-    <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="38" name="enemySpawn_13" type="enemySpawn" x="296.666" y="345.333">
-   <properties>
-    <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="39" name="enemySpawn_14" type="enemySpawn" x="328.667" y="346.666">
-   <properties>
-    <property name="amount" value="1"/>
-    <property name="enemyType" value="skeleton"/>
+    <property name="enemyType" value="eliteskeleton"/>
    </properties>
    <ellipse/>
   </object>
@@ -24188,6 +24188,83 @@
    <ellipse/>
   </object>
   <object id="42" name="playerSpawnRight" type="spawn" x="3192.5" y="104.25">
+   <ellipse/>
+  </object>
+  <object id="43" name="enemySpawn_15" type="enemySpawn" x="806.917" y="199.917">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="44" name="enemySpawn_16" type="enemySpawn" x="526" y="199.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="45" name="enemySpawn_17" type="enemySpawn" x="591.333" y="198.667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="46" name="enemySpawn_18" type="enemySpawn" x="1338.67" y="118">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="47" name="enemySpawn_19" type="enemySpawn" x="1419.33" y="152">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="48" name="enemySpawn_20" type="enemySpawn" x="1676" y="103.333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="49" name="enemySpawn_21" type="enemySpawn" x="1869.33" y="84.6667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="50" name="enemySpawn_22" type="enemySpawn" x="2122" y="69.3333">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="51" name="enemySpawn_23" type="enemySpawn" x="2205.33" y="56.6667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="52" name="enemySpawn_24" type="enemySpawn" x="2539.33" y="42.6667">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="53" name="enemySpawn_25" type="enemySpawn" x="2679.33" y="42">
+   <properties>
+    <property name="amount" value="1"/>
+    <property name="enemyType" value="raven"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>
