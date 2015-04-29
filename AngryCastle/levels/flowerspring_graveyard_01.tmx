@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" nextobjectid="64">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" backgroundcolor="#323c39" nextobjectid="64">
  <properties>
+  <property name="background" value="Elminas_background.png"/>
+  <property name="backgroundHeight" value="0"/>
   <property name="drainRate" value="6"/>
   <property name="exitLeft" value="flowerspring_01.tmx"/>
   <property name="exitRight" value="flowerspring_graveyard_02.tmx"/>
