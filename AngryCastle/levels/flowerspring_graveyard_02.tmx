@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" nextobjectid="53">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="150" height="30" tilewidth="16" tileheight="16" nextobjectid="54">
  <properties>
   <property name="drainRate" value="6"/>
   <property name="exitLeft" value="erreck_02.tmx"/>
@@ -5735,10 +5735,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="775"/>
+   <tile gid="775"/>
+   <tile gid="775"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -5885,10 +5885,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -6035,10 +6035,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -6185,10 +6185,10 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="775"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -6323,24 +6323,24 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="232"/>
+   <tile gid="0"/>
+   <tile gid="775"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="775"/>
+   <tile gid="0"/>
    <tile gid="232"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="232"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="232"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="232"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -10542,9 +10542,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="395"/>
-   <tile gid="396"/>
-   <tile gid="397"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="39"/>
    <tile gid="39"/>
@@ -10692,9 +10692,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="427"/>
-   <tile gid="428"/>
-   <tile gid="429"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="39"/>
    <tile gid="39"/>
@@ -10839,13 +10839,13 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="395"/>
-   <tile gid="396"/>
-   <tile gid="396"/>
-   <tile gid="396"/>
-   <tile gid="396"/>
-   <tile gid="396"/>
-   <tile gid="396"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="39"/>
    <tile gid="39"/>
    <tile gid="164"/>
@@ -18084,7 +18084,14 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers"/>
+ <objectgroup name="Triggers">
+  <object id="53" name="door_01" type="door" x="1786.25" y="125.25" width="40.5" height="68.5">
+   <properties>
+    <property name="changeLevel" value="flowerspring_catacomb_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="Actors">
   <object id="30" name="enemySpawn_05" type="enemySpawn" x="1050" y="169.833">
    <properties>
@@ -18159,7 +18166,6 @@
   <object id="43" name="playerSpawnLeft" type="spawn" x="6" y="282.667">
    <ellipse/>
   </object>
-  <object id="44" name="Boss_04" type="bossTrigger" x="1527.33" y="83.6665" width="365.333" height="110.667"/>
   <object id="45" name="enemySpawn_01" type="enemySpawn" x="1174" y="136.333">
    <properties>
     <property name="amount" value="1"/>

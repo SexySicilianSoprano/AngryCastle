@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="15" tilewidth="16" tileheight="16" nextobjectid="31">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="15" tilewidth="16" tileheight="16" backgroundcolor="#639bff" nextobjectid="31">
+ <properties>
+  <property name="background" value="lumbroff_background.png"/>
+  <property name="backgroundHeight" value="0"/>
+  <property name="drainRate" value="0"/>
+ </properties>
  <tileset firstgid="1" name="Lumbroff_tileset" tilewidth="16" tileheight="16">
   <image source="../graphics/levels/Lumbroff_tileset.png" trans="ff00ff" width="512" height="512"/>
   <terraintypes>

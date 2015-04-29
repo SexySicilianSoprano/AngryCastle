@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="19">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" backgroundcolor="#5fcde4" nextobjectid="20">
  <properties>
+  <property name="background" value="Filmoor_background.png"/>
+  <property name="backgroundHeight" value="224"/>
+  <property name="drainRate" value="9"/>
   <property name="exitLeft" value="mountain_shrine_01.tmx"/>
   <property name="exitRight" value="filmoor_01.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
@@ -8755,8 +8758,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="44"/>
+   <tile gid="45"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -8955,8 +8958,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="76"/>
+   <tile gid="77"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -9155,8 +9158,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="108"/>
+   <tile gid="109"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -9355,8 +9358,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="140"/>
+   <tile gid="141"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -24083,7 +24086,9 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="Triggers"/>
+ <objectgroup name="Triggers">
+  <object id="19" name="shrine_01" x="1309.87" y="203.083" width="34.9167" height="69.1667"/>
+ </objectgroup>
  <objectgroup name="Actors">
   <object id="3" name="playerSpawnRight" type="spawn" x="3193.33" y="330.667">
    <ellipse/>

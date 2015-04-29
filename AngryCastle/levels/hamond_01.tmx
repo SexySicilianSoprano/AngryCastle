@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="20">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" backgroundcolor="#306082" nextobjectid="20">
  <properties>
+  <property name="background" value="Hamond_background.png"/>
+  <property name="backgroundHeight" value="224"/>
+  <property name="drainRate" value="10"/>
   <property name="exitLeft" value="lumbroff_01.tmx"/>
   <property name="exitRight" value="hamond_02.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>

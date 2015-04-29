@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" nextobjectid="40">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" nextobjectid="42">
  <properties>
-  <property name="exitLeft" value="erreck_02.tmx"/>
+  <property name="exitLeft" value="hamond_03.tmx"/>
   <property name="exitRight" value="null.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
   <property name="spawnRight" value="playerSpawnLeft"/>
@@ -17555,8 +17555,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="44"/>
+   <tile gid="45"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -17755,8 +17755,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="76"/>
+   <tile gid="77"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -17955,8 +17955,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="108"/>
+   <tile gid="109"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -18155,8 +18155,8 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="140"/>
+   <tile gid="141"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -40132,6 +40132,7 @@
     <property name="spawn" value="playerSpawnRight"/>
    </properties>
   </object>
+  <object id="40" name="shrine_01" x="1311" y="591" width="33.6667" height="65.6667"/>
  </objectgroup>
  <objectgroup name="Actors">
   <properties>
