@@ -153,6 +153,12 @@ void Level::load(std::string level_name)
 
 			if (spawn_type.compare("playerSpawnLeft") == 0) {
 				leftSpawn.x = spawn_x;
+
+				std::vector<std::vector<int>> data = GameData;
+				std::vector<int>::reverse_iterator rit = data.rbegin();
+				for (; rit != data.rend(); ++rit) {
+					printf("Tile: %d\n", (*row)->at(0));
+				}
 				leftSpawn.y = spawn_y;
 			}
 
@@ -381,6 +387,7 @@ SDL_Point Level::getRightSpawn() {
 }
 
 SDL_Point Level::getLeftSpawn() {
+
 	return leftSpawn;
 }
 
@@ -406,38 +413,59 @@ void Level::collides(MovingEntity *entity)
 	int max_tile_x = (max_tile_xy.x / tileSize) + 1;
 	int max_tile_y = (max_tile_xy.y / tileSize) + 1;
 
-	SDL_Rect tmpbound = (SDL_Rect) new_entity;
+	SDL_Rect tmpbound = (SDL_Rect) entity->boundbox;
 
-	double target_movement = getLineLength(old_entity.x, old_entity.y, new_entity.x, new_entity.y);
-
-	for (int y_tile = min_tile_y; y_tile <= max_tile_y; y_tile++) {
+	// Vertical collision
+	for (int y_tile = min_tile_y + 1; y_tile < max_tile_y - 1; y_tile++) {
 		for (int x_tile = min_tile_x; x_tile <= max_tile_x; x_tile++) {
 			SDL_Rect tmp = {(x_tile * tileSize),
 							(y_tile * tileSize),
 							tileSize,
-							tileSize};
-			// SDL_Rect tmp = {y_tile, x_tile, tileSize + old_entity.w, tileSize + old_entity.h};
-			// printf("tile[%d][%d]: x%d y%d w%d h%d\n", x_tile, y_tile, tmp.x, tmp.y, tmp.w, tmp.h);
+							tileSize-2};
+
+			if (getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
+				if (getTile(x_tile * tileSize, (y_tile + 1) * tileSize) != 0) {
+					tmp.h += tileSize;
+				}
+			}
 
 			if (SDL_HasIntersection(&tmp, &tmpbound) &&
 				getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
+					if (entity->velocity_x > 0) {
+						entity->boundbox.x = tmp.x - (entity->hitbox.w + 1);
+					} else {
+						entity->boundbox.x = (tmp.x + tmp.w) + 1;
+					}
+			}
+		}
+	}
 
-				SDL_Rect result;
-				SDL_IntersectRect(&tmp, &tmpbound, &result);
-				printf("result w%d h%d\n", result.w, result.h);
-				
-				if (result.w > result.h) {
-					entity->boundbox.y = tmp.y - entity->hitbox.h;
-				} else {
-					entity->boundbox.x -= (result.w > target_movement) ? target_movement : result.w;
+	tmpbound = (SDL_Rect) entity->boundbox;
+
+	// Horizontal collision
+	for (int y_tile = min_tile_y; y_tile <= max_tile_y; y_tile++) {
+		for (int x_tile = min_tile_x; x_tile < max_tile_x; x_tile++) {
+			SDL_Rect tmp = {(x_tile * tileSize),
+							(y_tile * tileSize),
+							tileSize,
+							tileSize};
+
+			if (getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
+				if (getTile((x_tile + 1) * tileSize, y_tile * tileSize) != 0) {
+					tmp.w += tileSize;
 				}
+			}
 
-				float movement = getLineLength(old_entity.x, old_entity.y, entity->boundbox.x, entity->boundbox.y);
-				printf("Movement %f/%f\n", movement, target_movement);
-				target_movement -= movement;
-
-				entity->boundbox.y -= target_movement;
-
+			if (SDL_HasIntersection(&tmp, &tmpbound) &&
+				getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
+					if (tmp.y < entity->boundbox.y) {
+						entity->boundbox.y = tmp.y + tmp.h + 1;
+						entity->velocity_y = 0;
+					} else {
+						entity->boundbox.y = tmp.y - entity->hitbox.h;
+						entity->velocity_y = 0;
+						entity->in_air = false;
+					}
 			}
 		}
 	}

@@ -45,8 +45,7 @@ void Player::update(float dt) {
 	}
 
 	if (Input::keyState(SDL_SCANCODE_W)) {
-		boundbox.y += -4;
-			// jump();
+			jump();
 	}
 
 	if (Input::keyState(SDL_SCANCODE_A)) {
@@ -56,7 +55,6 @@ void Player::update(float dt) {
 	}
 
 	if (Input::keyState(SDL_SCANCODE_S)) {
-		boundbox.y += 4;
 		crouch = true;
 		targetVx = 0;
 	} else {

@@ -14,22 +14,20 @@ GameState::GameState(Window *window) :
 	test(nullptr),
 	background(new Texture(window, "graphics/levels/lumbroff_background.png"))
 	{
-		SDL_Rect hitbox = {15, 16, 14, 28};
-		player = new Player(window, Rectangle(400, 200, 13, 26), 3, 100);
+		player = new Player(window, Rectangle(1, 1, 13, 26), 5, 100);
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
 		collection = new EntityCollection<Entity>;
 
 		level = new Level(window, camera, collection);
-		level->load("levels/mountain_shrine_01.tmx");
+		level->load("levels/hamond_02.tmx");
 
-		SDL_Point spawnpoint = level->getRightSpawn();
+		SDL_Point spawnpoint = level->getLeftSpawn();
 
-		player->hitbox.x = spawnpoint.x;
-		player->hitbox.y = spawnpoint.y;
-
-		skeleton = new Skeleton(window, player, Rectangle(300, 100, 13, 26), 1, 100);
+		player->boundbox.x = spawnpoint.x;
+		player->boundbox.y = spawnpoint.y - player->hitbox.h + 1;
+		// skeleton = new Skeleton(window, player, Rectangle(300, 100, 13, 26), 1, 100);
 }
 
 GameState::~GameState() {
@@ -60,14 +58,13 @@ stateStatus GameState::update() {
 	level->update(player);
 	camera->update(level->getLevelWidth(), level->getLevelHeight());
 
-	skeleton->update(window->getDelta()
-		);
-	skeleton->commitMovement();
+	// skeleton->update(window->getDelta()
+	// skeleton->commitMovement();
 
 	// Update tooltip and sign text
 	tooltip_s  = level->tooltip;
 	signText_s = level->signText;
-/*
+
 	if (Input::keyState(SDL_SCANCODE_RETURN)) {
 		Exit *door = level->getCurrentDoor();
 
@@ -83,8 +80,8 @@ stateStatus GameState::update() {
 			level->load(level_name);
 
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			camera->frame.x = spawnpoint.x;
-			camera->frame.y = spawnpoint.y + camera->frame.h/2;
+			camera->frame.x = spawnpoint.x + player->hitbox.w;
+			camera->frame.y = spawnpoint.y + player->hitbox.h;
 		}
 	}
 
@@ -104,7 +101,8 @@ stateStatus GameState::update() {
 			level->load(rightLevel);
 
 			SDL_Point spawnpoint = level->getLeftSpawn();
-			//player->setPosition(spawnpoint.x + player->getHitbox().w, spawnpoint.y - player->getHitbox().h);
+			player->boundbox.x = spawnpoint.x + player->hitbox.w;
+			player->boundbox.y = spawnpoint.y + player->hitbox.h;
 		}
 
 	}
@@ -124,9 +122,11 @@ stateStatus GameState::update() {
 			level->load(leftLevel);
 
 			SDL_Point spawnpoint = level->getRightSpawn();
-			//player->setPosition(spawnpoint.x - player->getW(), spawnpoint.y - player->getH());
+			player->boundbox.x = spawnpoint.x - player->hitbox.w;
+			player->boundbox.y = spawnpoint.y - player->hitbox.h;
 		}
-	}*/
+	}
+
 	return status;
 }
 
@@ -144,7 +144,7 @@ void GameState::render() {
 					 */
 	player->render(camera);
 
-	skeleton->render(camera);
+	// skeleton->render(camera);
 
 	SDL_Rect hitbox = (SDL_Rect) player->hitbox;
 	/*window->drawRect(hitbox.x - camera->frame.x,
