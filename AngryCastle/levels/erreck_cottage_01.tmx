@@ -1644,7 +1644,7 @@
  </layer>
  <objectgroup name="Triggers"/>
  <objectgroup name="Actors">
-  <object id="20" name="playerSpawnRight" type="spawn" x="8.33333" y="200.833">
+  <object id="20" name="playerSpawnLeft" type="spawn" x="8.33333" y="200.833">
    <ellipse/>
   </object>
   <object id="22" name="erreckMystic_01" type="npcSpawn" x="198.333" y="200.667">

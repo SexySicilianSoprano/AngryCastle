@@ -24087,7 +24087,7 @@
   </data>
  </layer>
  <objectgroup name="Triggers">
-  <object id="19" name="shrine_01" x="1309.87" y="203.083" width="34.9167" height="69.1667"/>
+  <object id="19" name="shrine_01" type="shrine" x="1309.87" y="203.083" width="34.9167" height="69.1667"/>
  </objectgroup>
  <objectgroup name="Actors">
   <object id="3" name="playerSpawnRight" type="spawn" x="3193.33" y="330.667">

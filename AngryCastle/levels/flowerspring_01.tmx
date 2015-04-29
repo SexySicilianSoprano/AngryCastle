@@ -14546,7 +14546,7 @@
   </data>
  </layer>
  <objectgroup name="Triggers">
-  <object id="56" name="shrine_01" x="1389.83" y="94.8333" width="33.6667" height="65.6667"/>
+  <object id="56" name="shrine_01" type="shrine" x="1389.83" y="94.8333" width="33.6667" height="65.6667"/>
  </objectgroup>
  <objectgroup name="Actors">
   <object id="31" name="enemySpawn_06" type="enemySpawn" x="1722.5" y="183.833">

@@ -12132,7 +12132,7 @@
     <property name="text" value="East to Hamond Road"/>
    </properties>
   </object>
-  <object id="25" name="shrine_01" x="1613.17" y="126.667" width="34.9167" height="69.1667"/>
+  <object id="25" name="shrine_01" type="shrine" x="1613.17" y="126.667" width="34.9167" height="69.1667"/>
  </objectgroup>
  <objectgroup name="Actors">
   <object id="8" name="playerSpawnLeft" type="spawn" x="8" y="200.5">
