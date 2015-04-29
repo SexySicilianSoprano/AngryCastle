@@ -18085,6 +18085,18 @@
  </layer>
  <objectgroup name="Triggers">
   <object id="42" name="Boss_03" type="bossTrigger" x="1537.33" y="280" width="365.333" height="110.667"/>
+  <object id="40" name="door_01" type="door" x="2046.92" y="343.583" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="erreck_house_01.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
+  <object id="41" name="door_02" type="door" x="798" y="231.25" width="33.5" height="41.5">
+   <properties>
+    <property name="changeLevel" value="erreck_house_02.tmx"/>
+    <property name="spawn" value="playerSpawnLeft"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Actors">
   <object id="20" name="playerSpawnRight" type="spawn" x="2393" y="345.5">
@@ -18218,18 +18230,6 @@
     <property name="enemyType" value="werewolf"/>
    </properties>
    <ellipse/>
-  </object>
-  <object id="40" name="door_01" type="door" x="2046.92" y="343.583" width="33.5" height="41.5">
-   <properties>
-    <property name="changeLevel" value="erreck_house_01.tmx"/>
-    <property name="spawn" value="playerSpawnLeft"/>
-   </properties>
-  </object>
-  <object id="41" name="door_02" type="door" x="798" y="231.25" width="33.5" height="41.5">
-   <properties>
-    <property name="changeLevel" value="erreck_house_02.tmx"/>
-    <property name="spawn" value="playerSpawnLeft"/>
-   </properties>
   </object>
   <object id="43" name="enemySpawn_19" type="enemySpawn" x="890.667" y="263.333">
    <properties>
