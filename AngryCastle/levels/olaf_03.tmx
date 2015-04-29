@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="41">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" backgroundcolor="#639bff" nextobjectid="41">
  <properties>
-  <property name="drainRate" value="6"/>
+  <property name="background" value="Olaf_background.png"/>
+  <property name="backgroundHeight" value="0"/>
+  <property name="drainRate" value="8"/>
   <property name="exitLeft" value="grema_02.tmx"/>
   <property name="exitRight" value="olaf_04.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>

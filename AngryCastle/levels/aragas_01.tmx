@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" nextobjectid="42">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="30" tilewidth="16" tileheight="16" backgroundcolor="#5fcde4" nextobjectid="42">
  <properties>
+  <property name="background" value="Filmoor_background.png"/>
+  <property name="backgroundHeight" value="224"/>
+  <property name="drainRate" value="8"/>
   <property name="exitLeft" value="aragas_02.tmx"/>
   <property name="exitRight" value="olaf_02.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>

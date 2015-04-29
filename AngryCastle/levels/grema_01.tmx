@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" nextobjectid="42">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="200" height="50" tilewidth="16" tileheight="16" backgroundcolor="#639bff" nextobjectid="42">
  <properties>
+  <property name="background" value="Olaf_background.png"/>
+  <property name="backgroundHeight" value="0"/>
+  <property name="drainRate" value="0"/>
   <property name="exitLeft" value="hamond_03.tmx"/>
   <property name="exitRight" value="null.tmx"/>
   <property name="spawnLeft" value="playerSpawnRight"/>
