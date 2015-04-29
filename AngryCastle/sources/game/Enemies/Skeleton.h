@@ -14,7 +14,7 @@ class Skeleton : public Enemy
 		Skeleton(Window *window, Player *player, Rectangle hitbox, float speed, int hp);
 		~Skeleton();
 
-		void update(float dt);
+		void update();
 
 	private:
 		

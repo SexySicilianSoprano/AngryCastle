@@ -14,7 +14,7 @@ MovingEntity::MovingEntity(Rectangle hitbox, float speed):
 
 MovingEntity::~MovingEntity() {}
 
-void MovingEntity::update(float dt) {
+void MovingEntity::update() {
 	velocity_x += ((targetVx - velocity_x) * acceleration) * 0.16667f;
 	// velocity_x = (targetVx * acceleration) + ((1 - acceleration) * velocity_x) * 0.166667f;
 
@@ -26,7 +26,7 @@ void MovingEntity::update(float dt) {
 		velocity_x = 0;
 	}
 
-	boundbox.x += trunc(velocity_x);
+	boundbox.x += floorf(velocity_x);
 	targetVx = 0;
 }
 

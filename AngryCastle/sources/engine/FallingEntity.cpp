@@ -14,7 +14,7 @@ FallingEntity::~FallingEntity() {
 
 }
 
-void FallingEntity::update(float dt) {
+void FallingEntity::update() {
 	velocity_y += GRAVITY * (16.f / 1000);
 	if (velocity_y >= 7) {
 		velocity_y = 7;
@@ -22,5 +22,5 @@ void FallingEntity::update(float dt) {
 
 	boundbox.y += velocity_y;
 
-	MovingEntity::update(dt);
+	MovingEntity::update();
 }

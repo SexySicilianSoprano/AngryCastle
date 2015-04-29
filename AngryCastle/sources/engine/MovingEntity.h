@@ -12,6 +12,7 @@
 #ifndef __MOVINGENTITY_H_DEFINED__
 #define __MOVINGENTITY_H_DEFINED__
 
+#include <cmath>
 #include "Entity.h"
 
 #define FACING_RIGHT 1
@@ -28,7 +29,7 @@ class MovingEntity : public Entity
 		void right();
 
 		void commitMovement();
-		void update(float dt);
+		void update();
 
 		int facing_direction;
 		bool in_air;

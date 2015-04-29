@@ -19,7 +19,7 @@ bool Enemy::playerAtAggroRange(Player *player) {
 	int distance = abs(hitbox.Center().x - player->hitbox.Center().x) +
 				   abs(hitbox.Center().y - player->hitbox.Center().y);
 
-	if (distance < 100) {
+	if (distance < 250) {
 		return true;
 	}
 
@@ -47,7 +47,7 @@ int Enemy::getPlayerDistanceY() {
 	return hitbox.Center().y - player->hitbox.Center().y;
 }
 
-void Enemy::update(float dt) {
+void Enemy::update(Player *player) {
 	switch (currentState)
 	{
 	case ENEMY_STATE_IDLE:

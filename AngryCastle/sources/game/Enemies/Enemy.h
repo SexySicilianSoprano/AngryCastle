@@ -27,7 +27,7 @@ class Enemy : public FallingEntity, public DamageableEntity
 		int getPlayerDistanceX();
 		int getPlayerDistanceY();
 
-		void update(float dt);
+		void update(Player *player);
 		void render(Camera *camera);
 
 	protected:

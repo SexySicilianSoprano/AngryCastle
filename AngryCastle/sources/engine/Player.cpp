@@ -39,7 +39,8 @@ Player::~Player() {
 	delete currentAnimation;
 }
 
-void Player::update(float dt) {
+void Player::update(EntityCollection<Entity> *enemies) {
+
 	if (!in_air) {
 		jumping = false;
 	}
@@ -66,6 +67,16 @@ void Player::update(float dt) {
 		crouch = false;
 	}
 
+	if (currentAnimation == animations[ATTACK] &&
+		currentAnimation->getCurrentFrame() == 3) {
+		
+		Rectangle weapon_hitbox(28, 0, 18, 43);		
+	}
+
+	if (Input::keyState(SDL_SCANCODE_K)) {
+		damage(10);	
+	}
+
 	// if (jumping &&
 	// 	currentAnimation == animations[JUMP] &&
 	// 	currentAnimation->getCurrentFrame() > 0) {
@@ -75,7 +86,7 @@ void Player::update(float dt) {
 	// 				jump();
 	// }
 
-	FallingEntity::update(dt);
+	FallingEntity::update();
 	updateAnimation();
 	currentAnimation->play(INFINITE_LOOP);
 }

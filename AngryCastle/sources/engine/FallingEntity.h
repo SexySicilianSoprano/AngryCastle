@@ -24,7 +24,7 @@ class FallingEntity : public MovingEntity
 		~FallingEntity();
 
 		// Makes entity suffer gravity
-		void update(float dt);
+		void update();
 
 };
 

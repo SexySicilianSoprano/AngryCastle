@@ -11,17 +11,13 @@ Level::Level(Window *window, Camera *camera, EntityCollection<Entity> *collectio
 }
 
 Level::~Level()
-{/*
-	delete window;
-	delete camera;
-	delete collection;
-
+{
 	delete currentDoor;
 	delete leftExit;
 	delete rightExit;
 
 	delete levelTileSheet;
-*/
+
 }
 
 void Level::load(std::string level_name)
@@ -155,16 +151,44 @@ void Level::load(std::string level_name)
 				leftSpawn.x = spawn_x;
 
 				std::vector<std::vector<int>> data = GameData;
-				std::vector<int>::reverse_iterator rit = data.rbegin();
+				std::vector<std::vector<int>>::reverse_iterator rit = data.rbegin();
+
+				leftSpawn.y = levelHeight;
+
 				for (; rit != data.rend(); ++rit) {
-					printf("Tile: %d\n", (*row)->at(0));
+					if ((*rit).at(0) == 0) {
+						break;
+					}
+					leftSpawn.y--;
 				}
-				leftSpawn.y = spawn_y;
+
+				if (leftSpawn.y < 0) {
+					leftSpawn.y = 0;
+				} else {
+					leftSpawn.y *= tileSize;
+				}
 			}
 
 			if (spawn_type.compare("playerSpawnRight") == 0) {
 				rightSpawn.x = spawn_x;
-				rightSpawn.y = spawn_y;
+
+				std::vector<std::vector<int>> data = GameData;
+				std::vector<std::vector<int>>::reverse_iterator rit = data.rbegin();
+
+				rightSpawn.y = levelHeight;
+
+				for (; rit != data.rend(); ++rit) {
+					if ((*rit).at(levelWidth-1) == 0) {
+						break;
+					}
+					rightSpawn.y--;
+				}
+
+				if (rightSpawn.y < 0) {
+					rightSpawn.y = 0;
+				} else {
+					rightSpawn.y *= tileSize;
+				}
 			}
 
 			if (spawn_type.compare("playerSpawnStart") == 0) {

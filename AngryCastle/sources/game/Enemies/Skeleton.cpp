@@ -33,8 +33,8 @@ Skeleton::Skeleton(Window *window, Player *player, Rectangle hitbox,
 
 Skeleton::~Skeleton() { }
 
-void Skeleton::update(float dt) {
-	Enemy::update(dt);
+void Skeleton::update() {
+	Enemy::update(player);
 	
 	if (currentState == ENEMY_STATE_IDLE) {
 		currentAnimation = animations[IDLE];
@@ -56,5 +56,5 @@ void Skeleton::update(float dt) {
 		currentAnimation->play(1);
 	}
 
-	FallingEntity::update(dt);
+	FallingEntity::update();
 }
