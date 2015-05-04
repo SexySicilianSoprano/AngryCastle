@@ -1,9 +1,8 @@
 #include "Level.h"
 
-Level::Level(Window *window, Camera *camera, EntityCollection<Entity> *collection):
+Level::Level(Window *window, Camera *camera):
 	window(window),
 	camera(camera),
-	collection(collection),
 	currentDoor(nullptr),
 	leftExit(nullptr),
 	rightExit(nullptr)
@@ -20,7 +19,7 @@ Level::~Level()
 
 }
 
-void Level::load(std::string level_name)
+void Level::load(std::string level_name, std::vector<Enemy*> & enemies)
 {
 	// Loads the level document
 	result = levelDocument.load_file(level_name.c_str());
@@ -206,8 +205,8 @@ void Level::load(std::string level_name)
 
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			Entity entity(Rectangle(npc_x, npc_y, 10, 10));
-			collection->push(entity);
+			//Entity entity(Rectangle(npc_x, npc_y, 10, 10));
+			//enemies->push();
 		}
 
 		if (type.compare("enemySpawn") == 0) {
@@ -216,10 +215,17 @@ void Level::load(std::string level_name)
 			int enemy_x = atoi(iterator->attribute("x").value());
 			int enemy_y = atoi(iterator->attribute("y").value());
 
+			if (type.compare("skeleton") == 0) {
+				printf("Spawning skeleton at x%d y%d\n", enemy_x, enemy_y);
+				enemies.push_back(new Skeleton(window, Rectangle(enemy_x, enemy_y, 13, 26), 3, 100));
+			} else {
+
+			}
+
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			Entity entity(Rectangle(enemy_x, enemy_y, 20, 20));
-			collection->push(entity);
+			//Entity entity(Rectangle(enemy_x, enemy_y, 20, 20));
+			//enemies->push(entity);
 		}
 
 		if (type.compare("item") == 0) {
@@ -230,8 +236,8 @@ void Level::load(std::string level_name)
 
 			// NOTE(jouni): **Factory creates entity of given type**
 			// int x, int y, int w, int h, SDL_Rect hitbox_offset
-			Entity entity(Rectangle(npc_x, npc_y, 5, 5));
-			collection->push(entity);
+			//Entity entity(Rectangle(npc_x, npc_y, 5, 5));
+			//enemies->push(entity);
 		}
 	}
 }

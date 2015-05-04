@@ -18,18 +18,14 @@ GameState::GameState(Window *window) :
 		camera = new Camera(400, 240);
 		camera->lock(player);
 
-		collection = new EntityCollection<Entity>;
-
-		level = new Level(window, camera, collection);
-		level->load("levels/lumbroff_01.tmx");
+		level = new Level(window, camera);
+		level->load("levels/lumbroff_01.tmx", enemies);
 
 		SDL_Point spawnpoint = level->getLeftSpawn();
 
 		player->boundbox.x = spawnpoint.x;
 		player->boundbox.y = spawnpoint.y - player->hitbox.h;
 		player->commitMovement();
-
-		collection->push(Skeleton(window, player, Rectangle(300, 100, 13, 26), 3, 100));
 }
 
 GameState::~GameState() {
@@ -53,18 +49,45 @@ stateStatus GameState::update() {
 			status.status = STATE_INVENTORY;
 		}
 
-		player->update(collection);
+		if (Input::keyPressed(SDL_SCANCODE_K)) {
+			player->damage(1);
+		}
+		// Entity updates
+		player->update();
 
+		for(std::vector<Enemy*>::iterator it = enemies.begin();
+			it != enemies.end(); it++) {
 
-		// skeleton->update(player);
+			SDL_Rect tmp_hb = (*it)->hitbox;
+			SDL_Rect wep_hb = player->weapon_hitbox;
+
+			if (SDL_HasIntersection(&tmp_hb, &wep_hb)) {
+				(*it)->damage(10);
+			}
+
+			if ((*it)->isDead()) {
+				it = enemies.erase(it);
+			}
+
+			SDL_Rect plr_hb = player->hitbox;
+			SDL_Rect enemy_wep_hb = (*it)->weapon_hitbox;
+
+			if (SDL_HasIntersection(&plr_hb, &enemy_wep_hb)) {
+				player->damage(1);
+			}
+
+			(*it)->update(player);
+		}
 
 		// Correct player position
 		level->collides(player);
-		// level->collides(skeleton);
-
-		// Commit player movement
 		player->commitMovement();
-		// skeleton->commitMovement();
+
+		for(std::vector<Enemy*>::iterator it = enemies.begin();
+			it != enemies.end(); it++) {
+			level->collides((*it));
+			(*it)->commitMovement();
+		}
 
 		level->update(player);
 		camera->update(level->getLevelWidth(), level->getLevelHeight());
@@ -82,14 +105,12 @@ stateStatus GameState::update() {
 			if (!rightLevel.empty()) {
 				// Clean up old level stuff
 				delete level;
-				delete collection;
 				delete camera;
 
 				camera = new Camera(400, 240);
 				camera->lock(player);
-				collection = new EntityCollection<Entity>;
-				level = new Level(window, camera, collection);
-				level->load(rightLevel);
+				level = new Level(window, camera);
+				level->load(rightLevel, enemies);
 
 				SDL_Point spawnpoint = level->getLeftSpawn();
 				player->boundbox.x = 4;
@@ -106,17 +127,15 @@ stateStatus GameState::update() {
 			if (!leftLevel.empty()) {
 				// Clean up old level stuff
 				delete level;
-				delete collection;
 				delete camera;
 
 				camera = new Camera(400, 240);
 				camera->lock(player);
-				collection = new EntityCollection<Entity>;
-				level = new Level(window, camera, collection);
-				level->load(leftLevel);
+				level = new Level(window, camera);
+				level->load(leftLevel, enemies);
 
 				SDL_Point spawnpoint = level->getRightSpawn();
-				player->boundbox.x = spawnpoint.x - (player->hitbox.w);
+				player->boundbox.x = spawnpoint.x - (player->hitbox.w+2);
 				player->boundbox.y = spawnpoint.y - player->hitbox.h;
 			}
 		}
@@ -129,17 +148,15 @@ stateStatus GameState::update() {
 
 				// Clean up old level stuff
 				delete level;
-				delete collection;
 				delete camera;
 
 				camera = new Camera(400, 240);
 				camera->lock(player);
-				collection = new EntityCollection<Entity>;
-				level = new Level(window, camera, collection);
-				level->load(level_name);
+				level = new Level(window, camera);
+				level->load(level_name	, enemies);
 
 				SDL_Point spawnpoint = level->getLeftSpawn();
-				player->boundbox.x = spawnpoint.x; 
+				player->boundbox.x = spawnpoint.x;
 				player->boundbox.y = spawnpoint.y - player->hitbox.h;
 				player->commitMovement();
 			}
@@ -156,18 +173,17 @@ void GameState::render() {
 	level->render(GAME_LAYER);
 
 	player->render(camera);
-/*
-	SDL_Rect hitbox = (SDL_Rect) skeleton->hitbox;
+
+	SDL_Rect hitbox = (SDL_Rect) player->weapon_hitbox;
 	window->drawRect(hitbox.x - camera->frame.x,
 					 hitbox.y - camera->frame.y,
 					 hitbox.w,
 					 hitbox.h,
 					 Color("red"));
-*/
 	// skeleton->render(camera);
 /*
-	for (int i = 0; i < collection->length(); i++) {
-		Entity *tmp = collection->get(i);
+	for (int i = 0; i < enemies.length(); i++) {
+		Entity *tmp = enemies.get(i);
 
 		window->drawRect(tmp->getX() - camera->frame.x,
 						 tmp->getY() - camera->frame.y,
@@ -176,6 +192,19 @@ void GameState::render() {
 						 Color("blue"));
 	}
 */
+
+	for(std::vector<Enemy*>::iterator it = enemies.begin();
+		it != enemies.end(); it++) {
+		(*it)->render(camera);
+
+		SDL_Rect hitbox = (SDL_Rect) (*it)->weapon_hitbox;
+		window->drawRect(hitbox.x - camera->frame.x,
+						 hitbox.y - camera->frame.y,
+						 hitbox.w,
+						 hitbox.h,
+						 Color("red"));
+	}
+
 	level->render(FG_LAYER);
 
 	if (tooltip_s.length() > 0) {

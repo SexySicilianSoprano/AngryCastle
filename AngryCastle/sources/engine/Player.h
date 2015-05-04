@@ -12,7 +12,6 @@
 #include "Input.h"
 #include "Animation.h"
 #include "Camera.h"
-#include "EntityCollection.h"
 
 class Player : public FallingEntity, public DamageableEntity
 {
@@ -20,10 +19,12 @@ class Player : public FallingEntity, public DamageableEntity
 		Player(Window *window, Rectangle hitbox, float speed, int hp);
 		~Player();
 
-		void update(EntityCollection<Entity> *enemies);
+		void update();
 		void updateAnimation();
 
 		void render(Camera *camera);
+
+		Rectangle weapon_hitbox;
 
 		enum possible_animations {
 			IDLE=0,

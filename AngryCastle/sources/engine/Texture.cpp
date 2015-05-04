@@ -18,7 +18,7 @@ Texture::~Texture()
 
 SDL_Texture *Texture::loadImage(std::string filename)
 {
-	printf("Loading %s\n", filename.c_str());
+//	printf("Loading %s\n", filename.c_str());
 	SDL_Surface* surface = IMG_Load(filename.c_str());
 
 	if (!surface) {

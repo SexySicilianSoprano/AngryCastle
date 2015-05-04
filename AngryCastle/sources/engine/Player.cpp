@@ -6,7 +6,8 @@ Player::Player(Window *window, Rectangle hitbox, float speed, int hp):
 	DamageableEntity(hp),
 	crouch(false),
 	jumping(false),
-	attacking(false)
+	attacking(false),
+	weapon_hitbox(0, 0, 0, 0)
 {
 	render_offset.x = -16;
 	render_offset.y = -17;
@@ -39,7 +40,16 @@ Player::~Player() {
 	delete currentAnimation;
 }
 
-void Player::update(EntityCollection<Entity> *enemies) {
+void Player::update() {
+	weapon_hitbox.w = 0;
+	weapon_hitbox.h = 0;
+	weapon_hitbox.y = hitbox.y - 16;
+
+	if (facing_direction == 2) {
+		weapon_hitbox.x = hitbox.x + (-16);
+	} else {
+		weapon_hitbox.x = hitbox.x + 16;
+	}
 
 	if (!in_air) {
 		jumping = false;
@@ -65,26 +75,24 @@ void Player::update(EntityCollection<Entity> *enemies) {
 	if (Input::keyState(SDL_SCANCODE_SPACE)) {
 		attacking = true;
 		crouch = false;
+		targetVx = 0;
 	}
 
 	if (currentAnimation == animations[ATTACK] &&
 		currentAnimation->getCurrentFrame() == 3) {
-		
-		Rectangle weapon_hitbox(28, 0, 18, 43);		
+
+		weapon_hitbox.w = 18;
+		weapon_hitbox.h = 43;
 	}
 
-	if (Input::keyState(SDL_SCANCODE_K)) {
-		damage(10);	
+	if (jumping &&
+		currentAnimation == animations[JUMP] &&
+		currentAnimation->getCurrentFrame() > 0) {
+		jump();
+	} else if (jumping &&
+				currentAnimation == animations[ATTACK]) {
+					jump();
 	}
-
-	// if (jumping &&
-	// 	currentAnimation == animations[JUMP] &&
-	// 	currentAnimation->getCurrentFrame() > 0) {
-	// 	jump();
-	// } else if (jumping &&
-	// 			currentAnimation == animations[ATTACK]) {
-	// 				jump();
-	// }
 
 	FallingEntity::update();
 	updateAnimation();
@@ -100,6 +108,7 @@ void Player::render(Camera *camera) {
 
 	currentAnimation->render((hitbox.x + render_offset.x) - camera->frame.x,
 							 (hitbox.y + render_offset.y) - camera->frame.y);
+
 }
 
 void Player::updateAnimation() {
@@ -113,46 +122,46 @@ void Player::updateAnimation() {
 		currentAnimation = animations[WALK];
 	}
 
+	if (attacking) {
+		currentAnimation = animations[ATTACK];
+		if (currentAnimation->getCurrentFrame() == 0 && currentAnimation->times_played > 0) {
+		 	attacking = false;
+		 	currentAnimation->times_played = 0;
+		}
+	}
+
+
 	if (jumping) {
 		currentAnimation = animations[JUMP];
 	}
 
 	/* TODO(jouni): Korjaa in_air pudotessa */
-	if (in_air) {
-		currentAnimation = animations[JUMP];
-		// currentAnimation->pause();
+	// if (in_air) {
+	// 	currentAnimation = animations[JUMP];
+	// 	currentAnimation->pause();
 
-		// if (velocity_y < 0) {
-		// 	currentAnimation->setCurrentFrame(2);
-		// } else {
-		// 	currentAnimation->setCurrentFrame(1);
-		// }
+	// 	if (velocity_y < 0) {
+	// 		currentAnimation->setCurrentFrame(2);
+	// 	} else {
+	// 	 	currentAnimation->setCurrentFrame(1);
+	// 	}
 
-		/*
-		if (!jumping) {
-			currentAnimation->setCurrentFrame(2);
-		}
+	// 	// if (!jumping) {
+	// 	// 	currentAnimation->setCurrentFrame(2);
+	// 	// }
 
-		if (jumping && velocity_y > 0 && currentAnimation->getCurrentFrame() == 1) {
-			currentAnimation->pause();
-		}
-		*/
-	}
+	// 	if (jumping && velocity_y > 0 && currentAnimation->getCurrentFrame() == 1) {
+	// 		currentAnimation->pause();
+	// 	}
+	// }
 
 	if (crouch) {
 		currentAnimation = animations[CROUCH];
 
-		// if (currentAnimation->getCurrentFrame() == 1) {
-		// 	currentAnimation->pause();
-		// }
+		 if (currentAnimation->getCurrentFrame() == 1) {
+		 	currentAnimation->pause();
+		 }
 	}
 
-	if (attacking) {
 
-		currentAnimation = animations[ATTACK];
-		// if (currentAnimation->getCurrentFrame() == 0 && currentAnimation->times_played > 0) {
-		// 	attacking = false;
-		// 	currentAnimation->times_played = 0;
-		// }
-	}
 }

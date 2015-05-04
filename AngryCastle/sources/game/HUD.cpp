@@ -21,24 +21,25 @@ HUD::~HUD() {
 
 void HUD::render(Player *player) {
 	// TODO(jouni): Get HP
-	int hp = 100;
+	float hp = player->getHitpoints();
+	printf("hitpoints %f\n", hp);
 	// TODO(jouni): Get Mana
 	int mana = 100;
-	
+
 	// TODO(jouni): Get Sanity
 	int sanity = 100;
-	
+
 	// TODO(jouni): Get Subweapon, switch case, default to VOID
 	int current_subweapon = 0;
 
 	// HP					MAX
 	//						___
-	window->drawRect(17, 6, 118, 6, Color(172, 50, 50));
-	
+	window->drawRect(17, 6, 118.f * (hp / 100), 6, Color(172, 50, 50));
+
 	// MANA					 MAX
 	//						 ___
 	window->drawRect(24, 13, 107, 5, Color(118, 66, 138));
-	
+
 	// SANITY				 MAX
 	//						 ___
 	window->drawRect(14, 20, 120, 5, Color(132, 126, 135));
@@ -51,7 +52,7 @@ void HUD::render(Player *player) {
 			subweapon = new Texture(window, "");
 			subweapon->render(135, 4);
 			break;
-			
+
 		case 2:
 			subweapon = new Texture(window, "");
 			subweapon->render(135, 4);

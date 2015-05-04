@@ -26,11 +26,11 @@ public:
 
 	bool isDead();
 
-	int getHitpoints();
+	float getHitpoints();
 
 private:
 	bool alive;
-	int hitpoints;
+	float hitpoints;
 };
 
 #endif //__DAMAGEABLEENTITY_H_DEFINED__

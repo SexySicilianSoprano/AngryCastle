@@ -27,13 +27,12 @@ class Animation : public Sprite
 		void render(int x, int y);
 		bool done();
 
-		Sprite *animated;
 		bool running;
 		int times_played;
 
 	private:
 		Window *window;
-		
+
 		std::vector<int> frames;
 		int play_count, frametime, current_frame, current_frametime;
 };

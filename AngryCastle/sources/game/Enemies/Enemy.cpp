@@ -1,12 +1,12 @@
 #include "Enemy.h"
 
-Enemy::Enemy(Window *window, Player *player, Rectangle hitbox, float speed, int hp):
+Enemy::Enemy(Window *window, Rectangle hitbox, float speed, int hp):
 	FallingEntity(hitbox, speed),
 	DamageableEntity(hp),
 	window(window),
-	player(player),
 	currentState(ENEMY_STATE_IDLE),
-	currentAnimation(nullptr)
+	currentAnimation(nullptr),
+	weapon_hitbox(hitbox.x, hitbox.y, 0, 0)
 {
 
 }
@@ -39,14 +39,14 @@ bool Enemy::playerAtHitRange(Player *player) {
 	return false;
 }
 
-int Enemy::getPlayerDistanceX() {
+int Enemy::getPlayerDistanceX(Player *player) {
 	return hitbox.Center().x - player->hitbox.Center().x;
 }
 
-int Enemy::getPlayerDistanceY() {
+int Enemy::getPlayerDistanceY(Player *player) {
 	return hitbox.Center().y - player->hitbox.Center().y;
 }
-
+/*
 void Enemy::update(Player *player) {
 	switch (currentState)
 	{
@@ -60,10 +60,10 @@ void Enemy::update(Player *player) {
 		if(!playerAtAggroRange(player)) {
 			currentState = ENEMY_STATE_IDLE;
 		}
-		
+
 		if (playerAtHitRange(player) &&
-			getPlayerDistanceY() < 10 &&
-			getPlayerDistanceY() > -10) {
+			getPlayerDistanceY(player) < 10 &&
+			getPlayerDistanceY(player) > -10) {
 			currentState = ENEMY_STATE_ATTACK;
 		}
 		break;
@@ -80,7 +80,8 @@ void Enemy::update(Player *player) {
 		break;
 	}
 }
-
+*/
+/*
 void Enemy::render(Camera *camera) {
 	if (facing_direction == 2) {
 		currentAnimation->flip = true;
@@ -91,3 +92,4 @@ void Enemy::render(Camera *camera) {
 	currentAnimation->render((hitbox.x + render_offset.x) - camera->frame.x,
 							 (hitbox.y + render_offset.y) - camera->frame.y);
 }
+*/

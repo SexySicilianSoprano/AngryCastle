@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * Skeleton.h
  */
 
@@ -11,13 +11,13 @@
 class Skeleton : public Enemy
 {
 	public:
-		Skeleton(Window *window, Player *player, Rectangle hitbox, float speed, int hp);
+		Skeleton(Window *window, Rectangle hitbox, float speed, int hp);
 		~Skeleton();
 
-		void update();
-
+		void update(Player *player);
+		void render(Camera *camera);
 	private:
-		
+
 };
 
 #endif //__SKELETON_H_DEFINED__

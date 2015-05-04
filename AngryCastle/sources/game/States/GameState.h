@@ -14,6 +14,7 @@
 #include "..//..//engine//Player.h"
 #include "..//HUD.h"
 
+#include "../Enemies/Enemy.h"
 #include "../Enemies/Skeleton.h"
 
 class GameState : public BaseState {
@@ -30,7 +31,8 @@ class GameState : public BaseState {
 		Window *window;
 		Level *level;
 		Camera *camera;
-		EntityCollection<Entity> *collection;
+//		EntityCollection<Enemy> *collection;
+		std::vector<Enemy*> enemies;
 
 		Player *player;
 		Skeleton *skeleton;

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  * Enemy.h
  */
 
@@ -19,20 +19,21 @@
 class Enemy : public FallingEntity, public DamageableEntity
 {
 	public:
-		Enemy(Window *window, Player *player, Rectangle hitbox, float speed, int hp);
+		Enemy(Window *window, Rectangle hitbox, float speed, int hp);
 		~Enemy();
 
 		bool playerAtAggroRange(Player *player);
 		bool playerAtHitRange(Player *player);
-		int getPlayerDistanceX();
-		int getPlayerDistanceY();
+		int getPlayerDistanceX(Player *player);
+		int getPlayerDistanceY(Player *player);
 
-		void update(Player *player);
-		void render(Camera *camera);
+		virtual void update(Player *player)=0;
+		virtual void render(Camera *camera)=0;
+
+		Rectangle weapon_hitbox;
 
 	protected:
 		Window *window;
-		Player *player;
 
 		Animation *currentAnimation;
 		std::vector<Animation*> animations;
@@ -41,6 +42,7 @@ class Enemy : public FallingEntity, public DamageableEntity
 			IDLE=0,
 			WALK,
 			ATTACK,
+			PADDING,
 
 			ANIMATION_MAX
 		};

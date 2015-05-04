@@ -41,7 +41,7 @@ bool DamageableEntity::isDead()
 	return true;
 }
 
-int DamageableEntity::getHitpoints()
+float DamageableEntity::getHitpoints()
 {
 	return hitpoints;
 }

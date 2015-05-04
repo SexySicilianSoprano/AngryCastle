@@ -11,6 +11,9 @@
 #include "EntityCollection.h"
 #include "MovingEntity.h"
 
+#include "../game/Enemies/Enemy.h"
+#include "../game/Enemies/Skeleton.h"
+
 #define SIL_LAYER	0	// Silhouette layer
 #define BG_LAYER	1	// Background layer
 #define GAME_LAYER	2	// Game layer
@@ -29,10 +32,10 @@ struct Exit {
 class Level
 {
 	public:
-		Level(Window *window, Camera *camera, EntityCollection<Entity> *collection);
+		Level(Window *window, Camera *camera);
 		~Level();
 
-		void load(std::string level_name);
+		void load(std::string level_name, std::vector<Enemy *> & enemies);
 		void update(Entity *entity);
 		void render(int layer);
 		void collides(MovingEntity *entity);
@@ -60,7 +63,6 @@ class Level
 
 		Window *window;
 		Camera *camera;
-		EntityCollection<Entity> *collection;
 
 		pugi::xml_document levelDocument;
 		pugi::xml_parse_result result;
