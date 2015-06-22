@@ -14,6 +14,8 @@
 #include "../game/Enemies/Enemy.h"
 #include "../game/Enemies/Skeleton.h"
 
+#define EMPTY_TILE  0
+
 #define SIL_LAYER	0	// Silhouette layer
 #define BG_LAYER	1	// Background layer
 #define GAME_LAYER	2	// Game layer

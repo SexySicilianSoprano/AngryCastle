@@ -19,7 +19,7 @@ GameState::GameState(Window *window) :
 		camera->lock(player);
 
 		level = new Level(window, camera);
-		level->load("levels/lumbroff_01.tmx", enemies);
+		level->load("levels/hamond_02.tmx", enemies);
 
 		SDL_Point spawnpoint = level->getLeftSpawn();
 
@@ -215,5 +215,5 @@ void GameState::render() {
 		tooltip->print(window, signText_s, 100, 20);
 	}
 
-	hud->render(player);
+//	hud->render(player);
 }

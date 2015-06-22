@@ -195,7 +195,7 @@ void Level::load(std::string level_name, std::vector<Enemy*> & enemies)
 				startSpawn.y = spawn_y;
 			}
 		}
-
+/*
 		if (type.compare("npcSpawn") == 0) {
 			std::string type   = iterator->child("properties").find_child_by_attribute("name", "npcType").attribute("value").value();
 			std::string script = iterator->child("properties").find_child_by_attribute("name", "script").attribute("value").value();
@@ -239,6 +239,7 @@ void Level::load(std::string level_name, std::vector<Enemy*> & enemies)
 			//Entity entity(Rectangle(npc_x, npc_y, 5, 5));
 			//enemies->push(entity);
 		}
+        */
 	}
 }
 
@@ -427,92 +428,75 @@ SDL_Point Level::getStartSpawn() {
 
 void Level::collides(MovingEntity *entity)
 {
-	Rectangle old_entity = entity->hitbox;
-	Rectangle new_entity = entity->boundbox;
-	new_entity.w = old_entity.w;
-	new_entity.h = old_entity.h;
+    // Top collision
+    if (getTile(entity->boundbox.Center().x, entity->boundbox.y) != EMPTY_TILE) {
+        SDL_Rect top_collision_tile = pointToTile(entity->boundbox.Center().x, entity->boundbox.y);
 
-	// Get the area of tiles considered for collision
-	SDL_Point min_tile_xy = {std::min(old_entity.TopLeft().x, new_entity.TopLeft().x),
-							 std::min(old_entity.TopLeft().y, new_entity.TopLeft().y)};
-	SDL_Point max_tile_xy = {std::max(old_entity.BottomRight().x, new_entity.BottomRight().x),
-							 std::max(old_entity.BottomRight().y, new_entity.BottomRight().y)};
+        entity->boundbox.y = top_collision_tile.y + top_collision_tile.h;
+        entity->velocity_y = 0;
+    }
 
-	int min_tile_x = (min_tile_xy.x / tileSize) - 1;
-	int min_tile_y = (min_tile_xy.y / tileSize) - 1;
-	int max_tile_x = (max_tile_xy.x / tileSize) + 1;
-	int max_tile_y = (max_tile_xy.y / tileSize) + 1;
+    // Vertical collision
 
-	SDL_Rect tmpbound = (SDL_Rect) entity->boundbox;
+	// Get the area of tiles considered for vertical collision
+    // @see http://i.imgur.com/hfOKWO3.png
+	SDL_Point min_tile_pos = {std::min(entity->hitbox.TopLeft().x, entity->boundbox.TopLeft().x) / tileSize,
+							  std::min(entity->hitbox.TopLeft().y, entity->boundbox.TopLeft().y) / tileSize};
 
-	// Vertical collision
-	for (int y_tile = min_tile_y + 1; y_tile < max_tile_y - 1; y_tile++) {
-		for (int x_tile = min_tile_x; x_tile <= max_tile_x; x_tile++) {
-			SDL_Rect tmp = {(x_tile * tileSize),
-							(y_tile * tileSize),
-							tileSize,
-							tileSize-2};
+	SDL_Point max_tile_pos = {std::max(entity->hitbox.BottomRight().x, entity->boundbox.BottomRight().x) / tileSize,
+                              std::max(entity->hitbox.BottomRight().y, entity->boundbox.BottomRight().y) / tileSize};
 
-			if (getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
-				if (getTile(x_tile * tileSize, (y_tile + 1) * tileSize) != 0) {
-					tmp.h += tileSize;
-				}
-			}
+    // Cast entity->boundbox to SDL_Rect since SDL_HasIntersection requires it
+    SDL_Rect sdl_boundbox = (SDL_Rect) entity->boundbox;
 
-			if (SDL_HasIntersection(&tmp, &tmpbound) &&
-				getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
-					if (entity->velocity_x > 0) {
-						entity->boundbox.x = tmp.x - (entity->hitbox.w + 1);
+    // Loop through all tiles considered for collision
+	for (int y_tile = min_tile_pos.y; y_tile < max_tile_pos.y; y_tile++) {
+		for (int x_tile = min_tile_pos.x; x_tile <= max_tile_pos.x; x_tile++) {
+
+			SDL_Rect tile = {(x_tile * tileSize), (y_tile * tileSize),
+							tileSize, tileSize};
+
+            // Correct boundbox position if tile is collidable and it has intersection
+            // width boundbox
+			if (SDL_HasIntersection(&tile, &sdl_boundbox) &&
+				getTile(x_tile * tileSize, y_tile * tileSize) != EMPTY_TILE) {
+
+					if (tile.x > entity->boundbox.x) {
+                        // Correct right
+						entity->boundbox.x = tile.x - entity->hitbox.w;
 					} else {
-						entity->boundbox.x = (tmp.x + tmp.w) + 1;
+                        // Correct left
+						entity->boundbox.x = tile.x + tile.w;
 					}
 			}
 		}
 	}
 
-	tmpbound = (SDL_Rect) entity->boundbox;
+	// Bottom collision
+    SDL_Rect bot_collision_tile = {0, 0, 0, 0};
 
-	// Horizontal collision
-	for (int y_tile = min_tile_y; y_tile <= max_tile_y; y_tile++) {
-		for (int x_tile = min_tile_x; x_tile < max_tile_x; x_tile++) {
-			SDL_Rect tmp = {(x_tile * tileSize),
-							(y_tile * tileSize),
-							tileSize,
-							tileSize};
+    // TODO(jouni): Translate plz
+    //
+    // Väsyttää. -_-
+    // Bottom collisionissa riittää että tarkiestetaan boundboxin keskeltä, 2/4 kokoiselta alueelta (boundboxin
+    // leveydestä), jos siellä on collidable tile niin ei tarvitte tippua.
+    // Hyvänä tai huonona puolena; jos on liian reunalla tileä (1/4 boundboxin koosta), entiteetti luiskahtaa
+    // tileltä alas. RIP.
 
-			if (getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
-				if (getTile((x_tile + 1) * tileSize, y_tile * tileSize) != 0) {
-					tmp.w += tileSize;
-				}
-			}
+    if (getTile(entity->boundbox.BottomLeft().x + (entity->boundbox.w / 4), entity->boundbox.BottomLeft().y) != EMPTY_TILE) {
+        bot_collision_tile = pointToTile(entity->boundbox.BottomLeft().x + (entity->boundbox.w / 4), entity->boundbox.BottomLeft().y);
+    }
 
-			if (SDL_HasIntersection(&tmp, &tmpbound) &&
-				getTile(x_tile * tileSize, y_tile * tileSize) != 0) {
-					if (tmp.y < entity->boundbox.y) {
-						entity->boundbox.y = tmp.y + tmp.h + 1;
-						entity->velocity_y = 0;
-					} else {
-						entity->boundbox.y = tmp.y - entity->hitbox.h;
-						entity->velocity_y = 0;
-						entity->in_air = false;
-					}
-			}
-		}
-	}
-}
+    if (getTile(entity->boundbox.BottomRight().x - (entity->boundbox.w / 4), entity->boundbox.BottomRight().y) != EMPTY_TILE) {
+        bot_collision_tile = pointToTile(entity->boundbox.BottomRight().x - (entity->boundbox.w / 4), entity->boundbox.BottomRight().y);
+    }
 
+    if (!SDL_RectEmpty(&bot_collision_tile)) {
+        entity->boundbox.y = bot_collision_tile.y - entity->hitbox.h;
 
-double Level::getLineLength(int x1, int y1, int x2, int y2) {
-	// NOTE(jouni): We might need abs here?
-	int x = x2 - x1;
-	int y = y2 - y1;
-
-	return sqrt(pow(x, 2) + pow(y, 2));
-}
-
-double Level::getLineLength(SDL_Point p1, SDL_Point p2) {
-	int x = p2.x - p1.x;
-	int y = p2.y - p2.y;
-
-	return sqrt(pow(x, 2) + pow(y, 2));
+        if (entity->velocity_y >= 0) {
+            entity->velocity_y = 0;
+            entity->in_air = false;
+        }
+    }
 }

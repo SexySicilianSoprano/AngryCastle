@@ -22,7 +22,7 @@ HUD::~HUD() {
 void HUD::render(Player *player) {
 	// TODO(jouni): Get HP
 	float hp = player->getHitpoints();
-	printf("hitpoints %f\n", hp);
+
 	// TODO(jouni): Get Mana
 	int mana = 100;
 
